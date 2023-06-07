@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../context/auth.context'
-import axios from 'axios'
-const URL = 'http://localhost:5005/api/'
+import myApi from '../service/service'
+
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -17,7 +17,7 @@ const Login = () => {
     const userToLogin = { email, password }
 
     try {
-      const response = await axios.post(`${URL}/auth/login`, userToLogin)
+      const response = await myApi.post('/auth/login', userToLogin)
       storeToken(response.data.token)
       await authenticateUser()
     } catch (error) {
