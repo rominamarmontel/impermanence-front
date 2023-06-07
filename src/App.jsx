@@ -15,7 +15,6 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import FilmPageEn from './pages/FilmPage/FilmPageEn'
 import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
-import HomePageEn from './pages/HomePage/HomePageEn'
 import AdminTopEn from './pages/AdminTopEn'
 import AddFilmEn from './pages/AddFilmEn'
 import EditFilmEn from './pages/EditFilmEn'
@@ -27,7 +26,6 @@ function App() {
     <div className='App'>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/en' element={<HomePageEn />} />
         <Route element={<Layout isEnglish={isEnglish} />}>
           <Route path='/about' element={<AboutPage />} />
           <Route path='/films' element={<FilmPage />} />

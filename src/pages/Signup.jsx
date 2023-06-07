@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import myApi from '../service/service'
 import { useNavigate } from 'react-router-dom'
-// import './Signup.css'
 
 const Signup = () => {
   const [{ username, email, password }, setFormData] = useState({

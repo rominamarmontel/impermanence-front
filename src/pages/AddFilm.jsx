@@ -130,10 +130,6 @@ const AddFilm = () => {
       return newImages;
     });
   };
-  // const ImagePreview = ({ imageUrl }) => {
-  //   return <img src={imageUrl} alt="Preview" style={{ width: '200px', height: 'auto' }} />;
-  // };
-
 
   return (
     <section className='AddFilm' style={{ paddingTop: '5rem', paddingBottom: '5rem', width: '100vw', display: 'flex', justifyContent: 'center', marginTop: '5rem' }}>

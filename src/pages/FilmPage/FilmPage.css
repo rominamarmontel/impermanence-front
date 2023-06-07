@@ -31,7 +31,6 @@
 }
 .FilmPage-content {
   max-width: calc((100vw - 16%) /3);
-  /* width: 100%; */
   height:auto;
   flex-grow: 1;
   display: flex;
@@ -53,7 +52,6 @@
   object-position: 100% 100%;
   transition-duration: 0.5s;
   cursor: pointer;
-  /* padding-top: 56.25%; */
 }
 .film-image:hover {
   transform: scale(1.2);
@@ -85,12 +83,14 @@
 .film-title h4:hover {
   color: black;
 }
+
 @media screen and (max-width: 1350px) {
   .FilmPage-content {
     max-width: calc((100vw - 16%) /2);
   }
 }
-/* SMARTPHONE & TABLETTE */
+
+
 @media screen and (max-width: 992px) {
   .FilmPage-container {
     width: 95%;

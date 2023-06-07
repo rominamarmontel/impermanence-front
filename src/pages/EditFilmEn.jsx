@@ -64,10 +64,6 @@ const EditFilm = () => {
       setVideoOnDemand(response.data.oneFilm.videoOnDemand || '')
       setDownload(response.data.oneFilm.download || null)
       setImages(response.data.oneFilm.images || [])
-      // const storedImages = localStorage.getItem('updatedImages');
-      // if (storedImages) {
-      //   setImages(JSON.parse(storedImages));
-      // }
     })
   }, [id])
 
@@ -179,13 +175,6 @@ const EditFilm = () => {
       });
   };
 
-  // useEffect(() => {
-  //   const storedImages = JSON.parse(localStorage.getItem('updatedImages'));
-  //   if (storedImages && storedImages.length > 0) {
-  //     setImages(storedImages.length - 1);
-  //   }
-  // }, []);
-
   const hadleDelete = () => {
     myApi.delete(`/films/edit/${id}`).then(() => {
       navigate('/admin/en/top')
@@ -290,14 +279,6 @@ const EditFilm = () => {
             <p style={{ color: 'red', lineHeight: 1, marginBottom: 10 }}>
               You cannot change or add images to the existing images. In case of addition or modification, the existing images will be reset. 3 images MAX</p>
             <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
-
-            {/* <div style={{ display: 'flex', width: '300px', flexWrap: 'wrap' }}>
-              {images && images.map((image, index) => (
-                <div key={index}>
-                  <img src={image.imageUrl} alt={image.index} width={100} height={50} />
-                </div>
-              ))}
-            </div> */}
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
               <button type='submit'>EDIT</button>

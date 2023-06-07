@@ -6,7 +6,6 @@ import { RxArrowLeft } from 'react-icons/rx';
 import { RxArrowRight } from 'react-icons/rx';
 import ScrollToTop from '../../components/ScrollToTop';
 import 'swiper/swiper-bundle.css';
-// import PropTypes from 'prop-types';
 import Swiper, { Autoplay, Pagination, EffectFade } from 'swiper';
 
 const FilmDetailsEn = () => {

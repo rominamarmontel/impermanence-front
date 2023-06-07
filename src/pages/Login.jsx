@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react'
-// import myApi from '../../service/service'
 import { AuthContext } from '../context/auth.context'
 import axios from 'axios'
 const URL = 'http://localhost:5005/api/'

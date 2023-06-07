@@ -59,11 +59,6 @@ const EditFilm = () => {
       setVideoALaDemande(response.data.getFilm.videoALaDemande || '')
       setTelechargement(response.data.getFilm.telechargement || null)
       setImages(response.data.getFilm.images || [])
-      // const storedImages = localStorage.getItem('updatedImages'); //In case of display the previous images
-      // if (storedImages) {
-      //   setImages(JSON.parse(storedImages));
-      // }
-      // console.log(response.data.getFilm)
     })
   }, [id])
 
@@ -168,20 +163,11 @@ const EditFilm = () => {
           newImages.push(image);
         });
         setImages((prevImages) => [...prevImages, ...newImages]);
-        // localStorage.setItem('updatedImages', JSON.stringify(newImages));
       })
       .catch((error) => {
         console.error('Error loading images:', error);
       });
   };
-
-  // useEffect(() => {
-  //   const storedImages = JSON.parse(localStorage.getItem('updatedImages'));
-  //   if (storedImages && storedImages.length > 0) {
-  //     localStorage.clear();
-  //     setImages(storedImages.length - 1);
-  //   }
-  // }, []);
 
   const hadleDelete = () => {
     myApi.delete(`/films/edit/${id}`).then(() => {
@@ -287,13 +273,6 @@ const EditFilm = () => {
             <p style={{ color: 'red' }}>
               Vous ne pouvez pas modifier ou ajouter d’images aux images existantes. En cas d’ajout ou de modification, les images existantes seront réinitialisées. Maximum 3 images.</p>
             <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
-            {/* <div style={{ display: 'flex', width: '300px', flexWrap: 'wrap' }}>
-              {images && images.map((image, index) => (
-                <div key={index}>
-                  <img src={image.imageUrl} alt={image.index} width={100} height={50} />
-                </div>
-              ))}
-            </div> */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
               <button type='submit'>MODIFIER</button>
               <button onClick={hadleDelete}>SUPPRIMER</button>

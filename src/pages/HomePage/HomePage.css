@@ -1,11 +1,10 @@
-@import url("https://use.typekit.net/uad7eou.css");
 .HomePage-wrap {
   position: relative;
   width: 100vw;
   height: 100vh;
   position: fixed;
 }
-/* swiper */
+
 .swiper-container {
   overflow: hidden;
 }
@@ -32,12 +31,12 @@
   object-fit: cover;
 }
 
-/* text */
+
 .static-text {
   display: flex;
   flex-direction: column;
 }
-/* left */
+
 .HomePage-text-left {
   width: 70%;
   position: absolute;
@@ -113,7 +112,6 @@
 
 
 
-/* SMARTPHONE */
 @media screen and (max-width: 510px) {
   .smartphone__area {
     display: none;
@@ -134,7 +132,9 @@
     text-align: center;
   }
 }
-/* TABLETTE */
+
+
+
 @media (max-width: 720px) {
   .HomePage-text-left {
     width: 80% !important;

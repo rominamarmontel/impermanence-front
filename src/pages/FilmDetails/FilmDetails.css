@@ -4,13 +4,13 @@
   padding-top: 7.5rem;
   padding-bottom: 5rem;
 } 
-/* Top */
+
 .FilmDetails-top {
   width: 100%;
   display: flex;
   justify-content: flex-end !important;
 } 
-/* FilmDetails-left ================================*/
+
 .FilmDetails-left {
   box-sizing: border-box;
   width: 25%;
@@ -58,7 +58,7 @@
   color: var(--color-red);
   line-height: 3rem;
 }
-/* FilmDetails-bottom =============================*/
+
 .FilmDetails-bottom {
   position: absolute;
   top:250px;
@@ -83,7 +83,7 @@
    line-height: 1.2rem;
    padding-right: 2rem;
  }
- /* videoOnDemand */
+
 .FilmDetails-li-videoOnDemand {
   display: flex;
   flex-direction: column;
@@ -96,9 +96,9 @@
 }
 .FilmDetails-li-videoOnDemand a:hover {
   color: var(--color-gray6);
-}  */
+}
 
-/* Download*/
+
 .button-showDownload, .button-showClick {
   margin-top: 2rem;
 }
@@ -120,7 +120,6 @@
   color: var(--color-kahki);
 } 
 
-/* FilmDetails-right =============================*/
 .film-swiper-container {
   width: 100vw;
   height: 600px;
@@ -175,7 +174,7 @@
   color: white;
 } 
 
-/* synopsis =======================================*/
+
 .FilmDetails-synopsis {
   width: 75%;
   position: absolute;
