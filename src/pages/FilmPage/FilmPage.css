@@ -1,0 +1,131 @@
+.FilmPage {
+  width: 100vw;
+  padding-bottom: 8rem;
+  display: flex;
+  justify-content: center;
+}
+.FilmPage-container {
+  width: 90%;
+}
+.category-section {
+  padding-top: 8rem;
+}
+.FilmPage-category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.FilmPage-category::after{
+  content:"";
+  display: inline-block;
+  width:31.5%;
+}
+.category-title {
+  font-family: 'Charm', cursive;
+  word-spacing: 1rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+  color: black;
+  text-align: right;
+}
+.FilmPage-content {
+  max-width: calc((100vw - 16%) /3);
+  /* width: 100%; */
+  height:auto;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.FilmPage-content picture {
+  display: inline-block;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+.film-image {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: 100% 100%;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  /* padding-top: 56.25%; */
+}
+.film-image:hover {
+  transform: scale(1.2);
+  filter: brightness(110%);
+  opacity: 0.6;
+  transition-duration: 0.5s;
+}
+.film-title {
+  width: 400px;
+  height: auto;
+  padding-top: .3rem;
+}
+.film-title h4 {
+  font-family: "adobe-garamond-pro", serif;
+  font-style: normal;
+  font-weight: 400;
+  color: rgb(114, 113, 113);
+  margin: 0;
+  padding: 0;
+}
+.film-title h6 {
+  color:#c03a2b;
+  font-family: "adobe-garamond-pro", serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+.film-title h4:hover {
+  color: black;
+}
+@media screen and (max-width: 1350px) {
+  .FilmPage-content {
+    max-width: calc((100vw - 16%) /2);
+  }
+}
+/* SMARTPHONE & TABLETTE */
+@media screen and (max-width: 992px) {
+  .FilmPage-container {
+    width: 95%;
+  }
+  .FilmPage-content {
+    max-width: 100%;
+    height:auto;
+    margin: 0 auto;
+    flex-grow:unset;
+  }
+  .FilmPage-content picture {
+    display: unset;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .film-image {
+    max-width: 100%;
+    height: auto;
+    transform: scale(1);
+    cursor: pointer;
+    transition-duration: 0;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  .film-image:hover {
+    transform: scale(1);
+  }
+  .film-title h4 {
+    margin: 0;
+  }
+  .film-title h6 {
+    padding-bottom: 1rem;
+    margin: 0;
+  }
+}

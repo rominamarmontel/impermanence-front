@@ -1,0 +1,168 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
+@import url("https://use.typekit.net/uad7eou.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+@font-face {
+  font-family: 'BentonSans-Thin';
+  src: url('../fonts/BentonSans Thin.otf') format('opentype'),
+       url('../fonts/BentonSans Regular.otf') format('opentype'),
+       url('../fonts/BentonSans Light.otf') format('opentype'),
+       url('../fonts/BentonSans Medium.otf') format('opentype'),
+       url('../fonts/BentonSans Bold.otf') format('opentype'),
+       url('../fonts/BentonSans Black.otf') format('opentype'),
+}
+:root {
+  --color-red:#c0392b;
+  --color-red2:#c03a2b;
+  --color-pink:#e3a29b;
+  --color-pink2:#c50f4a;
+  --color-gray:#d5d8db;
+  --color-gray1:#f1f2f3;
+  --color-gray2:#ededed;
+  --color-gray3:#f8f8f8;
+  --color-gray4:#f6f1eb;
+  --color-gray5:#eeeeee;
+  --color-gray6:#6E6E6E;
+  --color-gray7:#555657;
+  --color-gray8:#c3c3c3;
+  --color-kahki:#b0b39a;
+  --color-brown:#cebda1;
+  --color-green:#b2f7d3;
+  --color-green2:#7bf0b7;
+  --color-green3:#5feeab;
+}
+/* 
+font-family: 'Charm', cursive;
+'Helvetica Neue', Arial, Helvetica, sans-serif;
+'Helvetica 65 Medium', sans-serif;
+'Source Sans Pro', sans-serif;
+"adobe-garamond-pro", serif;
+'Roboto', sans-serif;
+'Benton Sans-Thin', sans-serif;
+'Open Sans', sans-serif;
+font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+header {
+  width: 100vw;
+  height: 100vh;
+}
+main{
+  flex: 1;
+}
+
+/*960pxが最大でこれ以上大きくならない*/
+/* header {
+  max-width: 960px;
+} */
+p {
+  font-size: 100% ;
+  line-height: 2rem;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {
+  color: #000000;
+}
+ul, li {
+  list-style: none;
+}
+h1 {
+  font-size: 1.5em;
+  font-weight: 100;
+  line-height: 2rem;
+}
+h2 {
+  font-size: 1.3em;
+  font-weight: 100;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: 100;
+}
+h4 {
+  font-size: 1.1em;
+  font-weight: 100;
+}
+h5 {
+  font-size: .9em;
+  font-weight: 100;
+  line-height: 1.3rem;
+  letter-spacing: .05rem;
+}
+h6 {
+  font-size: .8em;
+  font-weight: 100;
+  line-height: 1.2rem;
+}
+img {
+  max-width: 100%;/*スマホサイズになっても画像サイズが対応*/
+}
+input, textarea {
+  padding:.3rem;
+}
+
+button {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-family: inherit;
+  background-color: #818080;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+}
+button:hover {
+  background-color: #000000;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+input {
+  height: 2rem;
+  font-size: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #d5d8db;
+  }
+}
+
+/* ::-webkit-scrollbar{
+  width: 7px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar-track{
+  background-color: #ffffff;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #d4d3d3;
+  border-radius: 5px;
+} */

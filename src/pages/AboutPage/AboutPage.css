@@ -1,0 +1,72 @@
+.AboutPage {
+  width: 100vw;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.AboutPage picture {
+  width: 100%;
+  height: 100%;
+}
+.AboutPage img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.AboutPage-title-container {
+  position: relative;
+}
+.AboutPage-title {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  text-shadow: 1px 1px 2px rgb(3, 3, 3, .8);
+}
+.AboutPage h2 {
+  color: white;
+  font-family: 'Charm', cursive;
+  font-weight: 400;
+}
+
+.AboutPage-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.AboutPage-container-sub {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.AboutPage-container p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+.AboutPage-content {
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--color-gray);
+}
+.AboutPage-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: rgb(3, 3, 3);
+  text-align: center;
+}
+.AboutPage-sns ul {
+  display: flex;
+  color: var(--color-gray6);
+  font-size: 1.2rem;
+}
+
+/* SMARTPHONE & TABLETTE */
+@media screen and (max-width: 992px) {
+  .AboutPage-title {
+    right: 25%;
+  }
+  .AboutPage-container {
+    width: 90%;
+  }
+}

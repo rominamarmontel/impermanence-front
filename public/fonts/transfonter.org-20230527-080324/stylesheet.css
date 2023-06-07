@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Helvetica 65';
+    src: url('HelveticaNeue-Medium.eot');
+    src: url('HelveticaNeue-Medium.eot?#iefix') format('embedded-opentype'),
+        url('HelveticaNeue-Medium.woff2') format('woff2'),
+        url('HelveticaNeue-Medium.woff') format('woff'),
+        url('HelveticaNeue-Medium.ttf') format('truetype'),
+        url('HelveticaNeue-Medium.svg#HelveticaNeue-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica 65';
+    src: url('HelveticaNeue-Medium_1.eot');
+    src: url('HelveticaNeue-Medium_1.eot?#iefix') format('embedded-opentype'),
+        url('HelveticaNeue-Medium_1.woff2') format('woff2'),
+        url('HelveticaNeue-Medium_1.woff') format('woff'),
+        url('HelveticaNeue-Medium_1.ttf') format('truetype'),
+        url('HelveticaNeue-Medium_1.svg#HelveticaNeue-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
