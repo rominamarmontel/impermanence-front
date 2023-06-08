@@ -214,7 +214,7 @@ const FilmDetails = () => {
                         <>
                           <li><h5>VIDEO À LA DEMANDE</h5></li>
                           {videoALaDemandeUrls.map((url, index) => (
-                            <li key={index} style={{ marginBottom: 'unset' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
+                            <li key={index} style={{ marginBottom: 'unset !important' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
                           ))}
                         </>
                       )}
