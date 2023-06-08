@@ -18,7 +18,7 @@ const NavbarEn = () => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
       setScrollNavbar(scrollTop > 0);
-      setScrollHamburgerMenu(scrollToTop > 0)
+      setScrollHamburgerMenu(scrollTop > 0)
     };
     const handleResize = () => {
       setScrollNavbar(window.innerWidth > 992 && window.pageYOffset > 0);
@@ -43,6 +43,7 @@ const NavbarEn = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+
   return (
     <>
       <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''}`}>
@@ -79,36 +80,41 @@ const NavbarEn = () => {
 
       {window.innerWidth <= 992 && (
         <section className={`hamburgerMenu-section ${isMobile ? 'visible' : ''}`} >
-          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`}>
+          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`} >
             <div className='overlay_logo'>
-              <HashLink to='/'>
+              <Link to='/'>
                 <h1 className='logo-style'>impermanence<br />
                   films</h1>
-              </HashLink>
+              </Link>
             </div>
             <div className={`openbtn1 ${isActive ? 'active' : ''}`} onClick={toggleNavigation}><span></span><span></span></div>
           </div>
 
 
           <nav id="hamburgerMenu-nav" className={isActive ? 'panelactive' : ''} >
-            <div className='overlay_sp_menu'>
-              <ul className='overlay_sp_menu_ul'>
-                <li onClick={handleHashLinkClick}>
-                  <Link to='/en/about#AboutPage'>ABOUT</Link></li>
-                <li onClick={handleHashLinkClick}><HashLink to='/en/films#travail-en-cours' onClick={handleHashLinkClick}>WORK-IN-PROGRESS</HashLink></li>
-                <li onClick={handleHashLinkClick}><HashLink to='/en/films#production' >PRODUCTION</HashLink></li>
-                <li onClick={handleHashLinkClick}><HashLink to='/en/films#distribution' >DISTRIBUTION</HashLink></li>
-                <li onClick={handleHashLinkClick}><HashLink to='/en/films#programmation' >PROGRAMMATION</HashLink></li>
-              </ul>
-              <ul className='overlay_sp_menu_ul_sns'>
-                <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaFacebook /></HashLink></li>
-                <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaInstagram /></HashLink></li>
-                <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaTwitter /></HashLink></li>
-                <li className='change_langue' onClick={() => {
-                  navigate(location.pathname.replace('/en', ''))
-                  scrollToTop();
-                }}>FR</li>
-              </ul>
+            <div className='overlay_sp_menu style'>
+              <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1686081572/impermanenceDB/lesilo_imwo0g.png' alt='inaugulation' className='blur style' />
+              <div className='overlay_sp_menu_text style'>
+                <ul className='overlay_sp_menu_ul'>
+                  <li onClick={handleHashLinkClick}>
+                    <Link to='/en/about#AboutPage'>ABOUT</Link></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#travail-en-cours' onClick={handleHashLinkClick}>WORK-IN-PROGRESS</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#production' >PRODUCTION</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#distribution' >DISTRIBUTION</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#programmation' >PROGRAMMATION</HashLink></li>
+                </ul>
+                <ul className='overlay_sp_menu_ul_sns'>
+                  <div>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaFacebook /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaInstagram /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaTwitter /></HashLink></li>
+                  </div>
+                  <li className='change_langue' onClick={() => {
+                    navigate(location.pathname.replace('/en', ''))
+                    scrollToTop();
+                  }}>FR</li>
+                </ul>
+              </div>
             </div>
           </nav>
         </section>
