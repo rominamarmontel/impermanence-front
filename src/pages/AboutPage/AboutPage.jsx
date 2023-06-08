@@ -14,7 +14,7 @@ const AboutPage = () => {
       <section className="AboutPage" id='AboutPage'>
         <div className='AboutPage-title-container'>
           <picture>
-            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1686047547/impermanenceDB/kipcpglnmwlc9ebdjybl.jpg' alt='elegie' />
+            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1686251194/impermanenceDB/y63iylxhjiwoanqpxopa.jpg' />
           </picture>
           <h2 className='AboutPage-title'>about imparmanence</h2>
         </div>
