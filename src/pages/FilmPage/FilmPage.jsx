@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import myApi from '../../service/service';
 import Spinner from '../../components/Spinner';
 import './FilmPage.css';
-import Fade from 'react-reveal/Fade';
 import ScrollToTop from '../../components/ScrollToTop';
 
 const FilmPage = () => {
@@ -46,26 +45,22 @@ const FilmPage = () => {
           const films = groupedFilms[categorie] || [];
           return (
             <div key={categorie} id={categorie} className='category-section' >
-              <Fade left>
-                <h2 className='category-title'>{categorie.toLowerCase()}</h2>
-              </Fade>
+              <h2 className='category-title'>{categorie.toLowerCase()}</h2>
               <div className='FilmPage-category'>
                 {films.map((film) => (
                   <div className='FilmPage-content' key={film._id}>
                     <Link to={`/films/${film._id}#${categorie}`}>
-                      <Fade bottom>
-                        <div className='FilmPage-position'>
-                          <picture>
-                            {film.images.length ? (
-                              <img src={`${film.images[0]}`} alt={film.titre} className='film-image' />
-                            ) : ('')}
-                          </picture>
-                          <div className='film-title'>
-                            <h4>{film.titre}</h4>
-                            <h6>de {film.realisePar}</h6>
-                          </div>
+                      <div className='FilmPage-position'>
+                        <picture>
+                          {film.images.length ? (
+                            <img src={`${film.images[0]}`} alt={film.titre} className='film-image' />
+                          ) : ('')}
+                        </picture>
+                        <div className='film-title'>
+                          <h4>{film.titre}</h4>
+                          <h6>de {film.realisePar}</h6>
                         </div>
-                      </Fade>
+                      </div>
                     </Link>
                   </div>
                 ))}
