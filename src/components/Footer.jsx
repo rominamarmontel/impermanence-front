@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <section >
       <div style={{
-        backgroundColor: "transparent", paddingTop: '1rem'
+        minHeight: `10rem`, backgroundColor: "transparent", paddingTop: '1rem'
       }}>
       </div>
       <div style={{
