@@ -214,7 +214,7 @@ const FilmDetails = () => {
                         <>
                           <li><h5>VIDEO À LA DEMANDE</h5></li>
                           {videoALaDemandeUrls.map((url, index) => (
-                            <li key={index}><a href={url} target="_blank" rel="noreferrer" style={{ marginBottom: 'unset', fontSize: '1rem' }}>{url}</a></li>
+                            <li key={index} style={{ marginBottom: 'unset' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
                           ))}
                         </>
                       )}
@@ -309,7 +309,7 @@ const FilmDetails = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </div >
         <ScrollToTop />
         <div className='flesh-left' onClick={goToPreviousFilm}><RxArrowLeft /></div>
         <div className='flesh-right' onClick={goToNextFilm}><RxArrowRight /></div>
