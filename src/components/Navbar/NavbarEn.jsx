@@ -51,10 +51,10 @@ const NavbarEn = () => {
           <picture>
             <Link to='/'>
               {scrollNavbar ? (
-                <h1 style={{ color: 'white' }}>impermanence<br />
+                <h1 className='logo-style-scroll'>impermanence<br />
                   films</h1>
               ) : (
-                <h1>impermanence<br />
+                <h1 className='logo-style'>impermanence<br />
                   films</h1>
               )}
             </Link>

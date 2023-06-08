@@ -13,11 +13,29 @@
   right: 0;
   z-index: 2;
 }
-.Navbar-container h1 {
+.logo-style {
   font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
   font-family: 'Charm', cursive;
   text-align: center;
   padding-bottom: 1rem;
+  color: #000000;
+}
+.logo-style:hover {
+  color: var(--color-gray8);
+}
+.logo-style-scroll {
+  font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
+  font-family: 'Charm', cursive;
+  text-align: center;
+  padding-bottom: 1rem;
+  color: white;
+}
+.logo-style-scroll:hover {
+  font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
+  font-family: 'Charm', cursive;
+  text-align: center;
+  padding-bottom: 1rem;
+  color: var(--color-gray8);
 }
 .Navbar-container {
   width: 90%;
@@ -65,6 +83,9 @@
   /* text-shadow: 1px 1px 1px rgb(172, 21, 21); */
   font-family: 'Source Sans Pro', sans-serif;;
   cursor: pointer;
+}
+.change_langue:hover {
+  color: var(--color-gray8);
 }
 .Navbar--scroll {
   background: linear-gradient(rgba(0,0,0),rgba(0,0,0,0));
