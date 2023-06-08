@@ -214,7 +214,7 @@ const FilmDetails = () => {
                         <>
                           <li><h5>VIDEO À LA DEMANDE</h5></li>
                           {videoALaDemandeUrls.map((url, index) => (
-                            <li key={index}><a href={url} target="_blank" rel="noreferrer" style={{ marginBottom: '1rem !important', fontSize: '1rem' }}>{url}</a></li>
+                            <li key={index}><a href={url} target="_blank" rel="noreferrer" style={{ marginBottom: 'unset', fontSize: '1rem' }}>{url}</a></li>
                           ))}
                         </>
                       )}
@@ -236,7 +236,7 @@ const FilmDetails = () => {
                       {films[currentIndex].equipe && (
                         <>
                           <li>
-                            <button onClick={handleClickCrew} style={{ lineHeight: '1.5rem' }}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
+                            <button onClick={handleClickCrew} style={{ lineHeight: '1.5rem', marginBottom: '2rem' }}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
                           </li>
                           {showCrew && <li style={{ paddingTop: '.5rem' }}>{films[currentIndex].equipe}</li>}
                         </>
