@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import myApi from '../service/service'
 import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineLeft, AiOutlineClose } from 'react-icons/ai'
-import PDFViewer from '../components/PDFViewer';
+// import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
 
 const AddFilm = () => {
@@ -26,7 +26,7 @@ const AddFilm = () => {
   const [videoALaDemande, setVideoALaDemande] = useState('')
   const [equipe, setEquipe] = useState('')
   const [telechargement, setTelechargement] = useState(null)
-  const [telechargementUrl, setTelechargementUrl] = useState(null)
+  const [setTelechargementUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoALaDemandeUrls = videoALaDemande.split('\n');
 
@@ -219,10 +219,10 @@ const AddFilm = () => {
             <label htmlFor='equipe' style={{ paddingBottom: 10 }}>Equipe</label>
             <textarea type='text' name='equipe' value={equipe} onChange={(e) => setEquipe(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='telechargement'>Téléchargement</label>
+            {/* <label htmlFor='telechargement'>Téléchargement</label>
             {telechargementUrl && (
               <PDFViewer pdfUrl={telechargementUrl} />
-            )}
+            )} */}
             <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
 

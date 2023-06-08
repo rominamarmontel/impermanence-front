@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import myApi from '../service/service'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-import PDFViewer from '../components/PDFViewer';
+// import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
 
 const EditFilm = () => {
@@ -27,7 +27,7 @@ const EditFilm = () => {
   const [videoOnDemand, setVideoOnDemand] = useState('')
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
-  const [downloadUrl, setDownloadUrl] = useState(null)
+  const [setDownloadUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
 
@@ -270,9 +270,9 @@ const EditFilm = () => {
             <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
             <label htmlFor='download'>Download</label>
-            {downloadUrl && (
+            {/* {downloadUrl && (
               <PDFViewer pdfUrl={downloadUrl} />
-            )}
+            )} */}
             <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
             <label htmlFor='image' style={{ marginBottom: 10 }}>Image</label>
