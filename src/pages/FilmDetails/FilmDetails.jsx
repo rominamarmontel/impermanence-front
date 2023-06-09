@@ -56,20 +56,25 @@ const FilmDetails = () => {
   }, []);
 
   useEffect(() => {
+    let observer;
+    let resizeTimeout;
+
     const adjustParentHeight = () => {
-      setTimeout(() => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
         const grandGrandChildAHeight = grandGrandChildARef.current?.clientHeight || 0;
         const grandGrandChildBHeight = grandGrandChildBRef.current?.clientHeight || 0;
         const grandchildAHeight = grandchildARef.current?.clientHeight || 0;
         const childAHeight = childARef.current?.clientHeight || 0;
-        const maxHeight = Math.max(grandGrandChildAHeight + grandGrandChildBHeight, grandchildAHeight + childAHeight);
+        const maxHeight = Math.max(
+          grandGrandChildAHeight + grandGrandChildBHeight,
+          grandchildAHeight + childAHeight
+        );
 
-        console.log('left', grandGrandChildAHeight + grandGrandChildBHeight)
-        console.log('right', grandchildAHeight + childAHeight)
-        console.log('maxHeight', maxHeight)
         setParentHeight(maxHeight);
       }, 0);
     };
+
     const handleResize = () => {
       if (window.innerWidth > 992) {
         adjustParentHeight();
@@ -77,12 +82,11 @@ const FilmDetails = () => {
         setParentHeight(0);
       }
     };
-
     handleResize();
 
     window.addEventListener('resize', handleResize);
 
-    const observer = new ResizeObserver(adjustParentHeight);
+    observer = new ResizeObserver(adjustParentHeight);
     if (grandGrandChildARef.current) {
       observer.observe(grandGrandChildARef.current);
     }
@@ -95,9 +99,11 @@ const FilmDetails = () => {
     if (childARef.current) {
       observer.observe(childARef.current);
     }
+
     return () => {
       window.removeEventListener('resize', handleResize);
       observer.disconnect();
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
