@@ -106,7 +106,7 @@ const FilmDetails = () => {
   }
   const authorArray = films[currentIndex].auteur.split('\n');
   const partnerArray = films[currentIndex].partenaire.split('\n')
-  const videoALaDemandeUrls = films[currentIndex].videoALaDemande.split('\r\n');
+  const videoALaDemandeUrls = films[currentIndex].videoALaDemande.split('\n');
   const shouldReduceTitleSize = films[currentIndex].titreOriginal.length > 40;
 
   return (
