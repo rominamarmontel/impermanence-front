@@ -12,6 +12,10 @@ const Footer = () => {
   const { user, authenticateUser, removeToken } = useContext(AuthContext)
   return (
     <section >
+      {/* <div style={{
+        minHeight: `20rem`, backgroundColor: "transparent", paddingTop: '1rem'
+      }}>
+      </div> */}
       <div style={{
         minHeight: `1rem`, backgroundColor: "#ededed", paddingTop: '1rem'
       }}>

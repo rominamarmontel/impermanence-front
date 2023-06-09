@@ -56,15 +56,15 @@ main{
   flex: 1;
   padding-bottom: 100px;
 }
-p {
-  font-size: 100% ;
-  line-height: 2rem;
-}
 header {
   width: 100%;
 }
 footer {
   width: 100%;
+}
+p {
+  font-size: 100% ;
+  line-height: 2rem;
 }
 a {
   text-decoration: none;
@@ -132,7 +132,19 @@ input {
   height: 2rem;
   font-size: 1rem;
 }
-
+/* @media screen and (max-width: 992px) {
+  .wrapper {
+    display: flex; 
+    flex-direction: column; 
+  }
+  main{
+    padding-bottom: 100px;
+    display: flex; 
+  }
+  footer {
+    margin-top: auto; 
+  }
+} */
 @media (prefers-color-scheme: light) {
   :root {
     background-color: #ffffff;

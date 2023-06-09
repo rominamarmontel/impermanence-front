@@ -9,19 +9,17 @@ const Layout = ({ isEnglish }) => {
 
   return (
     <>
-      <body>
-        <div className='wrapper'>
-          <header>
-            <NavbarComponent />
-          </header>
-          <main>
-            <Outlet />
-          </main>
-        </div>
+      <div className='wrapper'>
+        <header>
+          <NavbarComponent />
+        </header>
+        <main>
+          <Outlet />
+        </main>
         <footer>
           <Footer />
         </footer>
-      </body>
+      </div>
     </>
   );
 };

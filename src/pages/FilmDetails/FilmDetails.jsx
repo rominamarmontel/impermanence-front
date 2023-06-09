@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import './FilmDetails.css';
 import myApi from '../../service/service';
@@ -15,6 +15,11 @@ const FilmDetails = () => {
   const [showCrew, setShowCrew] = useState(false)
   const [showDownload, setShowDownload] = useState(false)
   const location = useLocation()
+  const [parentHeight, setParentHeight] = useState(0);
+  const grandGrandChildARef = useRef(null);
+  const grandGrandChildBRef = useRef(null);
+  const grandchildARef = useRef(null);
+  const childARef = useRef(null);
 
   useEffect(() => {
     const index = films.findIndex((film) => film._id === id);
@@ -48,6 +53,52 @@ const FilmDetails = () => {
       });
       setFilms(sortedFilms);
     });
+  }, []);
+
+  useEffect(() => {
+    const adjustParentHeight = () => {
+      setTimeout(() => {
+        const grandGrandChildAHeight = grandGrandChildARef.current?.clientHeight || 0;
+        const grandGrandChildBHeight = grandGrandChildBRef.current?.clientHeight || 0;
+        const grandchildAHeight = grandchildARef.current?.clientHeight || 0;
+        const childAHeight = childARef.current?.clientHeight || 0;
+        const maxHeight = Math.max(grandGrandChildAHeight + grandGrandChildBHeight, grandchildAHeight + childAHeight);
+
+        console.log('left', grandGrandChildAHeight + grandGrandChildBHeight)
+        console.log('right', grandchildAHeight + childAHeight)
+        console.log('maxHeight', maxHeight)
+        setParentHeight(maxHeight);
+      }, 0);
+    };
+    const handleResize = () => {
+      if (window.innerWidth > 992) {
+        adjustParentHeight();
+      } else {
+        setParentHeight(0);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    const observer = new ResizeObserver(adjustParentHeight);
+    if (grandGrandChildARef.current) {
+      observer.observe(grandGrandChildARef.current);
+    }
+    if (grandGrandChildBRef.current) {
+      observer.observe(grandGrandChildBRef.current);
+    }
+    if (grandchildARef.current) {
+      observer.observe(grandchildARef.current);
+    }
+    if (childARef.current) {
+      observer.observe(childARef.current);
+    }
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+    };
   }, []);
 
   const goToPreviousFilm = () => {
@@ -112,11 +163,11 @@ const FilmDetails = () => {
   return (
     <>
       <section className='FilmDetails'>
-        <div className='FilmDetails-container'>
+        <div className='FilmDetails-container' style={{ height: parentHeight }}>
           <div className='FilmDetails-top'>
             <div className='FilmDetails-left'>
               <div className='FilmDetails-originalTitle-container'>
-                <div className='FilmDetails-originalTitle-content'>
+                <div className='FilmDetails-originalTitle-content' ref={grandGrandChildARef}>
                   {films[currentIndex].titreOriginal && (
                     <>
                       <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{films[currentIndex].titreOriginal.toUpperCase()}</h1>
@@ -127,7 +178,7 @@ const FilmDetails = () => {
                     </>
                   )}
                 </div>
-                <div className='FilmDetails-bottom'>
+                <div className='FilmDetails-bottom' ref={grandGrandChildBRef}>
                   <ul className='ul-left' >
                     {films[currentIndex].realisePar && (
                       <>
@@ -214,7 +265,7 @@ const FilmDetails = () => {
                         <>
                           <li><h5>VIDEO À LA DEMANDE</h5></li>
                           {videoALaDemandeUrls.map((url, index) => (
-                            <li key={index} style={{ marginBottom: 'unset !important' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
+                            <li key={index} style={{ marginBottom: 'unset', lineHeight: '1.5rem' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
                           ))}
                         </>
                       )}
@@ -236,9 +287,9 @@ const FilmDetails = () => {
                       {films[currentIndex].equipe && (
                         <>
                           <li>
-                            <button onClick={handleClickCrew} style={{ lineHeight: '1.5rem', marginBottom: '2rem' }}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
+                            <button onClick={handleClickCrew}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
                           </li>
-                          {showCrew && <li style={{ paddingTop: '.5rem' }}>{films[currentIndex].equipe}</li>}
+                          {showCrew && <li style={{ paddingTop: '2px' }}>{films[currentIndex].equipe}</li>}
                         </>
                       )}
                     </div>
@@ -246,7 +297,7 @@ const FilmDetails = () => {
                 </div>
               </div>
             </div>
-            <div className='FilmDetails-right'>
+            <div className='FilmDetails-right' ref={grandchildARef}>
               <div className='FilmDetails-right-position'>
                 {films[currentIndex].images && films[currentIndex].images.length > 1 ? (
                   <div className="film-swiper-container" >
@@ -283,7 +334,7 @@ const FilmDetails = () => {
 
             </div>
           </div>
-          <div className='FilmDetails-synopsis'>
+          <div className='FilmDetails-synopsis' ref={childARef}>
             <div className='FilmDetails-synopsis-text'>
               <ul>
                 {films[currentIndex].synopsis && (
