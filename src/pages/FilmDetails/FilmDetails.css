@@ -245,7 +245,7 @@
 /* SMARTPHONE & TABLETTE */
 @media screen and (max-width: 992px) {
   .FilmDetails {
-    padding-top: 100px;
+    padding-top: 78px;
   } 
   .FilmDetails .container {
     max-width: 100%;
