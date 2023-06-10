@@ -105,7 +105,7 @@ const FilmDetailsEn = () => {
   }
   const authorArray = films[currentIndex].author.split('\n');
   const partnerArray = films[currentIndex].partner.split('\n')
-  const videoOnDemandUrls = films[currentIndex].videoALaDemande.split('\n').map(url => url.trim())
+  const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\n').map(url => url.trim())
   const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 15;
 
   return (
