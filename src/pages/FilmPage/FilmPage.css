@@ -24,7 +24,6 @@
   word-spacing: 1rem;
   font-weight: 800;
   font-size: 1.5rem;
-  margin-bottom: .5rem;
   color: black;
   text-align: right;
 }
@@ -89,10 +88,9 @@
   }
 }
 
-
 @media screen and (max-width: 992px) {
   .FilmPage-container {
-    width: 90%;
+    width: 95%;
   }
   .FilmPage-content {
     max-width: 100%;
@@ -101,11 +99,22 @@
     flex-grow:unset;
     text-align: center;
   }
+  .category-section {
+    padding-top: 68px;
+  }
   .FilmPage-position {
     max-width: 992px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  .category-title {
+    font-family: 'Charm', cursive;
+    word-spacing: 1rem;
+    font-weight: 800;
+    font-size: 24px;
+    color: black;
+    text-align: right;
   }
   .FilmPage-content picture {
     display: unset;

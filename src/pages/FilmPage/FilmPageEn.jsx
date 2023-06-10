@@ -7,6 +7,11 @@ import ScrollToTop from '../../components/ScrollToTop';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState([]);
+
+  useEffect(() => {
+    scrollTo(0, 0)
+  }, [])
+
   useEffect(() => {
     myApi.get(`/en/films`).then((response) => {
       setFilms(response.data);

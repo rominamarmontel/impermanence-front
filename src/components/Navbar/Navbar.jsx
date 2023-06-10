@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   const handleHashLinkClick = () => {
-    setIsActive(false);
+    setIsActive(true);
   };
 
   const toggleNavigation = () => {
@@ -61,7 +61,7 @@ const Navbar = () => {
             <li className='navbar-list-font'><Link to='/about#AboutPage' >À PROPOS</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'><HashLink to='/films#travail-en-cours' >TRAVAIL-EN-COURS</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/films#production'>PRODUCTION</HashLink></li>
-            <li className='navbar-list-font'><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
+            <li className='navbar-list-font' ><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/films#programmation'>PROGRAMMATION</HashLink></li>
             <li className='change_langue' onClick={() => {
               navigate(`/en${location.pathname}`);

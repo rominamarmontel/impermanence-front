@@ -130,7 +130,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 80px;
     background-color:transparent;
     z-index: 9996;
   }
@@ -139,7 +139,7 @@
   }
   .logo-style {
     position: absolute;
-    top: 20px;
+    top: 13px;
     font-family: 'Charm', cursive;
     font-size: 1.5rem;
     line-height: 1.5rem;
