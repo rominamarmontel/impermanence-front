@@ -139,8 +139,8 @@ const FilmDetailsEn = () => {
                 ) : ('')}
                 <div className='text-on-image'>
                   <h1>{films[currentIndex].title.toUpperCase()}</h1>
-                  {films[currentIndex].directedBy && (<h4>by {films[currentIndex].directedBy}</h4>)}
-                  {films[currentIndex].createdYear && (<h4>{films[currentIndex].createdYear}</h4>)}
+                  {films[currentIndex].directedBy && (<h4 className='directedBy'>by {films[currentIndex].directedBy}</h4>)}
+                  {films[currentIndex].createdYear && (<h4 className='createdYear'>{films[currentIndex].createdYear}</h4>)}
                 </div>
                 <div className='copyright-on-image'>
                   {films[currentIndex].copyright && (<h6>&copy; {films[currentIndex].copyright}</h6>)}

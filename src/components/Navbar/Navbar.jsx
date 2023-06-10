@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   const handleHashLinkClick = () => {
-    setIsActive(true);
+    setIsActive(false);
   };
 
   const toggleNavigation = () => {

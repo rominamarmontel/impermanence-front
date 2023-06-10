@@ -62,6 +62,10 @@
 
 /* SMARTPHONE & TABLETTE */
 @media screen and (max-width: 992px) {
+  .AboutPage {
+    width: 100vw;
+    padding-top: 83px;
+  }
   .AboutPage-title {
     right: 25%;
   }
