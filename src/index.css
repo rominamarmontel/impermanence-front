@@ -41,6 +41,8 @@ font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helve
 }
 html {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 body {
   display: flex;
@@ -132,13 +134,13 @@ input {
   height: 2rem;
   font-size: 1rem;
 }
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
   footer {
     position: fixed;
   bottom: 0;
   left: 0;
   }
-}
+} */
 @media (prefers-color-scheme: light) {
   :root {
     background-color: #ffffff;

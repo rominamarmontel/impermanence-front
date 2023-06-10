@@ -105,145 +105,15 @@ const FilmDetailsEn = () => {
   }
   const authorArray = films[currentIndex].author.split('\n');
   const partnerArray = films[currentIndex].partner.split('\n')
-  const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\r\n');
+  const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\n');
   const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 40;
 
   return (
     <>
       <section className='FilmDetails'>
-        <div className='FilmDetails-container'>
-          <div className='FilmDetails-top'>
-            <div className='FilmDetails-left'>
-              <div className='FilmDetails-originalTitle-container'>
-                <div className='FilmDetails-originalTitle-content'>
-                  {films[currentIndex].originalTitle && (
-                    <>
-                      <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{films[currentIndex].originalTitle.toUpperCase()}</h1>
-                      <div className='FilmDetails-category'>
-                        {films[currentIndex].category.toUpperCase()}
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className='FilmDetails-bottom'>
-                  <ul className='ul-left' >
-                    {films[currentIndex].directedBy && (
-                      <>
-                        <div>
-                          <li><h5>DIRECTED BY</h5></li>
-                          <li>{films[currentIndex].directedBy}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].producedBy && (
-                      <>
-                        <div>
-                          <li><h5>PRODUCED BY</h5></li>
-                          <li>{films[currentIndex].producedBy}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].author && (
-                      <>
-                        <div>
-                          <li><h5>{authorArray.length > 1 ? 'AUTHORS' : 'AUTHOR'}</h5></li>
-                          <li>{films[currentIndex].author}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].format && (
-                      <>
-                        <div>
-                          <li><h5>FORMAT</h5></li>
-                          <li>{films[currentIndex].format}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].duration && (
-                      <>
-                        <div>
-                          <li><h5>DURATION</h5></li>
-                          <li>{films[currentIndex].duration}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].partner && (
-                      <>
-                        <div>
-                          <li><h5>{partnerArray.length > 1 ? 'PARTNERS' : 'PARTNER'}</h5></li>
-                          <li>{films[currentIndex].partner}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].distribution && (
-                      <>
-                        <div>
-                          <li><h5>DISTRIBUTION</h5></li>
-                          <li>{films[currentIndex].distribution}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].internationalSales && (
-                      <>
-                        <div>
-                          <li><h5>INTERNATIONAL SALES</h5></li>
-                          <li>{films[currentIndex].internationalSales}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].stageOfProduction && (
-                      <>
-                        <div>
-                          <li><h5>STAGE OF PRODUCTION</h5></li>
-                          <li>{films[currentIndex].stageOfProduction}</li>
-                        </div>
-                      </>
-                    )}
-                    {films[currentIndex].genre && (
-                      <>
-                        <div>
-                          <li><h5>GENRE</h5></li>
-                          <li>{films[currentIndex].genre}</li>
-                        </div>
-                      </>
-                    )}
-                    <div className='FilmDetails-li-videoOnDemand'>
-                      {films[currentIndex].videoOnDemand && (
-                        <>
-                          <li><h5>VIDEO ON DEMAND</h5></li>
-                          {videoOnDemandUrls.map((url, index) => (
-                            <li key={index}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>
-                          ))}
-                        </>
-                      )}
-                    </div>
-                    <div className='button-showDownload'>
-                      {films[currentIndex].download && (
-                        <>
-                          <li>
-                            <button onClick={handleClickDownload}>{showDownload ? 'DOWNLOAD' : 'DOWNLOAD +'}</button></li>
-                          {showDownload && films[currentIndex].download && <a
-                            href={films[currentIndex].download}
-                            target="_blank" rel="noopener, noreferrer"
-                            onClick={() => handleDownload(films[currentIndex].download,)}
-                          >{films[currentIndex].title}</a>}
-                        </>
-                      )}
-                    </div>
-                    <div className='button-showClick'>
-                      {films[currentIndex].crew && (
-                        <>
-                          <li>
-                            <button onClick={handleClickCrew}>{showCrew ? 'CREW' : 'CREW +'}</button></li>
-                          {showCrew && <li>{films[currentIndex].crew}</li>}
-                        </>
-                      )}
-                    </div>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className='FilmDetails-right'>
+        <div className='container'>
+          <div className='top'>
+            <div className='image-content'>
               <div className='FilmDetails-right-position'>
                 {films[currentIndex].images && films[currentIndex].images.length > 1 ? (
                   <div className="film-swiper-container" >
@@ -276,35 +146,161 @@ const FilmDetailsEn = () => {
                   {films[currentIndex].copyright && (<h6>&copy; {films[currentIndex].copyright}</h6>)}
                 </div>
               </div>
+            </div>
 
 
+            <div className='title-content'>
+              <div className='FilmDetails-originalTitle-container'>
+                {films[currentIndex].originalTitle && (
+                  <div className='FilmDetails-originalTitle-content'>
+                    <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{films[currentIndex].originalTitle.toUpperCase()}</h1>
+                    <div className='FilmDetails-category'>
+                      {films[currentIndex].category.toUpperCase()}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-          <div className='FilmDetails-synopsis'>
-            <div className='FilmDetails-synopsis-text'>
-              <ul>
-                {films[currentIndex].synopsis && (
+
+          <div className='bottom'>
+            <ul className='ul-left' >
+              <div className='ul-col'>
+                {films[currentIndex].directedBy && (
+                  <div>
+                    <li><h5>DIRECTED BY</h5></li>
+                    <li>{films[currentIndex].directedBy}</li>
+                  </div>
+                )}
+                {films[currentIndex].producedBy && (
                   <>
-                    <li>
-                      <h5 className='FilmDetails-synopsis-h5'>SYNOPSIS</h5>
-                    </li>
-                    <li>
-                      {films[currentIndex].synopsis}
-                    </li>
+                    <div>
+                      <li><h5>PRODUCED BY</h5></li>
+                      <li>{films[currentIndex].producedBy}</li>
+                    </div>
                   </>
                 )}
-                {films[currentIndex].festivalsAndAwards && (
+              </div>
+
+              {films[currentIndex].author && (
+                <div>
+                  <li><h5>{authorArray.length > 1 ? 'AUTHORS' : 'AUTHOR'}</h5></li>
+                  <li>{films[currentIndex].author}</li>
+                </div>
+              )}
+
+              <div className='ul-col'>
+                {films[currentIndex].format && (
+                  <div>
+                    <li><h5>FORMAT</h5></li>
+                    <li>{films[currentIndex].format}</li>
+                  </div>
+                )}
+                {films[currentIndex].duration && (
+                  <div>
+                    <li><h5>DURATION</h5></li>
+                    <li>{films[currentIndex].duration}</li>
+                  </div>
+                )}
+              </div>
+
+
+              {films[currentIndex].partner && (
+                <div>
+                  <li><h5>{partnerArray.length > 1 ? 'PARTNERS' : 'PARTNER'}</h5></li>
+                  <li>{films[currentIndex].partner}</li>
+                </div>
+              )}
+
+
+              <div className='ul-col'>
+                {films[currentIndex].distribution && (
+                  <div>
+                    <li><h5>DISTRIBUTION</h5></li>
+                    <li>{films[currentIndex].distribution}</li>
+                  </div>
+                )}
+                {films[currentIndex].internationalSales && (
+                  <div>
+                    <li><h5>INTERNATIONAL SALES</h5></li>
+                    <li>{films[currentIndex].internationalSales}</li>
+                  </div>
+                )}
+              </div>
+
+
+              {films[currentIndex].stageOfProduction && (
+                <div>
+                  <li><h5>STAGE OF PRODUCTION</h5></li>
+                  <li>{films[currentIndex].stageOfProduction}</li>
+                </div>
+              )}
+              {films[currentIndex].genre && (
+                <div>
+                  <li><h5>GENRE</h5></li>
+                  <li>{films[currentIndex].genre}</li>
+                </div>
+              )}
+
+
+              <div className='FilmDetails-li-videoOnDemand'>
+                {films[currentIndex].videoOnDemand && (
                   <>
-                    <li>
-                      <h5 className='FilmDetails-festivalsAndAwards-h5'>FESTIVALS & AWARDS</h5>
-                    </li>
-                    <li>
-                      {films[currentIndex].festivalsAndAwards}
-                    </li>
+                    <li><h5>VIDEO ON DEMAND</h5></li>
+                    {videoOnDemandUrls.map((url, index) => (
+                      <li key={index}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>
+                    ))}
                   </>
                 )}
-              </ul>
-            </div>
+              </div>
+              <div className='button-showDownload'>
+                {films[currentIndex].download && (
+                  <>
+                    <li>
+                      <button onClick={handleClickDownload}>{showDownload ? 'DOWNLOAD' : 'DOWNLOAD +'}</button></li>
+                    {showDownload && films[currentIndex].download && <a
+                      href={films[currentIndex].download}
+                      target="_blank" rel="noopener, noreferrer"
+                      onClick={() => handleDownload(films[currentIndex].download,)}
+                    >{films[currentIndex].title}</a>}
+                  </>
+                )}
+              </div>
+              <div className='button-showClick'>
+                {films[currentIndex].crew && (
+                  <>
+                    <li>
+                      <button onClick={handleClickCrew}>{showCrew ? 'CREW' : 'CREW +'}</button></li>
+                    {showCrew && <li>{films[currentIndex].crew}</li>}
+                  </>
+                )}
+              </div>
+            </ul>
+
+
+
+            <ul className='ul-right'>
+              {films[currentIndex].synopsis && (
+                <>
+                  <li>
+                    <h5 className='FilmDetails-synopsis-h5'>SYNOPSIS</h5>
+                  </li>
+                  <li>
+                    {films[currentIndex].synopsis}
+                  </li>
+                </>
+              )}
+              {films[currentIndex].festivalsAndAwards && (
+                <>
+                  <li>
+                    <h5 className='FilmDetails-festivalsAndAwards-h5'>FESTIVALS & AWARDS</h5>
+                  </li>
+                  <li>
+                    {films[currentIndex].festivalsAndAwards}
+                  </li>
+                </>
+              )}
+            </ul>
           </div>
         </div>
         <ScrollToTop />
@@ -314,7 +310,5 @@ const FilmDetailsEn = () => {
     </>
   )
 }
-// FilmDetails.propTypes = {
-//   // images: PropTypes.arrayOf(PropTypes.string),
-// };
+
 export default FilmDetailsEn

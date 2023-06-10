@@ -13,9 +13,9 @@ const HomePage = () => {
   };
 
   const images = [
-    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686154934/impermanenceDB/Izoc_still_1_dxa8nm.png',
-    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686154946/impermanenceDB/Tupiq_2_1.62.1_1_vdctr3.png',
-    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686154924/impermanenceDB/song_of_a_seer_ooinia.png',
+    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686295393/impermanenceDB/gfqkh9eyimsarnzlbucx.png',
+    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686254549/impermanenceDB/witdohaulszjlzmujhp6.png',
+    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686296023/impermanenceDB/zfz54f1haxeuxurc6d3q.png',
   ];
 
   return (
