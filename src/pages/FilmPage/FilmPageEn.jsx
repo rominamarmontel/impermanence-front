@@ -63,7 +63,7 @@ const FilmPageEn = () => {
                           ) : ('')}
                         </picture>
                         <div className='film-title'>
-                          <h4>{film.title}</h4>
+                          <h4>{film.title.toUpperCase()}</h4>
                           <h6>by {film.directedBy}</h6>
                         </div>
                       </div>

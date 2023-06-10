@@ -66,7 +66,7 @@
   font-family: "adobe-garamond-pro", serif;
   font-style: normal;
   font-weight: 400;
-  color: rgb(114, 113, 113);
+  /* color: rgb(114, 113, 113); */
   margin: 0;
   padding: 0;
 }
@@ -76,7 +76,7 @@
   font-style: normal;
   font-weight: 400;
   margin: 0;
-  padding-bottom: 1rem;
+  padding-bottom: 70px;
 }
 .film-title h4:hover {
   color: black;
@@ -149,5 +149,6 @@
     padding-bottom: 1rem;
     margin: 0;
     text-align: left;
+    padding-bottom: 50px;
   }
 }

@@ -62,7 +62,7 @@ const FilmPage = () => {
                           ) : ('')}
                         </picture>
                         <div className='film-title'>
-                          <h4>{film.titre}</h4>
+                          <h4>{film.titre.toUpperCase()}</h4>
                           <h6>de {film.realisePar}</h6>
                         </div>
                       </div>
