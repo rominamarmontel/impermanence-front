@@ -105,10 +105,10 @@ const FilmDetails = () => {
   if (!films.length) {
     return null;
   }
-  const authorArray = films[currentIndex].auteur.split('\n');
+  const authorArray = films[currentIndex].auteur.split('\n')
   const partnerArray = films[currentIndex].partenaire.split('\n')
-  const videoALaDemandeUrls = films[currentIndex].videoALaDemande.split('\n');
-  const shouldReduceTitleSize = films[currentIndex].titreOriginal.length > 40;
+  const videoALaDemandeUrls = films[currentIndex].videoALaDemande.split('\n').map(url => url.trim())
+  const shouldReduceTitleSize = films[currentIndex].titreOriginal.length > 15
 
   return (
     <>
@@ -143,7 +143,7 @@ const FilmDetails = () => {
 
                 <div className='text-on-image'>
                   <h1>{films[currentIndex].titre.toUpperCase()}</h1>
-                  {films[currentIndex].realisePar && (<h4>par {films[currentIndex].realisePar}</h4>)}
+                  {films[currentIndex].realisePar && (<h4>de {films[currentIndex].realisePar}</h4>)}
                   {films[currentIndex].anneeDeCreation && (<h4>{films[currentIndex].anneeDeCreation}</h4>)}
                 </div>
                 <div className='copyright-on-image'>
@@ -253,12 +253,15 @@ const FilmDetails = () => {
               )}
 
 
+
               <div className='FilmDetails-li-videoOnDemand'>
                 {films[currentIndex].videoALaDemande && (
                   <div>
                     <li><h5>VIDEO À LA DEMANDE</h5></li>
                     {videoALaDemandeUrls.map((url, index) => (
-                      <li key={index} style={{ marginBottom: 'unset', lineHeight: '1.5rem' }} > <a href={url} target="_blank" rel="noreferrer" style={{ fontSize: '1rem' }}>{url}</a></li>
+                      <li key={index} style={{ marginBottom: 'unset', lineHeight: '1rem' }}>
+                        <a href={url} target="_blank" rel="noreferrer">{url}</a>
+                      </li>
                     ))}
                   </div>
                 )}

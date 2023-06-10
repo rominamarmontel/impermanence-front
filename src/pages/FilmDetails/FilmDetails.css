@@ -54,14 +54,14 @@
 .text-on-image {
   max-width: 30%;
   position:absolute;
-  top:5%;
-  left: 5%;
+  top:4%;
+  left: 2.5%;
   color: white;
   line-height: 1.2rem;
   z-index: 20;
 }
 .text-on-image h1 {
-  padding-bottom: 1rem;
+  padding-bottom: .8rem;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   font-size: 1.9rem;
@@ -71,6 +71,7 @@
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: .06rem;
   font-weight: 400;
+  line-height: 1.5rem;
   text-shadow: rgb(83, 83, 83, .5) 1px 0 3px;
 }
 .copyright-on-image {
@@ -80,50 +81,44 @@
   color: white;
 } 
 
-
+/* Original title */
 .title-content {
   width: 25%;
+  display: flex;
+  justify-content: right;
 }
 .FilmDetails-originalTitle-container {
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-right: 2rem;
-  line-height: 0;
 }
 .FilmDetails-originalTitle-content {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
   position: absolute;
-  top: 0;
-  left: 0;
-  word-wrap: break-word;
+  top: 3.8%;
+  right: 7%;
   text-align: right;
-  padding-top: 1.9rem;
-  padding-right: 2rem;
 }
 .FilmDetails-originalTitle {
+  width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
   font-size: 1.9rem;
   color: rgb(0, 0, 0);
+  word-wrap:break-word;
+  word-spacing: -.5;
 }
 .reduce-size {
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.5rem;
 }
 .FilmDetails-category {
   text-align: right;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-red);
-  line-height: 3rem;
+  line-height: 3.5rem;
 }
 
 /* bottom */
@@ -163,7 +158,7 @@
   line-height: 1.5rem;
  }
  .ul-left li:nth-child(even), .ul-right li:nth-child(even) {
-   font-size: .9em;
+   font-size: 1em;
    font-family: 'Source Sans Pro', sans-serif;
    font-weight: 400;
    color: #000000;
@@ -177,15 +172,16 @@
 .FilmDetails-li-videoOnDemand {
   display: flex;
   flex-direction: column;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: .8rem;
-  line-height: 1rem;
 }
 .FilmDetails-li-videoOnDemand a {
-  color: var(--color-kahki);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: .9rem;
+  color: var(--color-red);
+  font-weight: 700;
+  text-decoration:underline;
 }
 .FilmDetails-li-videoOnDemand a:hover {
-  color: var(--color-gray6);
+  color: var(--color-gray8);
 }
 
 
@@ -194,11 +190,11 @@
 }
 .button-showDownload button, .button-showClick button {
   background-color: transparent !important;
-  color: var(--color-kahki);
+  color: var(--color-red);
   margin: 0;
   padding: 0;
   outline: none;
-  font-weight: 700;
+  font-weight: 800;
   font-size: .9rem;
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: .05rem;
@@ -207,8 +203,14 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   line-height: 2rem;
-  color: var(--color-kahki);
-} 
+  color: var(--color-red);
+}
+.button-showDownload button:hover, .button-showClick button:hover,
+.button-showDownload a:hover, .button-showClick a:hover {
+  color: var(--color-gray8);
+}
+
+
 /* flesh */
 .flesh-left {
   font-size: 2rem;
@@ -234,7 +236,7 @@
 /* SMARTPHONE & TABLETTE */
 @media screen and (max-width: 992px) {
   .FilmDetails {
-    padding-top: 101px;
+    padding-top: 100px;
   } 
   .FilmDetails .container {
     max-width: 100%;
@@ -247,13 +249,12 @@
    /* swiper */
   .film-swiper-container {
     max-width: 100%;
-    min-height: 500px;
+    height: 298px;
   }
   /* image */
 .image-content {
   width: 100%;
 }
-
 .FilmDetails-right-position {
   position: relative;
 } 
@@ -272,7 +273,7 @@
 .image-container img {
   display: unset;
   max-width: 100%;
-  height: 500px;
+  height: 298px;
   position: unset;
   top: unset;
   left: unset;
@@ -281,10 +282,12 @@
 }
 /* text for image */
 .text-on-image {
-  max-width: 90%;
+  max-width: 60%;
+  top:5%;
+  left: 5%;
 }
 .copyright-on-image {
-  left: 2%;
+  right: 2%;
 }
 .text-on-image h1 {
 font-weight: 400;
@@ -293,30 +296,40 @@ line-height: 1.5rem;
 }
 .text-on-image h4 {
 font-size: 1rem;
-line-height: 1.2rem;
+line-height: 1.3rem;
 }
 
-
+/* Original title */
 .title-content {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  justify-content: left;
+  padding-top: 10px;
 }
 .FilmDetails-originalTitle-container {
   position: unset;
+  width: 90%;
+  margin: 0 auto;
 }
 .FilmDetails-originalTitle-content {
   position: unset;
   top: unset;
   left: unset;
-  text-align: left;
   padding-top: 1rem;
   margin-bottom: 2rem;
+}
+.FilmDetails-originalTitle {
+  font-size: 1.7rem;
+  text-align: left;
 }
 .FilmDetails-category {
   text-align: left;
   line-height: 1.5rem;
 }
-
+.reduce-size {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
 
 /* bottom */
 .bottom {
@@ -339,4 +352,19 @@ line-height: 1.2rem;
 .flesh-right {
   right: 0;
 }
+.ul-left li:nth-child(odd) h5, .ul-right li:nth-child(odd) h5 {
+  font-size: 13px;
+  line-height: 16px;
+ }
+ .ul-left li:nth-child(even), .ul-right li:nth-child(even) {
+   letter-spacing: .05rem;
+   white-space: pre-wrap;
+   margin-bottom: 18px;
+   line-height: 16px;
+   font-size: .9rem;
+ }
+ .button-showDownload button, .button-showClick button {
+  margin-bottom: 16px;
+}
+
 }

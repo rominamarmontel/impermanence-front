@@ -105,8 +105,8 @@ const FilmDetailsEn = () => {
   }
   const authorArray = films[currentIndex].author.split('\n');
   const partnerArray = films[currentIndex].partner.split('\n')
-  const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\n');
-  const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 40;
+  const videoOnDemandUrls = films[currentIndex].videoALaDemande.split('\n').map(url => url.trim())
+  const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 15;
 
   return (
     <>
@@ -248,7 +248,9 @@ const FilmDetailsEn = () => {
                   <>
                     <li><h5>VIDEO ON DEMAND</h5></li>
                     {videoOnDemandUrls.map((url, index) => (
-                      <li key={index}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>
+                      <li key={index} style={{ marginBottom: 'unset', lineHeight: '1rem' }}>
+                        <a href={url} target="_blank" rel="noreferrer">{url}</a>
+                      </li>
                     ))}
                   </>
                 )}
