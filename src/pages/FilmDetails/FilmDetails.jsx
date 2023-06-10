@@ -7,6 +7,7 @@ import { RxArrowRight } from 'react-icons/rx';
 import ScrollToTop from '../../components/ScrollToTop';
 import 'swiper/swiper-bundle.css';
 import Swiper, { Autoplay, Pagination, EffectFade } from 'swiper';
+import Spinner from '../../components/Spinner/Spinner';
 
 const FilmDetails = () => {
   const { id } = useParams();
@@ -102,8 +103,8 @@ const FilmDetails = () => {
     setShowCrew(!showCrew)
   }
 
-  if (!films.length) {
-    return null;
+  if (films === null) {
+    return <Spinner />;
   }
   const authorArray = films[currentIndex].auteur.split('\n')
   const partnerArray = films[currentIndex].partenaire.split('\n')

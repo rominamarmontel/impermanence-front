@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import myApi from '../service/service'
-import Spinner from '../components/Spinner'
+import Spinner from '../components/Spinner/Spinner'
 import { Link } from 'react-router-dom'
 import ScrollToTop from '../components/ScrollToTop'
 
