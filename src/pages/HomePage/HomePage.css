@@ -53,6 +53,7 @@
   color: white;
   text-align: center;
   margin-bottom: 1.5rem;
+  text-shadow: rgba(2, 2, 2, 0.5) 1px 0 3px;
 }
 .HomePage-text-left p {
   color: white;
@@ -63,6 +64,7 @@
   line-height: calc(28/19*1em);
   letter-spacing: .1rem;
   margin-bottom: 2.5rem;
+  text-shadow: rgba(2, 2, 2, 0.5) 1px 0 3px;
 }
 .HomePage-lang {
   color: var(--color-red);

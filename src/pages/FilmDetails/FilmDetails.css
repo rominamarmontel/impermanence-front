@@ -65,7 +65,7 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   font-size: 1.9rem;
-  text-shadow: rgb(83, 83, 83, .5) 1px 0 3px;
+  text-shadow: rgba(2, 2, 2, 0.5) 1px 0 3px;
 }
 .directedBy {
   font-family: 'Source Sans Pro', sans-serif;

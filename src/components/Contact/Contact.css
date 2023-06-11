@@ -70,7 +70,8 @@
   .send-button input {
     padding: 10px 15px 30px 15px;
     background-color: black;
-    border: 1px solid gray;
+    color: white;
+    border: none;
   }
 
   /* SMARTPHONE & TABLETTE */
