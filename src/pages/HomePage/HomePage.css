@@ -93,15 +93,15 @@
   font-size: .9rem;
   letter-spacing: .1rem;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   position: relative;
 }
 .HomePage-text-right a::after {
   background-color: white;
-  bottom: 0;
+  bottom: -3px;
   content: '';
   display: block;
-  height: 1px;
+  height: 2px;
   left: 0;
   position: absolute;
   transition: .5s all;

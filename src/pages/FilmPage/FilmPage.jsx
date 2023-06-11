@@ -4,6 +4,7 @@ import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
+import FadeIn from '../../components/FadeIn/FadeIn';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
@@ -44,39 +45,41 @@ const FilmPage = () => {
     return <Spinner />;
   }
   return (
-    <section className='FilmPage'>
-      <div className='FilmPage-container'>
-        {categoryOrder.map((categorie) => {
-          const films = groupedFilms[categorie] || [];
-          return (
-            <div key={categorie} id={categorie} className='category-section' >
-              <h2 className='category-title'>{categorie.toLowerCase()}</h2>
-              <div className='FilmPage-category'>
-                {films.map((film) => (
-                  <div className='FilmPage-content' key={film._id}>
-                    <Link to={`/films/${film._id}#${categorie}`}>
-                      <div className='FilmPage-position'>
-                        <picture>
-                          {film.images.length ? (
-                            <img src={`${film.images[0]}`} alt={film.titre} className='film-image' />
-                          ) : ('')}
-                        </picture>
-                        <div className='film-title'>
-                          <h4>{film.titre.toUpperCase()}</h4>
-                          <h6>de {film.realisePar}</h6>
+    <FadeIn>
+      <section className='FilmPage'>
+        <div className='FilmPage-container'>
+          {categoryOrder.map((categorie) => {
+            const films = groupedFilms[categorie] || [];
+            return (
+              <div key={categorie} id={categorie} className='category-section' >
+                <h2 className='category-title'>{categorie.toLowerCase()}</h2>
+                <div className='FilmPage-category'>
+                  {films.map((film) => (
+                    <div className='FilmPage-content' key={film._id}>
+                      <Link to={`/films/${film._id}#${categorie}`}>
+                        <div className='FilmPage-position'>
+                          <picture>
+                            {film.images.length ? (
+                              <img src={`${film.images[0]}`} alt={film.titre} className='film-image' />
+                            ) : ('')}
+                          </picture>
+                          <div className='film-title'>
+                            <h4>{film.titre.toUpperCase()}</h4>
+                            <h6>de {film.realisePar}</h6>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
-      </div>
-      <ScrollToTop />
-    </section >
+        </div>
+        <ScrollToTop />
+      </section >
+    </FadeIn>
   );
 };
 

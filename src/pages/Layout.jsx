@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 const Layout = ({ isEnglish }) => {
   const NavbarComponent = isEnglish ? NavbarEn : Navbar;
-
   return (
     <>
       <div className='wrapper'>
