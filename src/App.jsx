@@ -33,10 +33,6 @@ function App() {
           <Route path='/en/films' element={<FilmPageEn />} />
           <Route path='/en/films/:id' element={<FilmDetailsEn />} />
           <Route path='/en/about' element={<AboutPageEn />} />
-          <Route element={<IsLoggedOut />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/top" element={<AdminTop />} />
             <Route path="/admin/en/top" element={<AdminTopEn />} />
@@ -45,6 +41,11 @@ function App() {
             <Route path="/admin/films/create" element={<AddFilm />} />
             <Route path="/admin/en/films/create" element={<AddFilmEn />} />
           </Route>
+          <Route element={<IsLoggedOut />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Route>
+
         </Route>
       </Routes>
     </div >

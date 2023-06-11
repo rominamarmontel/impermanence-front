@@ -191,7 +191,7 @@ const EditFilm = () => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
           <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img src='https://flagpedia.net/data/flags/icon/72x54/gb.png' alt='England' width={72} height={54} />
+              <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
               <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', padding: 30 }}>EDIT THE FILM</h3>
             </div>
           </div>

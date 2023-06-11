@@ -31,15 +31,21 @@ const AdminTop = () => {
   }, []);
 
   const categoryOrder = ['work-in-progress', 'production', 'distribution', 'programmation'];
+
+
   return (
+
     <section className='AdminTop' style={{ paddingTop: '5rem', paddingBottom: '5rem', width: '100vw', display: 'flex', justifyContent: 'center' }}>
-      <div style={{ border: '1px solid var(--color-gray3)', backgroundColor: 'var(--color-green)', margin: '5rem', padding: 30, borderRadius: '10px', display: 'flex', justifyContent: 'center' }}>
+
+      <div style={{ border: '1px solid var(--color-gray7)', margin: '5rem', padding: 30, borderRadius: '10px', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '80%', display: 'flex', flexDirection: 'column' }}>
-          <img src='https://flagpedia.net/data/flags/icon/72x54/gb.png' alt='England' width={72} height={54} />
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
+            <Link to='/admin/top' style={{ color: 'var(--color-pink)', padding: 10, textDecoration: 'underline' }}>FRENCH</Link>
+          </div>
           <h3 style={{ display: 'flex', justifyContent: 'center', marginBottom: 15, fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30 }}> Admin Top Page</h3>
           <div style={{ marginBottom: 30, display: 'flex', justifyContent: 'center', gap: 30 }}>
-            <Link to='/admin/top' style={{ backgroundColor: 'var(--color-red)', color: 'white', padding: 10 }}>FRENCH</Link>
-            <Link to='/admin/en/films/create' style={{ backgroundColor: 'black', color: 'white', padding: 10 }}>Create a new film</Link>
+            <Link to='/admin/en/films/create' style={{ padding: 10, textDecoration: 'underline' }}>Create a new film</Link>
           </div>
 
           {categoryOrder.map((category) => {

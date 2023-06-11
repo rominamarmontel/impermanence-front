@@ -139,7 +139,7 @@ const AddFilm = () => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
           <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img src='https://flagpedia.net/data/flags/w1160/fr.webp' alt='France' width={72} height={54} style={{ marginTop: 30, paddingRight: 20 }} />
+              <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} style={{ marginTop: 30, paddingRight: 20 }} />
               <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30 }}>CREE UN NOUVEAU FILM</h3>
             </div>
             <p style={{ textAlign: 'right', color: 'var(--color-gray3)', paddingRight: 20 }}><span style={{ color: 'red' }}>*</span>est obligatoire</p>
