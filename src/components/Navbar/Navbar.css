@@ -35,7 +35,7 @@
   font-family: 'Charm', cursive;
   text-align: center;
   padding-bottom: 1rem;
-  color: var(--color-gray8);
+  color: var(--color-pink);
 }
 .Navbar-container {
   width: 90%;
@@ -50,7 +50,7 @@
 }
 .navbar-list-font a {
   color: #000000;
-  font-family: "adobe-garamond-pro", serif;
+  font-family: "adobe-garamond-pro", Georgia, 'Times New Roman', Times, serif;
   font-weight: 500;
   font-style: normal;
   font-size: 15px;
@@ -65,10 +65,10 @@
 }
 .navbar-list a::after {
   background-color: #c03a2b;
-  bottom: 0;
+  bottom: -3px;
   content: '';
   display: block;
-  height: 2px;
+  height: 2.5px;
   left: 0;
   position: absolute;
   transition: .5s all;
@@ -113,7 +113,22 @@
   color: rgb(255, 255, 255);
 }
 .Navbar--scroll .navbar-list a:hover {
-  color: var(--color-kahki);
+  color: white;
+  text-shadow: unset;
+}
+.Navbar--scroll .navbar-list a::after {
+  background-color: white;
+  bottom: -3px;
+  content: '';
+  display: block;
+  height: 2.5px;
+  left: 0;
+  position: absolute;
+  transition: .5s all;
+  width: 0;
+}
+.Navbar--scroll .navbar-list a:hover::after {
+  width: 100%;
 }
 .hamburgerMenu, .overlay {
   display: none;

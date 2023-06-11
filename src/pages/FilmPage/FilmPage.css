@@ -63,7 +63,7 @@
   padding-top: .3rem;
 }
 .film-title h4 {
-  font-family: "adobe-garamond-pro", serif;
+  font-family: "adobe-garamond-pro", Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
   font-weight: 400;
   /* color: rgb(114, 113, 113); */
@@ -72,7 +72,7 @@
 }
 .film-title h6 {
   color:#c03a2b;
-  font-family: "adobe-garamond-pro", serif;
+  font-family: "adobe-garamond-pro", Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
   font-weight: 400;
   margin: 0;
