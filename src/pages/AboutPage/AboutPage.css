@@ -33,13 +33,17 @@
   margin: 0 auto;
 }
 .AboutPage-container-sub {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 }
 .AboutPage-container p {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
+  font-family: "adobe-garamond-pro", Georgia, 'Times New Roman', Times, serif;
+  font-weight: 100;
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #383f4e;
 }
 .AboutPage-content {
   margin-bottom: 5rem;
@@ -71,5 +75,11 @@
   }
   .AboutPage-container {
     width: 90%;
+  }
+  .AboutPage-container p {
+    margin-top: 32px;
+    font-size: 17px;
+    line-height: 1.52;
+    color: #383f4e;
   }
 }
