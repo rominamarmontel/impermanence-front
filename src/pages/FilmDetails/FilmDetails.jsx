@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import './FilmDetails.css';
 import myApi from '../../service/service';
 import { RxArrowLeft } from 'react-icons/rx';
@@ -10,6 +10,7 @@ import Swiper, { Autoplay, Pagination, EffectFade } from 'swiper';
 import Spinner from '../../components/Spinner/Spinner'
 import FadeIn from '../../components/FadeIn/FadeIn';
 
+
 const FilmDetails = () => {
   const { id } = useParams();
   const [films, setFilms] = useState([]);
@@ -17,6 +18,7 @@ const FilmDetails = () => {
   const [showCrew, setShowCrew] = useState(false)
   const [showDownload, setShowDownload] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const index = films.findIndex((film) => film._id === id);
@@ -52,15 +54,18 @@ const FilmDetails = () => {
     });
   }, []);
 
-
   const goToPreviousFilm = () => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? films.length - 1 : prevIndex - 1));
+    const previousFilmId = films[currentIndex === 0 ? films.length - 1 : currentIndex - 1]._id;
+    navigate(`/films/${previousFilmId}`);
   };
 
   const goToNextFilm = () => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     setCurrentIndex((prevIndex) => (prevIndex === films.length - 1 ? 0 : prevIndex + 1));
+    const nextFilmId = films[currentIndex === films.length - 1 ? 0 : currentIndex + 1]._id;
+    navigate(`/films/${nextFilmId}`);
   };
 
   const handleDownload = async (telechargementUrl, fileName) => {
