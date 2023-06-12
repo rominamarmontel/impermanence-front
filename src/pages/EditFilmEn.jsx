@@ -157,7 +157,6 @@ const EditFilm = () => {
 
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     setDownload(file);
     if (file) {
       const reader = new FileReader();
@@ -303,9 +302,8 @@ const EditFilm = () => {
                   <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='download'>DOWNLOAD</label>
-                  <div style={{ width: '100%' }}>
-                    <p style={{ color: 'gray' }}>{download && download.length > 60 ? download.substring(0, 60) + '...' : download}</p>
-                  </div>
+                  <small style={{ color: 'red', lineHeight: '1rem' }}>
+                    1 document ONLY = 1.5MB max.</small>
                   {downloadUrl && (
                     <PDFViewer pdfUrl={downloadUrl} style={{ width: '100%', height: '500px' }} />
                   )}
