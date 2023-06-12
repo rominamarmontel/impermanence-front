@@ -31,10 +31,12 @@ const AdminTop = () => {
 
   const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
 
+  if (!films || !films.length) {
+    return <Spinner />
+  }
+
   return (
-    <section className='AdminTop' style={{ paddingTop: '5rem', paddingBottom: '5rem', width: '100vw', display: 'flex', justifyContent: 'center' }}>
-
-
+    <section className='AdminTop' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 70 }}>
       <div style={{ border: '1px solid var(--color-gray7)', margin: '5rem', padding: 30, display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '80%', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>

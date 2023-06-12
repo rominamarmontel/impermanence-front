@@ -4,6 +4,9 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
 // import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
+import PropTypes from 'prop-types';
+import ConfettiExplosion from 'react-confetti-explosion';
+import './Admin.css'
 
 const EditFilm = () => {
   const { id } = useParams()
@@ -30,20 +33,16 @@ const EditFilm = () => {
   const [setDownloadUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
+  const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    const scrollToTop = () => {
-      window.scrollTo(0, 0);
-    };
-
-    scrollToTop();
-  }, []);
+    scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     myApi.get(`/en/films/${id}`).then((response) => {
-      console.log(response)
       setCategory(response.data.oneFilm.category || '-1')
       setTitle(response.data.oneFilm.title || '')
       setOriginalTitle(response.data.oneFilm.originalTitle || '')
@@ -69,6 +68,23 @@ const EditFilm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    let errorMessage = '';
+    if (!category || category === '-1') {
+      errorMessage += 'Category is required.\n';
+    }
+    if (!title) {
+      errorMessage += 'Title is required.\n';
+    }
+    if (!genre || genre === '-1') {
+      errorMessage += 'Genre is required.\n';
+    }
+    if (images.length === 0) {
+      errorMessage += 'At least one image is required.\n';
+    }
+    if (errorMessage !== '') {
+      alert(errorMessage);
+      return;
+    }
     const formData = new FormData()
     formData.append('category', category)
     formData.append('title', title)
@@ -106,7 +122,6 @@ const EditFilm = () => {
 
     try {
       const updatedToFilm = await myApi.patch(`/en/films/edit/${id}`, formData)
-      console.log(updatedToFilm)
       if (updatedToFilm.status === 202) {
         setCategory('-1')
         setTitle('')
@@ -129,12 +144,17 @@ const EditFilm = () => {
         setCrew('')
         setDownload('')
         setImages('')
-        navigate('/admin/en/top')
+        setShowConfettiExplosion(true)
+        setTimeout(() => {
+          setShowConfettiExplosion(false)
+          navigate('/admin/en/top')
+        }, 3000)
       }
     } catch (error) {
       console.error(error)
     }
   }
+
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
     setDownload(file);
@@ -168,7 +188,6 @@ const EditFilm = () => {
           newImages.push(image);
         });
         setImages((prevImages) => [...prevImages, ...newImages]);
-        // localStorage.setItem('updatedImages', JSON.stringify(newImages));
       })
       .catch((error) => {
         console.error('Error loading images:', error);
@@ -176,120 +195,145 @@ const EditFilm = () => {
   };
 
   const hadleDelete = () => {
-    myApi.delete(`/films/edit/${id}`).then(() => {
+    myApi.delete(`/en/films/edit/${id}`).then(() => {
       navigate('/admin/en/top')
     })
   }
 
   return (
-    <section className='EditFilm' style={{ paddingTop: '5rem', paddingBottom: '5rem', width: '100vw', display: 'flex', justifyContent: 'center', marginTop: '5rem' }}>
-      <div style={{ width: '80%' }}>
-        <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'var(--color-pink)' }}>
-          <AiOutlineLeft /> Back
-        </Link>
+    <section>
+      <div className='EditFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
+        <div style={{ width: '80%' }}>
+          <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'black' }}>
+            <AiOutlineLeft /> Back
+          </Link>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
-          <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
-              <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', padding: 30 }}>EDIT THE FILM</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
+
+            <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
+
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
+                <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', padding: 30 }}>EDIT THE FILM</h3>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', padding: 30 }}>
-            <label htmlFor='category' style={{ paddingBottom: 10 }}>Category</label>
-            <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: 18, color: 'skyblue' }}>
-              <option disabled value="-1">
-                Select a category
-              </option>
-              <option value="work-in-progress">Work-in-progress</option>
-              <option value="production">Production</option>
-              <option value="distribution">Distribution</option>
-              <option value="programmation">Programmation</option>
-            </select>
 
-            <label htmlFor='title' className='label' style={{ paddingBottom: 10 }}>Title</label>
-            <input type='text' name='title' value={title || ''} onChange={(e) => setTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='originalTitle' style={{ paddingBottom: 10 }}>Original title</label>
-            <input type='text' name='originalTitle' value={originalTitle || ''} onChange={(e) => setOriginalTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='copyright' style={{ paddingBottom: 10 }}>Copyright</label>
-            <input type='text' name='copyright' value={copyright || ''} onChange={(e) => setCopyright(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+            <form onSubmit={handleSubmit} style={{
+              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px'
+            }}>
+              <div style={{ display: 'flex' }} className='form-style'>
+                <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
 
-            <label htmlFor='directedBy' style={{ paddingBottom: 10 }}>Directed by</label>
-            <textarea type='text' name='directedBy' value={directedBy || ''} onChange={(e) => setDirectedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='category' style={{ paddingBottom: 5 }}>CATEGORY</label>
+                  <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
+                    <option disabled value="-1">
+                      Select a category
+                    </option>
+                    <option value="work-in-progress">Work-in-progress</option>
+                    <option value="production">Production</option>
+                    <option value="distribution">Distribution</option>
+                    <option value="programmation">Programmation</option>
+                  </select>
 
-            <label htmlFor='producedBy' style={{ paddingBottom: 10 }}>Produced by</label>
-            <textarea type='text' name='producedBy' value={producedBy || ''} onChange={(e) => setProducedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='title' className='label' style={{ paddingBottom: 5 }}>TITLE</label>
+                  <input type='text' name='title' value={title || ''} onChange={(e) => setTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='author' style={{ paddingBottom: 10 }}>Author(s)</label>
-            <textarea type='text' name='author' value={author || ''} onChange={(e) => setAuthor(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='originalTitle' style={{ paddingBottom: 5 }}>ORIGINAL TITLE</label>
+                  <input type='text' name='originalTitle' value={originalTitle || ''} onChange={(e) => setOriginalTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='format' style={{ paddingBottom: 10 }}>Format</label>
-            <input type='text' name='format' value={format || ''} onChange={(e) => setFormat(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='copyright' style={{ paddingBottom: 5 }}>COPYRIGHT</label>
+                  <input type='text' name='copyright' value={copyright || ''} onChange={(e) => setCopyright(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='duration' style={{ paddingBottom: 10 }}>Duration</label>
-            <input type='text' name='duration' value={duration || ''} onChange={(e) => setDuration(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='directedBy' style={{ paddingBottom: 5 }}>DIRECTED BY</label>
+                  <textarea type='text' name='directedBy' value={directedBy || ''} onChange={(e) => setDirectedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='synopsis' style={{ paddingBottom: 10 }}>Synopsis</label>
-            <textarea type='text' name='synopsis' value={synopsis || ''} onChange={(e) => setSynopsis(e.target.value)} style={{ height: '300px', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='producedBy' style={{ paddingBottom: 5 }}>PRODUCED BY</label>
+                  <textarea type='text' name='producedBy' value={producedBy || ''} onChange={(e) => setProducedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='partner' style={{ paddingBottom: 10 }}>Partner(s)</label>
-            <textarea type='text' name='partner' value={partner || ''} onChange={(e) => setPartner(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='author' style={{ paddingBottom: 5 }}>AUTHOR(S)</label>
+                  <textarea type='text' name='author' value={author || ''} onChange={(e) => setAuthor(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='createdYear' style={{ paddingBottom: 10 }}>Created year</label>
-            <input type='text' name='createdYear' value={createdYear || ''} onChange={(e) => setCreatedYear(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='format' style={{ paddingBottom: 5 }}>FORMAT</label>
+                  <input type='text' name='format' value={format || ''} onChange={(e) => setFormat(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 10 }}>Festivals & Awards</label>
-            <textarea type='text' name='festivalsAndAwards' value={festivalsAndAwards || ''} onChange={(e) => setFestivalsAndAwards(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='duration' style={{ paddingBottom: 5 }}>DURATION</label>
+                  <input type='text' name='duration' value={duration || ''} onChange={(e) => setDuration(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='distribution' style={{ paddingBottom: 10 }}>Distribution</label>
-            <input type='text' name='distribution' value={distribution || ''} onChange={(e) => setDistribution(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='synopsis' style={{ paddingBottom: 5 }}>SYNOPSIS</label>
+                  <textarea type='text' name='synopsis' value={synopsis || ''} onChange={(e) => setSynopsis(e.target.value)} style={{ height: '300px', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                </div>
 
-            <label htmlFor='internationalSales' style={{ paddingBottom: 10 }}>International sales</label>
-            <input type='text' name='internationalSales' value={internationalSales || ''} onChange={(e) => setInternationalSales(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
+                  <label htmlFor='partner' style={{ paddingBottom: 5 }}>PARTNER(S)</label>
+                  <textarea type='text' name='partner' value={partner || ''} onChange={(e) => setPartner(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='stageOfProduction' style={{ paddingBottom: 10 }}>Stage of production</label>
-            <input type='text' name='stageOfProduction' value={stageOfProduction || ''} onChange={(e) => setStageOfProduction(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='createdYear' style={{ paddingBottom: 5 }}>CREATED YEAR</label>
+                  <input type='text' name='createdYear' value={createdYear || ''} onChange={(e) => setCreatedYear(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='genre' style={{ paddingBottom: 10 }}>Genre</label>
-            <select value={genre || 'Science-fiction'} onChange={(e) => setGenre(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40, fontSize: 18, color: 'skyblue' }}>
-              <option disabled value="-1">
-                Select a category
-              </option>
-              <option value="Science-fiction">Science-Fiction</option>
-              <option value="Drama">Drama</option>
-              <option value="Documentary">Documentary</option>
-              <option value="Comedy">Comedy</option>
-            </select>
+                  <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 5 }}>FESTIVALS & AWARDS</label>
+                  <textarea type='text' name='festivalsAndAwards' value={festivalsAndAwards || ''} onChange={(e) => setFestivalsAndAwards(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-            <label htmlFor='videoOnDemand' style={{ paddingBottom: 10 }}>Video on demand</label>
-            <textarea type='text' name='videoOnDemand' value={videoOnDemand || ''} onChange={(e) => setVideoOnDemand(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='distribution' style={{ paddingBottom: 5 }}>DISTRIBUTION</label>
+                  <input type='text' name='distribution' value={distribution || ''} onChange={(e) => setDistribution(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='crew' style={{ paddingBottom: 10 }}>Crew</label>
-            <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='internationalSales' style={{ paddingBottom: 5 }}>INTERNATIONAL SALES</label>
+                  <input type='text' name='internationalSales' value={internationalSales || ''} onChange={(e) => setInternationalSales(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-            <label htmlFor='download'>Download</label>
-            {/* {downloadUrl && (
+                  <label htmlFor='stageOfProduction' style={{ paddingBottom: 5 }}>STAGE OF PRODUCTION</label>
+                  <input type='text' name='stageOfProduction' value={stageOfProduction || ''} onChange={(e) => setStageOfProduction(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+
+                  <label htmlFor='genre' style={{ paddingBottom: 5 }}>GENRE</label>
+                  <select value={genre || 'Science-fiction'} onChange={(e) => setGenre(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40, fontSize: '16px', color: 'var(--color-gray8)' }}>
+                    <option disabled value="-1">
+                      Select a category
+                    </option>
+                    <option value="Science-fiction">Science-Fiction</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Comedy">Comedy</option>
+                  </select>
+
+                  <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDEO ON DEMAND</label>
+                  <textarea type='text' name='videoOnDemand' value={videoOnDemand || ''} onChange={(e) => setVideoOnDemand(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+
+                  <label htmlFor='crew' style={{ paddingBottom: 5 }}>CREW</label>
+                  <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+
+                  <label htmlFor='download'>DOWNLOAD</label>
+                  {/* {downloadUrl && (
               <PDFViewer pdfUrl={downloadUrl} />
             )} */}
-            <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
+                  <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
-            <label htmlFor='image' style={{ marginBottom: 10 }}>Image</label>
-            <p style={{ color: 'red', lineHeight: 1, marginBottom: 10 }}>
-              You cannot change or add images to the existing images. In case of addition or modification, the existing images will be reset. 3 images MAX</p>
-            <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
+                  <label htmlFor='image' style={{ marginBottom: 5 }}>IMAGE</label>
+                  <small style={{ color: 'red', lineHeight: '1rem' }}>
+                    You cannot change or add images to the existing images.<br />In case of addition or modification, the existing images will be reset. 3 images MAX and 1 image = 1MB max.</small>
+                  <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} id="image-input" />
+                  {images &&
+                    <img src={images} alt='' style={{ width: '200px', height: 'auto' }} />
+                  }
+                </div>
+              </div>
 
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-              <button type='submit'>EDIT</button>
-              <button onClick={hadleDelete}>DELETE</button>
-            </div>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
+                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>EDIT</button>
+                {showConfettiExplosion && <ConfettiExplosion />}
+                <button onClick={hadleDelete} style={{ borderRadius: '3px', backgroundColor: 'var(--color-gray8)' }}>DELETE</button>
+                <Link to='/admin/en/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Cancel</Link>
+              </div>
+            </form>
+            <ScrollToTop />
           </div>
-        </form>
-        <ScrollToTop />
+        </div>
       </div>
+
     </section>
   )
 }
-
+EditFilm.propTypes = {
+  imageUrl: PropTypes.string,
+  onRemove: PropTypes.func
+};
 export default EditFilm

@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react'
 import myApi from '../service/service'
 import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-// import PDFViewer from '../components/PDFViewer';
+import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
 import './Admin.css'
+import ImagePreview from '../components/ImagePreview';
+import { AiOutlineClose } from 'react-icons/ai'
 
-const AddFilm = () => {
+const AddFilmEn = () => {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('-1')
   const [originalTitle, setOriginalTitle] = useState('')
@@ -29,7 +31,7 @@ const AddFilm = () => {
   const [videoOnDemand, setVideoOnDemand] = useState('')
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
-  const [setDownloadUrl] = useState(null)
+  const [downloadUrl, setDownloadUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
@@ -42,6 +44,23 @@ const AddFilm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errorMessage = '';
+    if (!category || category === '-1') {
+      errorMessage += 'Category is required.\n';
+    }
+    if (!title) {
+      errorMessage += 'Title is required.\n';
+    }
+    if (!genre || genre === '-1') {
+      errorMessage += 'Genre is required.\n';
+    }
+    if (images.length === 0) {
+      errorMessage += 'At least one image is required.\n';
+    }
+    if (errorMessage !== '') {
+      alert(errorMessage);
+      return;
+    }
     try {
       const formData = new FormData()
       formData.append('category', category)
@@ -67,16 +86,12 @@ const AddFilm = () => {
       images.forEach(image => {
         formData.append('images', image.file);
       });
-      console.log("images", images)
       if (download && download.size > 0) {
         formData.append('download', download);
       } else {
         formData.delete('download');
       }
-      if (!category || !title || images.length === 0) {
-        alert('Please fill in all the required fields: category, title, genre and image.');
-        return;
-      }
+
       const response = await myApi.post(`/en/films/create`, formData)
       if (response.status === 201) {
         setShowConfettiExplosion(true)
@@ -85,12 +100,11 @@ const AddFilm = () => {
           navigate('/en/films')
         }, 3000)
       }
-      console.log(response)
     } catch (error) {
       console.error(error);
     } finally {
       setDownload(null);
-      setDownloadUrl(null);
+      // setDownloadUrl(null);
     }
   };
 
@@ -118,8 +132,6 @@ const AddFilm = () => {
         console.error('Error loading images:', error);
       });
   };
-  console.log(images);
-
 
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
@@ -135,34 +147,29 @@ const AddFilm = () => {
     }
   };
 
-  // const handleImageRemove = (index) => {
-  //   setImages((prevImages) => {
-  //     const newImages = [...prevImages];
-  //     newImages.splice(index, 1);
-  //     return newImages;
-  //   });
-  // };
-
-  const ImagePreview = ({ imageUrl }) => {
-    return (
-      <div>
-        <img src={imageUrl} alt="Preview" style={{ width: '200px', height: 'auto' }} />
-        {/* <p>{ }</p>
-        <button onClick={onRemove}>Remove</button> */}
-      </div>
-    );
+  const handleImageRemove = (index) => {
+    setImages((prevImages) => {
+      const newImages = [...prevImages];
+      const removedImage = newImages.splice(index, 1)[0];
+      URL.revokeObjectURL(removedImage.imageUrl);
+      const inputElement = document.getElementById('image-input');
+      inputElement.value = '';
+      return newImages;
+    });
   };
-
 
   return (
     <section >
       <div className='AddFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
         <div style={{ width: '80%' }}>
-          <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'var(--color-blue)' }}><AiOutlineLeft /> Back</Link>
+          <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'black' }}><AiOutlineLeft /> Back</Link>
 
           <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
+
             <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
+
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
                 <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} style={{ marginTop: 30, paddingRight: 20 }} />
                 <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30 }}>CREATE A NEW FILM</h3>
               </div>
@@ -175,6 +182,7 @@ const AddFilm = () => {
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
+
                   <label htmlFor='category' style={{ paddingBottom: 5 }}>CATEGORY<span style={{ color: 'red' }}>*</span></label>
                   <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
                     <option disabled value="-1">
@@ -222,7 +230,7 @@ const AddFilm = () => {
                   <label htmlFor='createdYear' style={{ paddingBottom: 5 }}>CREATED YEAR</label>
                   <input type='text' name='createdYear' value={createdYear} onChange={(e) => setCreatedYear(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 3 }}>FESTIVALS & AWARDS</label>
+                  <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 5 }}>FESTIVALS & AWARDS</label>
                   <textarea type='text' name='festivalsAndAwards' value={festivalsAndAwards} onChange={(e) => setFestivalsAndAwards(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='distribution' style={{ paddingBottom: 5 }}>DISTRIBUTION</label>
@@ -252,20 +260,36 @@ const AddFilm = () => {
                   <textarea type='text' name='crew' value={crew} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='download'>DOWNLOAD</label>
-                  {/* {downloadUrl && (
-              <PDFViewer pdfUrl={downloadUrl} />
-            )} */}
+                  <small style={{ color: 'red', lineHeight: '1rem' }}>
+                    1 document only = 1.5MB max.
+                  </small>
+                  {downloadUrl && (
+                    <PDFViewer pdfUrl={downloadUrl} />
+                  )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
                   <label htmlFor='images'>IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 1MB max.</small>
-                  <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
+                  <input
+                    type='file'
+                    name='images'
+                    onChange={handleImageChange}
+                    style={{ marginBottom: 15 }}
+                    id="image-input" />
                   {images && images.map((image, index) => (
-                    <ImagePreview
-                      key={index}
-                      imageUrl={image.imageUrl}
-                    />
+                    <>
+                      <div style={{ position: 'relative' }} key={index}>
+                        <ImagePreview
+                          key={index}
+                          imageUrl={image.imageUrl}
+                        />
+                        <AiOutlineClose
+                          onClick={() => handleImageRemove(index)}
+                          style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'white' }}
+                        />
+                      </div>
+                    </>
                   ))}
                 </div>
               </div>
@@ -284,8 +308,8 @@ const AddFilm = () => {
     </section >
   )
 }
-AddFilm.propTypes = {
+AddFilmEn.propTypes = {
   imageUrl: PropTypes.string,
   onRemove: PropTypes.func
 };
-export default AddFilm
+export default AddFilmEn

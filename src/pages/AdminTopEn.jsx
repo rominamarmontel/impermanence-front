@@ -14,7 +14,6 @@ const AdminTop = () => {
   useEffect(() => {
     myApi.get('/en/films').then((response) => {
       setFilms(response.data)
-      console.log(response.data)
     }).catch((err) => {
       console.error(err)
     })
@@ -35,8 +34,7 @@ const AdminTop = () => {
 
   return (
 
-    <section className='AdminTop' style={{ paddingTop: '5rem', paddingBottom: '5rem', width: '100vw', display: 'flex', justifyContent: 'center' }}>
-
+    <section className='AdminTop' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 70 }}>
       <div style={{ border: '1px solid var(--color-gray7)', margin: '5rem', padding: 30, borderRadius: '10px', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '80%', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
