@@ -14,7 +14,7 @@ const HomePage = () => {
   };
 
   const images = [
-    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686295393/impermanenceDB/gfqkh9eyimsarnzlbucx.png',
+    'https://res.cloudinary.com/dyu65fpse/image/upload/v1686253845/impermanenceDB/yem5qs5vsuv3qeyzxbyl.png',
     'https://res.cloudinary.com/dyu65fpse/image/upload/v1686254549/impermanenceDB/witdohaulszjlzmujhp6.png',
     'https://res.cloudinary.com/dyu65fpse/image/upload/v1686296023/impermanenceDB/zfz54f1haxeuxurc6d3q.png',
   ];
