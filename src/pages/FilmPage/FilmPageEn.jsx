@@ -57,7 +57,8 @@ const FilmPageEn = () => {
                 <div className='FilmPage-category'>
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
-                      <Link to={`/en/films/${film._id}#${category}`}>
+                      {/* <Link to={`/en/films/${film._id}#${category}`}> */}
+                      <Link to={`/en/films/${film._id}`}>
                         <div className='FilmPage-position'>
                           <picture>
                             {film.images.length ? (
