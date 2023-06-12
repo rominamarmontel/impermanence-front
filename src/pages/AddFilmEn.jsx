@@ -281,7 +281,6 @@ const AddFilmEn = () => {
                     <>
                       <div style={{ position: 'relative' }} key={index}>
                         <ImagePreview
-                          key={index}
                           imageUrl={image.imageUrl}
                         />
                         <AiOutlineClose

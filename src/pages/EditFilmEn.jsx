@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import myApi from '../service/service'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-// import PDFViewer from '../components/PDFViewer';
+import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
@@ -30,7 +30,7 @@ const EditFilm = () => {
   const [videoOnDemand, setVideoOnDemand] = useState('')
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
-  const [setDownloadUrl] = useState(null)
+  const [downloadUrl, setDownloadUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
@@ -157,6 +157,7 @@ const EditFilm = () => {
 
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     setDownload(file);
     if (file) {
       const reader = new FileReader();
@@ -302,9 +303,12 @@ const EditFilm = () => {
                   <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='download'>DOWNLOAD</label>
-                  {/* {downloadUrl && (
-              <PDFViewer pdfUrl={downloadUrl} />
-            )} */}
+                  <div style={{ width: '100%' }}>
+                    <p style={{ color: 'gray' }}>{download && download.length > 60 ? download.substring(0, 60) + '...' : download}</p>
+                  </div>
+                  {downloadUrl && (
+                    <PDFViewer pdfUrl={downloadUrl} style={{ width: '100%', height: '500px' }} />
+                  )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
                   <label htmlFor='image' style={{ marginBottom: 5 }}>IMAGE</label>

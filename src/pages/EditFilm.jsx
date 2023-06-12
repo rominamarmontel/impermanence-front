@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import myApi from '../service/service'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-// import PDFViewer from '../components/PDFViewer';
+import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
@@ -30,7 +30,7 @@ const EditFilm = () => {
   const [videoALaDemande, setVideoALaDemande] = useState('')
   const [equipe, setEquipe] = useState('')
   const [telechargement, setTelechargement] = useState(null)
-  const [setTelechargementUrl] = useState(null)
+  const [telechargementUrl, setTelechargementUrl] = useState(null)
   const [images, setImages] = useState([]);
   const videoALaDemandeUrls = videoALaDemande.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
@@ -158,6 +158,7 @@ const EditFilm = () => {
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
     setTelechargement(file);
+    console.log(file)
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -194,20 +195,6 @@ const EditFilm = () => {
         console.error('Error loading images:', error);
       });
   };
-
-  // const handleDownloadChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setTelechargement(file)
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setTelechargementUrl(reader.result)
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setTelechargementUrl(null)
-  //   }
-  // };
 
   const hadleDelete = () => {
     myApi.delete(`/films/edit/${id}`).then(() => {
@@ -316,11 +303,14 @@ const EditFilm = () => {
 
                   <label htmlFor='equipe' style={{ paddingBottom: 5 }}>ÉQUIPE</label>
                   <textarea type='text' name='equipe' value={equipe || ''} onChange={(e) => setEquipe(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
-
                   <label htmlFor='telechargement'>TÉLÉCHARGEMENT</label>
-                  {/* {telechargementUrl && (
-                  <PDFViewer pdfUrl={telechargementUrl} />
-                )} */}
+                  <div style={{ width: '100%' }}>
+                    <p style={{ color: 'gray' }}>{telechargement && telechargement.length > 60 ? telechargement.substring(0, 60) + '...' : telechargement}</p>
+                  </div>
+
+                  {telechargementUrl && (
+                    <PDFViewer pdfUrl={telechargementUrl} style={{ width: '100%', height: '500px' }} />
+                  )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
                   <label htmlFor='image'>IMAGE</label>
