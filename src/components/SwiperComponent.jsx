@@ -27,7 +27,7 @@ const SwiperComponent = ({ images }) => {
         {images.map((image, index) => (
           <div className="swiper-slide" key={index}>
             <div className="slide-img">
-              <img src={image} alt={`img${index}`} />
+              <img src={image} alt='' />
             </div>
           </div>
         ))}
