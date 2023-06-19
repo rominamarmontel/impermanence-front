@@ -20,7 +20,7 @@ const FilmPage = () => {
   }, []);
 
   const groupedFilms = films.reduce((result, film) => {
-    const category = film.categorie || 'defaultCategory';
+    const category = film.category || 'defaultCategory';
     if (result[category]) {
       result[category].push(film);
     } else {
@@ -33,10 +33,10 @@ const FilmPage = () => {
 
   for (const category in groupedFilms) {
     groupedFilms[category].sort((a, b) => {
-      if (a.anneeDeCreation !== b.anneeDeCreation) {
-        return b.anneeDeCreation - a.anneeDeCreation;
+      if (a.createdYear !== b.createdYear) {
+        return b.createdYear - a.createdYear;
       } else {
-        return a.titre && b.titre ? a.titre.localeCompare(b.titre) : 0;
+        return a.title.localeCompare(b.title);
       }
     });
   }
@@ -48,11 +48,11 @@ const FilmPage = () => {
     <FadeIn>
       <section className='FilmPage'>
         <div className='FilmPage-container'>
-          {categoryOrder.map((categorie) => {
-            const films = groupedFilms[categorie] || [];
+          {categoryOrder && categoryOrder.map((category) => {
+            const films = groupedFilms[category] || [];
             return (
-              <div key={categorie} id={categorie} className='category-section' >
-                <h2 className='category-title'>{categorie.toLowerCase()}</h2>
+              <div key={category} id={category} className='category-section' >
+                <h2 className='category-title'>{category.toLowerCase()}</h2>
                 <div className='FilmPage-category'>
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
@@ -61,12 +61,12 @@ const FilmPage = () => {
                         <div className='FilmPage-position'>
                           <picture>
                             {film.images.length ? (
-                              <img src={`${film.images[0]}`} alt={film.titre} className='film-image' />
+                              <img src={`${film.images[0]}`} alt={film.title} className='film-image' />
                             ) : ('')}
                           </picture>
                           <div className='film-title'>
-                            <h4>{film.titre.toUpperCase()}</h4>
-                            <h6>de {film.realisePar}</h6>
+                            <h4>{film.title.toUpperCase()}</h4>
+                            <h6>de {film.directedBy}</h6>
                           </div>
                         </div>
                       </Link>

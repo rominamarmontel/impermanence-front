@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import myApi from '../service/service'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
 import PDFViewer from '../components/PDFViewer';
 import ScrollToTop from '../components/ScrollToTop';
@@ -11,6 +11,8 @@ import ImagePreview from '../components/ImagePreview';
 import { AiOutlineClose } from 'react-icons/ai'
 
 const AddFilmEn = () => {
+  const { frenchId } = useParams()
+  const [film, setFilm] = useState('')
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('-1')
   const [originalTitle, setOriginalTitle] = useState('')
@@ -40,7 +42,11 @@ const AddFilmEn = () => {
 
   useEffect(() => {
     scrollTo(0, 0)
-  }, [])
+    myApi.get(`/films/${frenchId}`).then((res) => {
+      setFilm(res.data)
+      console.log(res.data)
+    })
+  }, [frenchId])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +69,7 @@ const AddFilmEn = () => {
     }
     try {
       const formData = new FormData()
+      formData.append('frenchId', frenchId)
       formData.append('category', category)
       formData.append('title', title)
       formData.append('copyright', copyright)
@@ -91,13 +98,12 @@ const AddFilmEn = () => {
       } else {
         formData.delete('download');
       }
-
-      const response = await myApi.post(`/en/films/create`, formData)
+      const response = await myApi.post(`/films/create/en`, formData)
       if (response.status === 201) {
         setShowConfettiExplosion(true)
         setTimeout(() => {
           setShowConfettiExplosion(false)
-          navigate('/en/films')
+          navigate(`/admin/top`)
         }, 3000)
       }
     } catch (error) {
@@ -162,7 +168,7 @@ const AddFilmEn = () => {
     <section >
       <div className='AddFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
         <div style={{ width: '80%' }}>
-          <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'black' }}><AiOutlineLeft /> Back</Link>
+          <Link to='/admin/top' style={{ display: "flex", alignItems: "center", color: 'black' }}><AiOutlineLeft /> Back</Link>
 
           <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
 
@@ -171,7 +177,10 @@ const AddFilmEn = () => {
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                 <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} style={{ marginTop: 30, paddingRight: 20 }} />
-                <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30 }}>CREATE A NEW FILM</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                  <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30 }}>CREATE A NEW FILM</h3>
+                  <h4 style={{ fontFamily: 'Source Sans Pro', fontWeight: 600 }}>{film.title}</h4>
+                </div>
               </div>
               <p style={{ textAlign: 'right', color: 'black', paddingRight: 20 }}><span style={{ color: 'red' }}>*</span>champ is required</p>
             </div>
@@ -247,10 +256,10 @@ const AddFilmEn = () => {
                     <option disabled value="-1">
                       Select a genre
                     </option>
-                    <option value="Science-fiction">Science-Fiction</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Comedy">Comedy</option>
+                    <option value="science-fiction">Sscience-fiction</option>
+                    <option value="drama">drama</option>
+                    <option value="documentary">documentary</option>
+                    <option value="comedy">comedy</option>
                   </select>
 
                   <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDEO ON DEMAND</label>
@@ -278,7 +287,7 @@ const AddFilmEn = () => {
                     style={{ marginBottom: 15 }}
                     id="image-input" />
                   {images && images.map((image, index) => (
-                    <>
+                    <React.Fragment key={index}>
                       <div style={{ position: 'relative' }} key={index}>
                         <ImagePreview
                           imageUrl={image.imageUrl}
@@ -288,7 +297,7 @@ const AddFilmEn = () => {
                           style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'white' }}
                         />
                       </div>
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>

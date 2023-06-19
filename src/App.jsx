@@ -15,13 +15,12 @@ import AboutPage from './pages/AboutPage/AboutPage'
 import FilmPageEn from './pages/FilmPage/FilmPageEn'
 import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
-import AdminTopEn from './pages/AdminTopEn'
 import AddFilmEn from './pages/AddFilmEn'
 import EditFilmEn from './pages/EditFilmEn'
 
 function App() {
   const location = useLocation();
-  const isEnglish = location.pathname.startsWith('/en');
+  const isEnglish = location.pathname.endsWith('/en') || location.pathname.startsWith('/en');
   return (
     <div className='App'>
       <Routes>
@@ -29,17 +28,17 @@ function App() {
         <Route element={<Layout isEnglish={isEnglish} />}>
           <Route path='/about' element={<AboutPage />} />
           <Route path='/films' element={<FilmPage />} />
-          <Route path='/films/:id' element={<FilmDetails />} />
+          <Route path='/films/:frenchId' element={<FilmDetails />} />
           <Route path='/en/films' element={<FilmPageEn />} />
-          <Route path='/en/films/:id' element={<FilmDetailsEn />} />
+          <Route path='/films/:frenchId/en' element={<FilmDetailsEn />} />
           <Route path='/en/about' element={<AboutPageEn />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/top" element={<AdminTop />} />
-            <Route path="/admin/en/top" element={<AdminTopEn />} />
-            <Route path='/admin/films/edit/:id' element={<EditFilm />} />
-            <Route path='/admin/en/films/edit/:id' element={<EditFilmEn />} />
+            <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
+            <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
             <Route path="/admin/films/create" element={<AddFilm />} />
-            <Route path="/admin/en/films/create" element={<AddFilmEn />} />
+            {/* <Route path="/admin/en/films/create" element={<AddFilmEn />} /> */}
+            <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
           </Route>
           <Route element={<IsLoggedOut />}>
             <Route path="/login" element={<Login />} />

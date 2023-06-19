@@ -60,9 +60,9 @@ const NavbarEn = () => {
             </Link>
           </picture>
           <ul className='navbar-list'>
-            <li className='navbar-list-font'><Link to='/en/about#AboutPage'>ABOUT</Link></li>
+            <li className='navbar-list-font'><Link to='/en/about'>ABOUT</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
-              <HashLink to='/en/films#work-in-progress'>WORK-IN-PROGRESS</HashLink>
+              <HashLink to='/en/films'>WORK-IN-PROGRESS</HashLink>
             </li>
             <li className='navbar-list-font'><HashLink to='/en/films#production'>PRODUCTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/en/films#distribution'>DISTRIBUTION</HashLink></li>
@@ -70,7 +70,7 @@ const NavbarEn = () => {
               <HashLink to='/en/films#programmation'>PROGRAMMATION</HashLink>
             </li>
             <li className='change_langue' onClick={() => {
-              navigate(location.pathname.replace('/en', ''))
+              navigate(location.pathname.replace('/en', ''));
               scrollToTop();
             }}>FR</li>
           </ul>
@@ -97,8 +97,8 @@ const NavbarEn = () => {
               <div className='overlay_sp_menu_text style'>
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>
-                    <Link to='/en/about#AboutPage'>ABOUT</Link></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#travail-en-cours' onClick={handleHashLinkClick}>WORK-IN-PROGRESS</HashLink></li>
+                    <Link to='/en/about'>ABOUT</Link></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films' onClick={handleHashLinkClick}>WORK-IN-PROGRESS</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#production' >PRODUCTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#distribution' >DISTRIBUTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#programmation' >PROGRAMMATION</HashLink></li>
@@ -110,7 +110,7 @@ const NavbarEn = () => {
                     <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaTwitter /></HashLink></li>
                   </div>
                   <li className='change_langue' onClick={() => {
-                    navigate(location.pathname.replace('/en', ''))
+                    navigate(location.pathname.replace('/en', ''));
                     scrollToTop();
                   }}>FR</li>
                 </ul>

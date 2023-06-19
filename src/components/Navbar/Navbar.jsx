@@ -44,9 +44,24 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
+  const generateLanguageURL = (language) => {
+    const currentPath = location.pathname;
+    const languageIndicator = `/${language}`;
+    const trimmedPath = currentPath.replace(languageIndicator, '');
+    const lastPath = trimmedPath.split('/');
+    if (language === 'fr') {
+      return trimmedPath;
+    } else {
+      if (lastPath.length >= 3) {
+        return `${trimmedPath}/en`;
+      } else {
+        return `en${trimmedPath}`;
+      }
+    }
+  };
   return (
     <>
-      <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''}`}>
+      <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''} `}>
         <nav className='Navbar-container'>
           <Link to='/'>
             {scrollNavbar ? (
@@ -64,24 +79,26 @@ const Navbar = () => {
             <li className='navbar-list-font' ><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/films#programmation'>PROGRAMMATION</HashLink></li>
             <li className='change_langue' onClick={() => {
-              navigate(`/en${location.pathname}`);
+              const languageURL = generateLanguageURL('en');
+              navigate(languageURL);
               scrollToTop();
             }}>EN</li>
+
           </ul>
         </nav>
       </section >
 
 
       {window.innerWidth <= 992 && (
-        <section className={`hamburgerMenu-section ${isMobile ? 'visible' : ''}`} >
-          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`} >
+        <section className={`hamburgerMenu - section ${isMobile ? 'visible' : ''} `} >
+          <div className={`hamburgerMenu - top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''} `} >
             <div className='overlay_logo'>
               <Link to='/'>
                 <h1 className='logo-style'>impermanence<br />
                   films</h1>
               </Link>
             </div>
-            <div className={`openbtn1 ${isActive ? 'active' : ''}`} onClick={toggleNavigation}><span></span><span></span></div>
+            <div className={`openbtn1 ${isActive ? 'active' : ''} `} onClick={toggleNavigation}><span></span><span></span></div>
           </div>
 
 
@@ -91,8 +108,8 @@ const Navbar = () => {
               <div className='overlay_sp_menu_text style'>
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>
-                    <Link to='/about#AboutPage'>À PROPOS</Link></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/films#travail-en-cours' onClick={handleHashLinkClick}>TRAVAIL-EN-COURS</HashLink></li>
+                    <Link to='/about'>À PROPOS</Link></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/films' onClick={handleHashLinkClick}>TRAVAIL-EN-COURS</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#production' >PRODUCTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#distribution' >DISTRIBUTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#programmation' >PROGRAMMATION</HashLink></li>
@@ -104,7 +121,8 @@ const Navbar = () => {
                     <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaTwitter /></HashLink></li>
                   </div>
                   <li className='change_langue' onClick={() => {
-                    navigate(`/en${location.pathname}`);
+                    const languageURL = generateLanguageURL('en');
+                    navigate(languageURL);
                     scrollToTop();
                   }}>EN</li>
                 </ul>

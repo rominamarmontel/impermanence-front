@@ -9,7 +9,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import './Admin.css'
 
 const EditFilm = () => {
-  const { id } = useParams()
+  const { frenchId } = useParams()
   const [category, setCategory] = useState('-1')
   const [title, setTitle] = useState('')
   const [originalTitle, setOriginalTitle] = useState('')
@@ -42,29 +42,29 @@ const EditFilm = () => {
   }, [])
 
   useEffect(() => {
-    myApi.get(`/en/films/${id}`).then((response) => {
-      setCategory(response.data.oneFilm.category || '-1')
-      setTitle(response.data.oneFilm.title || '')
-      setOriginalTitle(response.data.oneFilm.originalTitle || '')
-      setCopyright(response.data.oneFilm.copyright || '')
-      setDirectedBy(response.data.oneFilm.directedBy || '')
-      setProducedBy(response.data.oneFilm.producedBy || '')
-      setAuthor(response.data.oneFilm.author || '')
-      setFormat(response.data.oneFilm.format || '')
-      setDuration(response.data.oneFilm.duration || '')
-      setSynopsis(response.data.oneFilm.synopsis || '')
-      setPartner(response.data.oneFilm.partner || '')
-      setCreatedYear(response.data.oneFilm.createdYear || '')
-      setFestivalsAndAwards(response.data.oneFilm.festivalsAndAwards || '')
-      setDistribution(response.data.oneFilm.distribution || '')
-      setInternationalSales(response.data.oneFilm.internationalSales || '')
-      setStageOfProduction(response.data.oneFilm.stageOfProduction || '')
-      setGenre(response.data.oneFilm.genre || '-1')
-      setVideoOnDemand(response.data.oneFilm.videoOnDemand || '')
-      setDownload(response.data.oneFilm.download || null)
-      setImages(response.data.oneFilm.images || [])
+    myApi.get(`/films/${frenchId}/en`).then((response) => {
+      setCategory(response.data.category || '-1')
+      setTitle(response.data.title || '')
+      setOriginalTitle(response.data.originalTitle || '')
+      setCopyright(response.data.copyright || '')
+      setDirectedBy(response.data.directedBy || '')
+      setProducedBy(response.data.producedBy || '')
+      setAuthor(response.data.author || '')
+      setFormat(response.data.format || '')
+      setDuration(response.data.duration || '')
+      setSynopsis(response.data.synopsis || '')
+      setPartner(response.data.partner || '')
+      setCreatedYear(response.data.createdYear || '')
+      setFestivalsAndAwards(response.data.festivalsAndAwards || '')
+      setDistribution(response.data.distribution || '')
+      setInternationalSales(response.data.internationalSales || '')
+      setStageOfProduction(response.data.stageOfProduction || '')
+      setGenre(response.data.genre || '-1')
+      setVideoOnDemand(response.data.videoOnDemand || '')
+      setDownload(response.data.download || null)
+      setImages(response.data.images || [])
     })
-  }, [id])
+  }, [frenchId])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -119,9 +119,8 @@ const EditFilm = () => {
     } else {
       formData.delete('download');
     }
-
     try {
-      const updatedToFilm = await myApi.patch(`/en/films/edit/${id}`, formData)
+      const updatedToFilm = await myApi.patch(`/films/edit/${frenchId}/en`, formData)
       if (updatedToFilm.status === 202) {
         setCategory('-1')
         setTitle('')
@@ -147,7 +146,7 @@ const EditFilm = () => {
         setShowConfettiExplosion(true)
         setTimeout(() => {
           setShowConfettiExplosion(false)
-          navigate('/admin/en/top')
+          navigate('/admin/top')
         }, 3000)
       }
     } catch (error) {
@@ -194,17 +193,11 @@ const EditFilm = () => {
       });
   };
 
-  const hadleDelete = () => {
-    myApi.delete(`/en/films/edit/${id}`).then(() => {
-      navigate('/admin/en/top')
-    })
-  }
-
   return (
     <section>
       <div className='EditFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
         <div style={{ width: '80%' }}>
-          <Link to='/admin/en/top' style={{ display: "flex", alignItems: "center", color: 'black' }}>
+          <Link to={`/admin/films/edit/${frenchId}`} style={{ display: "flex", alignItems: "center", color: 'black' }}>
             <AiOutlineLeft /> Back
           </Link>
 
@@ -214,7 +207,10 @@ const EditFilm = () => {
 
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
-                <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', padding: 30 }}>EDIT THE FILM</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                  <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingLeft: 30, paddingTop: 30 }}>EDIT THE FILM</h3>
+                  <h4 style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, paddingBottom: 30 }}>{title}</h4>
+                </div>
               </div>
             </div>
 
@@ -322,8 +318,7 @@ const EditFilm = () => {
               <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
                 <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>EDIT</button>
                 {showConfettiExplosion && <ConfettiExplosion />}
-                <button onClick={hadleDelete} style={{ borderRadius: '3px', backgroundColor: 'var(--color-gray8)' }}>DELETE</button>
-                <Link to='/admin/en/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Cancel</Link>
+                <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Cancel</Link>
               </div>
             </form>
             <ScrollToTop />

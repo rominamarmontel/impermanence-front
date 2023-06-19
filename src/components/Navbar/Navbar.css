@@ -130,9 +130,9 @@
 .Navbar--scroll .navbar-list a:hover::after {
   width: 100%;
 }
-.hamburgerMenu, .overlay {
+/* .hamburgerMenu, .overlay {
   display: none;
-}
+} */
 
 /* TABLETTE Large *================================================*/
 @media (max-width: 992px) {

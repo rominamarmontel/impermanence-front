@@ -9,30 +9,32 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import './Admin.css'
 
 const EditFilm = () => {
-  const { id } = useParams()
-  const [titre, setTitre] = useState('')
-  const [categorie, setCategorie] = useState('-1')
-  const [titreOriginal, setTitreOriginal] = useState('')
-  const [droitsDauteur, setDroitsDauteur] = useState('')
-  const [realisePar, setRealisePar] = useState('')
-  const [produitPar, setProduitPar] = useState('')
-  const [auteur, setAuteur] = useState('')
+  const { frenchId } = useParams()
+  console.log(frenchId)
+  const [film, setFilm] = useState('')
+  const [title, setTitle] = useState('')
+  const [category, setCategory] = useState('-1')
+  const [originalTitle, setOriginalTitle] = useState('')
+  const [copyright, setCopyright] = useState('')
+  const [directedBy, setDirectedBy] = useState('')
+  const [producedBy, setProducedBy] = useState('')
+  const [author, setAuthor] = useState('')
   const [format, setFormat] = useState('')
-  const [duree, setDuree] = useState('')
+  const [duration, setDuration] = useState('')
   const [synopsis, setSynopsis] = useState('')
-  const [partenaire, setPartenaire] = useState('')
-  const [anneeDeCreation, setAnneeDeCreation] = useState('')
-  const [festivalsEtRecompenses, setFestivalsEtRecompenses] = useState('')
+  const [partner, setPartner] = useState('')
+  const [createdYear, setCreatedYear] = useState('')
+  const [festivalsAndAwards, setFestivalsAndAwards] = useState('')
   const [distribution, setDistribution] = useState('')
-  const [ventesInternationales, setVentesInternationales] = useState('')
-  const [etapeDeProduction, setEtapeDeProduction] = useState('')
+  const [internationalSales, setInternationalSales] = useState('')
+  const [stageOfProduction, setStageOfProduction] = useState('')
   const [genre, setGenre] = useState('-1')
-  const [videoALaDemande, setVideoALaDemande] = useState('')
-  const [equipe, setEquipe] = useState('')
-  const [telechargement, setTelechargement] = useState(null)
-  const [telechargementUrl, setTelechargementUrl] = useState(null)
+  const [videoOnDemand, setVideoOnDemand] = useState('')
+  const [crew, setCrew] = useState('')
+  const [download, setDownload] = useState(null)
+  const [downloadUrl, setDownloadUrl] = useState(null)
   const [images, setImages] = useState([]);
-  const videoALaDemandeUrls = videoALaDemande.split('\n');
+  const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
 
   const navigate = useNavigate()
@@ -42,37 +44,39 @@ const EditFilm = () => {
   }, [])
 
   useEffect(() => {
-    myApi.get(`/films/${id}`).then((response) => {
-      setCategorie(response.data.getFilm.categorie || '-1')
-      setTitre(response.data.getFilm.titre || '')
-      setTitreOriginal(response.data.getFilm.titreOriginal || '')
-      setDroitsDauteur(response.data.getFilm.droitsDauteur || '')
-      setRealisePar(response.data.getFilm.realisePar || '')
-      setProduitPar(response.data.getFilm.produitPar || '')
-      setAuteur(response.data.getFilm.auteur || '')
-      setFormat(response.data.getFilm.format || '')
-      setDuree(response.data.getFilm.duree || '')
-      setSynopsis(response.data.getFilm.synopsis || '')
-      setPartenaire(response.data.getFilm.partenaire || '')
-      setAnneeDeCreation(response.data.getFilm.anneeDeCreation || '')
-      setFestivalsEtRecompenses(response.data.getFilm.festivalsEtRecompenses || '')
-      setDistribution(response.data.getFilm.distribution || '')
-      setVentesInternationales(response.data.getFilm.ventesInternationales || '')
-      setEtapeDeProduction(response.data.getFilm.etapeDeProduction || '')
-      setGenre(response.data.getFilm.genre || '-1')
-      setVideoALaDemande(response.data.getFilm.videoALaDemande || '')
-      setTelechargement(response.data.getFilm.telechargement || null)
-      setImages(response.data.getFilm.images || [])
+    myApi.get(`/films/${frenchId}`).then((response) => {
+      console.log(response)
+      setFilm(response.data)
+      setTitle(response.data.title || '')
+      setCategory(response.data.category || '')
+      setOriginalTitle(response.data.originalTitle || '')
+      setCopyright(response.data.copyright || '')
+      setDirectedBy(response.data.directedBy || '')
+      setProducedBy(response.data.producedBy || '')
+      setAuthor(response.data.author || '')
+      setFormat(response.data.format || '')
+      setDuration(response.data.duration || '')
+      setSynopsis(response.data.synopsis || '')
+      setPartner(response.data.partner || '')
+      setCreatedYear(response.data.createdYear || '')
+      setFestivalsAndAwards(response.data.festivalsAndAwards || '')
+      setDistribution(response.data.distribution || '')
+      setInternationalSales(response.data.internationalSales || '')
+      setStageOfProduction(response.data.stageOfProduction || '')
+      setGenre(response.data.genre || '-1')
+      setVideoOnDemand(response.data.videoOnDemand || '')
+      setDownload(response.data.download || null)
+      setImages(response.data.images || [])
     })
-  }, [id])
+  }, [frenchId])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     let errorMessage = '';
-    if (!categorie || categorie === '-1') {
+    if (!category || category === '-1') {
       errorMessage += 'Category is required.\n';
     }
-    if (!titre) {
+    if (!title) {
       errorMessage += 'Title is required.\n';
     }
     if (!genre || genre === '-1') {
@@ -86,26 +90,26 @@ const EditFilm = () => {
       return;
     }
     const formData = new FormData()
-    formData.append('categorie', categorie)
-    formData.append('titre', titre)
-    formData.append('droitsDauteur', droitsDauteur)
-    formData.append('titreOriginal', titreOriginal)
-    formData.append('realisePar', realisePar)
-    formData.append('produitPar', produitPar)
-    formData.append('auteur', auteur)
+    formData.append('category', category)
+    formData.append('title', title)
+    formData.append('copyright', copyright)
+    formData.append('originalTitle', originalTitle)
+    formData.append('directedBy', directedBy)
+    formData.append('producedBy', producedBy)
+    formData.append('author', author)
     formData.append('format', format)
-    formData.append('duree', duree)
+    formData.append('duration', duration)
     formData.append('synopsis', synopsis)
-    formData.append('partenaire', partenaire)
-    formData.append('anneeDeCreation', anneeDeCreation)
-    formData.append('festivalsEtRecompenses', festivalsEtRecompenses)
+    formData.append('partner', partner)
+    formData.append('createdYear', createdYear)
+    formData.append('festivalsAndAwards', festivalsAndAwards)
     formData.append('distribution', distribution)
-    formData.append('ventesInternationales', ventesInternationales)
-    formData.append('etapeDeProduction', etapeDeProduction)
+    formData.append('internationalSales', internationalSales)
+    formData.append('stageOfProduction', stageOfProduction)
     formData.append('genre', genre)
-    formData.append('videoALaDemande', videoALaDemande)
-    formData.append('videoALaDemandeUrls', JSON.stringify(videoALaDemandeUrls));
-    formData.append('equipe', equipe)
+    formData.append('videoOnDemand', videoOnDemand)
+    formData.append('videoOnDemandUrls', JSON.stringify(videoOnDemandUrls));
+    formData.append('crew', crew)
     if (images && images.length > 0) {
       images.forEach(image => {
         formData.append('images', image.file);
@@ -114,40 +118,40 @@ const EditFilm = () => {
       formData.delete('images')
     }
 
-    if (telechargement && telechargement.size > 0) {
-      formData.append('telechargement', telechargement);
+    if (download && download.size > 0) {
+      formData.append('download', download);
     } else {
-      formData.delete('telechargement');
+      formData.delete('download');
     }
 
     try {
-      const updatedToFilm = await myApi.patch(`/films/edit/${id}`, formData)
+      const updatedToFilm = await myApi.patch(`/films/edit/${frenchId}`, formData)
       if (updatedToFilm.status === 202) {
-        setCategorie('-1')
-        setTitre('')
-        setTitreOriginal('')
-        setDroitsDauteur('')
-        setRealisePar('')
-        setProduitPar('')
-        setAuteur('')
+        setCategory('-1')
+        setTitle('')
+        setOriginalTitle('')
+        setCopyright('')
+        setDirectedBy('')
+        setProducedBy('')
+        setAuthor('')
         setFormat('')
-        setDuree('')
+        setDuration('')
         setSynopsis('')
-        setPartenaire('')
-        setAnneeDeCreation('')
-        setFestivalsEtRecompenses('')
+        setPartner('')
+        setCreatedYear('')
+        setFestivalsAndAwards('')
         setDistribution('')
-        setVentesInternationales('')
-        setEtapeDeProduction('')
+        setInternationalSales('')
+        setStageOfProduction('')
         setGenre('-1')
-        setVideoALaDemande('')
-        setEquipe('')
-        setTelechargement('')
+        setVideoOnDemand('')
+        setCrew('')
+        setDownload('')
         setImages('')
         setShowConfettiExplosion(true)
         setTimeout(() => {
           setShowConfettiExplosion(false)
-          navigate('/admin/top')
+          navigate(`/admin/films/edit/${frenchId}/en`)
         }, 3000)
       }
     } catch (error) {
@@ -157,15 +161,15 @@ const EditFilm = () => {
 
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
-    setTelechargement(file);
+    setDownload(file);
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setTelechargementUrl(reader.result);
+        setDownloadUrl(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
-      setTelechargementUrl(null);
+      setDownloadUrl(null);
     }
   };
 
@@ -196,7 +200,7 @@ const EditFilm = () => {
   };
 
   const hadleDelete = () => {
-    myApi.delete(`/films/edit/${id}`).then(() => {
+    myApi.delete(`/films/edit/${frenchId}`).then(() => {
       navigate('/admin/top')
     })
   }
@@ -217,7 +221,16 @@ const EditFilm = () => {
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                 <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} />
-                <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', padding: 30 }}>MODIFIER UN FILM</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                  <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30, paddingLeft: 30 }}>MODIFIER UN FILM</h3>
+                  <h4 style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, paddingBottom: 30 }}>{film.title}</h4>
+                </div>
+                <Link to={`/admin/films/edit/${frenchId}/en`}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={42} height={24} style={{ marginLeft: 50, paddingLeft: 20 }} />
+                    <p style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, marginLeft: 10 }}>MODIFIER</p>
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -228,8 +241,8 @@ const EditFilm = () => {
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
 
-                  <label htmlFor='categorie' style={{ paddingBottom: 5 }}>CATEGORIE</label>
-                  <select value={categorie} name='' id='' onChange={(e) => setCategorie(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
+                  <label htmlFor='category' style={{ paddingBottom: 5 }}>CATEGORIE</label>
+                  <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
                     <option disabled value="-1">
                       Sélectionnez une catégorie
                     </option>
@@ -239,52 +252,52 @@ const EditFilm = () => {
                     <option value="programmation">Programmation</option>
                   </select>
 
-                  <label htmlFor='titre' className='label' style={{ paddingBottom: 5 }}>TITRE</label>
-                  <input type='text' name='title' value={titre || ''} onChange={(e) => setTitre(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='title' className='label' style={{ paddingBottom: 5 }}>TITRE</label>
+                  <input type='text' name='title' value={title || ''} onChange={(e) => setTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='titleOriginal' style={{ paddingBottom: 5 }}>TITRE ORIGINAL</label>
-                  <input type='text' name='titreOriginal' value={titreOriginal || ''} onChange={(e) => setTitreOriginal(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='originalTitle' style={{ paddingBottom: 5 }}>TITRE ORIGINAL</label>
+                  <input type='text' name='originalTitle' value={originalTitle || ''} onChange={(e) => setOriginalTitle(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='droitsDauteur' style={{ paddingBottom: 5 }}>DROITS D’AUTEUR</label>
-                  <input type='text' name='droitsDauteur' value={droitsDauteur || ''} onChange={(e) => setDroitsDauteur(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='copyright' style={{ paddingBottom: 5 }}>DROITS D’AUTEUR</label>
+                  <input type='text' name='copyright' value={copyright || ''} onChange={(e) => setCopyright(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='realisePar' style={{ paddingBottom: 5 }}>RÉALISÉ PAR</label>
-                  <textarea type='text' name='realisePar' value={realisePar || ''} onChange={(e) => setRealisePar(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='directedBy' style={{ paddingBottom: 5 }}>RÉALISÉ PAR</label>
+                  <textarea type='text' name='directedBy' value={directedBy || ''} onChange={(e) => setDirectedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='produitPar' style={{ paddingBottom: 5 }}>PRODUIT PAR</label>
-                  <textarea type='text' name='produitPar' value={produitPar || ''} onChange={(e) => setProduitPar(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='producedBy' style={{ paddingBottom: 5 }}>PRODUIT PAR</label>
+                  <textarea type='text' name='producedBy' value={producedBy || ''} onChange={(e) => setProducedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='auteur' style={{ paddingBottom: 5 }}>AUTEUR(S)</label>
-                  <textarea type='text' name='auteur' value={auteur || ''} onChange={(e) => setAuteur(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='author' style={{ paddingBottom: 5 }}>AUTEUR(S)</label>
+                  <textarea type='text' name='author' value={author || ''} onChange={(e) => setAuthor(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='format' style={{ paddingBottom: 5 }}>FORMAT</label>
                   <input type='text' name='format' value={format || ''} onChange={(e) => setFormat(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='duree' style={{ paddingBottom: 5 }}>DURÉE</label>
-                  <input type='text' name='duree' value={duree || ''} onChange={(e) => setDuree(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='duration' style={{ paddingBottom: 5 }}>DURÉE</label>
+                  <input type='text' name='duration' value={duration || ''} onChange={(e) => setDuration(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
                   <label htmlFor='synopsis' style={{ paddingBottom: 5 }}>SYNOPSIS</label>
                   <textarea type='text' name='synopsis' value={synopsis || ''} onChange={(e) => setSynopsis(e.target.value)} style={{ height: '300px', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
-                  <label htmlFor='partenaire' style={{ paddingBottom: 5 }}>PARTENAIRE(S)</label>
-                  <textarea type='text' name='partenaire' value={partenaire || ''} onChange={(e) => setPartenaire(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='partner' style={{ paddingBottom: 5 }}>PARTENAIRE(S)</label>
+                  <textarea type='text' name='partner' value={partner || ''} onChange={(e) => setPartner(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='anneeDeCreation' style={{ paddingBottom: 5 }}>ANÉE DE CRÉATION</label>
-                  <input type='text' name='anneeDeCreation' value={anneeDeCreation || ''} onChange={(e) => setAnneeDeCreation(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='createdYear' style={{ paddingBottom: 5 }}>ANÉE DE CRÉATION</label>
+                  <input type='text' name='createdYear' value={createdYear || ''} onChange={(e) => setCreatedYear(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
                   <label htmlFor='festivalsEtRecompense' style={{ paddingBottom: 5 }}>FESTIVALS & RÉCOMPENSES</label>
-                  <textarea type='text' name='festivalsEtRecompenses' value={festivalsEtRecompenses || ''} onChange={(e) => setFestivalsEtRecompenses(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <textarea type='text' name='festivalsAndAwards' value={festivalsAndAwards || ''} onChange={(e) => setFestivalsAndAwards(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='distribution' style={{ paddingBottom: 5 }}>DISTRIBUTION</label>
                   <input type='text' name='distribution' value={distribution || ''} onChange={(e) => setDistribution(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='ventesInternationales' style={{ paddingBottom: 5 }}>VENTES INTERNATIONALES</label>
-                  <input type='text' name='ventesInternationales' value={ventesInternationales || ''} onChange={(e) => setVentesInternationales(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='internationalSales' style={{ paddingBottom: 5 }}>VENTES INTERNATIONALES</label>
+                  <input type='text' name='internationalSales' value={internationalSales || ''} onChange={(e) => setInternationalSales(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='etapeDeProduction' style={{ paddingBottom: 5 }}>ÉTAPE DE PRODUCTION</label>
-                  <input type='text' name='etapeDeProduction' value={etapeDeProduction || ''} onChange={(e) => setEtapeDeProduction(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
+                  <label htmlFor='stageOfProduction' style={{ paddingBottom: 5 }}>ÉTAPE DE PRODUCTION</label>
+                  <input type='text' name='stageOfProduction' value={stageOfProduction || ''} onChange={(e) => setStageOfProduction(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
                   <label htmlFor='genre' style={{ paddingBottom: 5 }}>GENRE</label>
                   <select value={genre || 'Science-fiction'} onChange={(e) => setGenre(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40, fontSize: '16px', color: 'var(--color-gray8)' }}>
@@ -297,17 +310,17 @@ const EditFilm = () => {
                     <option value="comedie">Comedy</option>
                   </select>
 
-                  <label htmlFor='videoALaDemande' style={{ paddingBottom: 5 }}>VIDÉO À LA DEMANDE</label>
-                  <textarea type='text' name='videoALaDemande' value={videoALaDemande || ''} onChange={(e) => setVideoALaDemande(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDÉO À LA DEMANDE</label>
+                  <textarea type='text' name='videoOnDemand' value={videoOnDemand || ''} onChange={(e) => setVideoOnDemand(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='equipe' style={{ paddingBottom: 5 }}>ÉQUIPE</label>
-                  <textarea type='text' name='equipe' value={equipe || ''} onChange={(e) => setEquipe(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
-                  <label htmlFor='telechargement'>TÉLÉCHARGEMENT</label>
+                  <label htmlFor='crew' style={{ paddingBottom: 5 }}>ÉQUIPE</label>
+                  <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
+                  <label htmlFor='download'>TÉLÉCHARGEMENT</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     1 document ONLY = 1.5MB max.</small>
 
-                  {telechargementUrl && (
-                    <PDFViewer pdfUrl={telechargementUrl} style={{ width: '100%', height: '500px' }} />
+                  {downloadUrl && (
+                    <PDFViewer pdfUrl={downloadUrl} style={{ width: '100%', height: '500px' }} />
                   )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
@@ -320,12 +333,17 @@ const EditFilm = () => {
                   }
                 </div>
               </div>
-
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>MODIFIER</button>
-                {showConfettiExplosion && <ConfettiExplosion />}
-                <button onClick={hadleDelete} style={{ borderRadius: '3px', backgroundColor: 'var(--color-gray8)' }}>SUPPRIMER</button>
-                <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Annuler</Link>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
+                  <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>MODIFIER</button>
+                  {showConfettiExplosion && <ConfettiExplosion />}
+                  <button onClick={hadleDelete} style={{ borderRadius: '3px', backgroundColor: 'var(--color-gray8)' }}>SUPPRIMER</button>
+                  <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Annuler</Link>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', color: 'red' }}>
+                  <p>!!ATTENTION!!</p>
+                  <small>Lorsque vous appuyez sur le bouton de suppression, à la fois le film en version française et le film en version anglaise associé seront supprimés.Une fois que vous appuyez sur le bouton de suppression, il n’est pas possible de revenir en arrière.</small>
+                </div>
               </div>
             </form>
             <ScrollToTop />

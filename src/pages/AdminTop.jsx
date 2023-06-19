@@ -14,13 +14,14 @@ const AdminTop = () => {
   useEffect(() => {
     myApi.get('/films').then((response) => {
       setFilms(response.data)
+      console.log(response.data)
     }).catch((err) => {
       console.error(err)
     })
   }, [])
 
   const groupedFilms = films.reduce((result, film) => {
-    const category = film.categorie;
+    const category = film.category;
     if (result[category]) {
       result[category].push(film);
     } else {
@@ -41,7 +42,6 @@ const AdminTop = () => {
         <div style={{ width: '80%', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='france' width={72} height={54} />
-            <Link to='/admin/en/top' style={{ color: 'var(--color-pink)', padding: 10, textDecoration: 'underline' }}>ENGLISH</Link>
           </div>
           <h3 style={{ display: 'flex', justifyContent: 'center', marginBottom: 15, fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30 }}>
             Accueil de l’administrateur</h3>
@@ -60,7 +60,7 @@ const AdminTop = () => {
                       <div key={film._id}>
                         <li style={{ lineHeight: 2 }}>
                           <Link to={`/admin/films/edit/${film._id}`}>
-                            {film.titre}
+                            {film.title}
                           </Link>
                         </li>
                       </div>

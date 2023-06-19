@@ -11,7 +11,7 @@ import FadeIn from '../../components/FadeIn/FadeIn';
 import Spinner from '../../components/Spinner/Spinner';
 
 const FilmDetailsEn = () => {
-  const { id } = useParams();
+  const { frenchId } = useParams();
   const [films, setFilms] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCrew, setShowCrew] = useState(false)
@@ -20,11 +20,11 @@ const FilmDetailsEn = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const index = films.findIndex((film) => film._id === id);
+    const index = films.findIndex((film) => film._id === frenchId);
     if (index !== -1) {
       setCurrentIndex(index);
     }
-  }, [films, id]);
+  }, [films, frenchId]);
 
   useEffect(() => {
     const category = location.state?.category;
@@ -39,31 +39,31 @@ const FilmDetailsEn = () => {
   }, [location.state]);
 
   useEffect(() => {
-    myApi.get('/en/films').then((response) => {
-      const sortedFilms = response.data.sort((a, b) => {
+    myApi.get(`/films/${frenchId}/en`).then((response) => {
+      const sortedFilms = response.data ? [response.data].sort((a, b) => {
         if (a.category === b.category) {
           return b.createdYear - a.createdYear || a.title.localeCompare(b.title);
         } else {
           const categoryOrder = ['work-in-progress', 'production', 'distribution', 'programmation'];
           return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
         }
-      });
+      }) : [];
       setFilms(sortedFilms);
     });
-  }, []);
+  }, [frenchId]);
 
   const goToPreviousFilm = () => {
     window.scrollTo(0, 0);
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? films.length - 1 : prevIndex - 1));
     const previousFilmId = films[currentIndex === 0 ? films.length - 1 : currentIndex - 1]._id;
-    navigate(`/films/${previousFilmId}`);
+    navigate(`/films/${previousFilmId}/en`);
   };
 
   const goToNextFilm = () => {
     window.scrollTo(0, 0);
     setCurrentIndex((prevIndex) => (prevIndex === films.length - 1 ? 0 : prevIndex + 1));
     const nextFilmId = films[currentIndex === films.length - 1 ? 0 : currentIndex + 1]._id;
-    navigate(`/films/${nextFilmId}`);
+    navigate(`/films/${nextFilmId}/en`);
   };
 
   const handleDownload = async (downloadUrl, fileName) => {
