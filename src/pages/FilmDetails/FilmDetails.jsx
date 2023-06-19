@@ -21,6 +21,7 @@ const FilmDetails = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    scrollTo(0, 0)
     const index = films.findIndex((film) => film._id === frenchId);
     if (index !== -1) {
       setCurrentIndex(index);
