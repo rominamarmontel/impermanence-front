@@ -22,17 +22,16 @@ const FilmPageEn = () => {
     })
   }, []);
 
-  useEffect(() => {
-    if (films) {
-      films.forEach((film) => {
-        console.log(film.english[0])
-      });
-    }
-  }, [films]);
+  // useEffect(() => {
+  //   if (films) {
+  //     films.forEach((film) => {
+  //       console.log(film.english[0])
+  //     });
+  //   }
+  // }, [films]);
 
   const groupedFilms = films ? films.reduce((result, film) => {
     const category = film.english[0]?.category;
-    console.log(category)
     if (category) {
       if (result[category]) {
         result[category].push(film);
