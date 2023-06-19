@@ -246,10 +246,10 @@ const EditFilm = () => {
                     <option disabled value="-1">
                       Sélectionnez une catégorie
                     </option>
-                    <option value="travail-en-cours">Travail-en-cours</option>
-                    <option value="production">Production</option>
-                    <option value="distribution">Distribution</option>
-                    <option value="programmation">Programmation</option>
+                    <option value="travail-en-cours">travail-en-cours</option>
+                    <option value="production">production</option>
+                    <option value="distribution">distribution</option>
+                    <option value="programmation">programmation</option>
                   </select>
 
                   <label htmlFor='title' className='label' style={{ paddingBottom: 5 }}>TITRE</label>
@@ -304,10 +304,10 @@ const EditFilm = () => {
                     <option disabled value="-1">
                       Sélectionnez une genre
                     </option>
-                    <option value="science-fiction">Science-Fiction</option>
-                    <option value="drame">Drama</option>
-                    <option value="documentaire">Documentary</option>
-                    <option value="comedie">Comedy</option>
+                    <option value="science-fiction">science-Fiction</option>
+                    <option value="drame">drama</option>
+                    <option value="documentaire">documentary</option>
+                    <option value="comedie">comedy</option>
                   </select>
 
                   <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDÉO À LA DEMANDE</label>

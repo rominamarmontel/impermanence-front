@@ -227,10 +227,10 @@ const EditFilm = () => {
                     <option disabled value="-1">
                       Select a category
                     </option>
-                    <option value="work-in-progress">Work-in-progress</option>
-                    <option value="production">Production</option>
-                    <option value="distribution">Distribution</option>
-                    <option value="programmation">Programmation</option>
+                    <option value="work-in-progress">work-in-progress</option>
+                    <option value="production">production</option>
+                    <option value="distribution">distribution</option>
+                    <option value="programmation">programmation</option>
                   </select>
 
                   <label htmlFor='title' className='label' style={{ paddingBottom: 5 }}>TITLE</label>
@@ -283,12 +283,12 @@ const EditFilm = () => {
                   <label htmlFor='genre' style={{ paddingBottom: 5 }}>GENRE</label>
                   <select value={genre || 'Science-fiction'} onChange={(e) => setGenre(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40, fontSize: '16px', color: 'var(--color-gray8)' }}>
                     <option disabled value="-1">
-                      Select a category
+                      Select a genre
                     </option>
-                    <option value="Science-fiction">Science-Fiction</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Comedy">Comedy</option>
+                    <option value="science-fiction">science-fiction</option>
+                    <option value="drama">drama</option>
+                    <option value="documentary">documentary</option>
+                    <option value="comedy">comedy</option>
                   </select>
 
                   <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDEO ON DEMAND</label>

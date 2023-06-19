@@ -192,8 +192,8 @@ const AddFilm = () => {
                     </option>
                     <option value="travail-en-cours">travail-en-cours</option>
                     <option value="production">production</option>
-                    <option value="distribution">Distribution</option>
-                    <option value="programmation">Programmation</option>
+                    <option value="distribution">distribution</option>
+                    <option value="programmation">programmation</option>
                   </select>
 
                   <label htmlFor='title' style={{ paddingBottom: 5 }}>TITRE<span style={{ color: 'red' }}>*</span></label>
@@ -249,7 +249,7 @@ const AddFilm = () => {
                     <option disabled value="-1">
                       Sélectionnez une genre
                     </option>
-                    <option value="science-fiction">science-Fiction</option>
+                    <option value="science-fiction">science-fiction</option>
                     <option value="drame">drame</option>
                     <option value="documentaire">documentaire</option>
                     <option value="comedie">comedie</option>
