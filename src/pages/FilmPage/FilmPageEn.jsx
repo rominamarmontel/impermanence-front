@@ -53,7 +53,7 @@ const FilmPageEn = () => {
     });
   }
 
-  if (!films.length) {
+  if (!films || !films.length) {
     return <Spinner />;
   }
 
