@@ -31,12 +31,14 @@ const FilmPageEn = () => {
   }, [films]);
 
   const groupedFilms = films ? films.reduce((result, film) => {
-    const category = film.english[0].category;
+    const category = film.english[0]?.category;
     console.log(category)
-    if (result[category]) {
-      result[category].push(film);
-    } else {
-      result[category] = [film];
+    if (category) {
+      if (result[category]) {
+        result[category].push(film);
+      } else {
+        result[category] = [film];
+      }
     }
     return result;
   }, {}) : {}
