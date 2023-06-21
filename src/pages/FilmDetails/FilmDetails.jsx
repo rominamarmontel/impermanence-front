@@ -51,9 +51,11 @@ const FilmDetails = () => {
         }
       });
       setFilms(sortedFilms);
+      console.log(sortedFilms)
     });
   }, []);
-
+  console.log(films)
+  console.log(currentIndex)
   const goToPreviousFilm = () => {
     window.scrollTo(0, 0);
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? films.length - 1 : prevIndex - 1));

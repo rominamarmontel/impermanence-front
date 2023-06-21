@@ -15,7 +15,11 @@ const FilmPageEn = () => {
 
   useEffect(() => {
     myApi.get(`/en/films`).then((response) => {
-      setFilms(response.data);
+      const englishArray = []
+      response.data.map((oneData) => {
+        englishArray.push(oneData)
+      })
+      setFilms(englishArray);
     }).catch((error) => {
       console.error(error)
       setFilms([]);
@@ -25,13 +29,13 @@ const FilmPageEn = () => {
   // useEffect(() => {
   //   if (films) {
   //     films.forEach((film) => {
-  //       console.log(film.english[0])
+  //       console.log(film)
   //     });
   //   }
   // }, [films]);
 
   const groupedFilms = films ? films.reduce((result, film) => {
-    const category = film.english[0]?.category;
+    const category = film.category;
     if (category) {
       if (result[category]) {
         result[category].push(film);
@@ -70,16 +74,16 @@ const FilmPageEn = () => {
                 <div className='FilmPage-category'>
                   {films && films.map((film) => (
                     < div className='FilmPage-content' key={film._id} >
-                      <Link to={film._id ? `/films/${film._id}/en` : '#'}>
+                      <Link to={`/films/${film.french._id}/en`}>
                         <div className='FilmPage-position'>
                           <picture>
-                            {film.english[0] && film.english[0].images.length ? (
-                              <img src={`${film.english[0].images[0]}`} alt={film.title} className='film-image' />
+                            {film && film.images.length ? (
+                              <img src={`${film.images[0]}`} alt={film.title} className='film-image' />
                             ) : ('')}
                           </picture>
                           <div className='film-title'>
-                            <h4>{film.english[0] && film.english[0].title.toUpperCase()}</h4>
-                            <h6>by {film.english[0] && film.english[0].directedBy}</h6>
+                            <h4>{film && film.title.toUpperCase()}</h4>
+                            <h6>by {film && film.directedBy}</h6>
                           </div>
                         </div>
                       </Link>

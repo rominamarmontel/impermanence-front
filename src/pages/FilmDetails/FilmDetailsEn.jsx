@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './FilmDetails';
 import myApi from '../../service/service';
 import { RxArrowLeft } from 'react-icons/rx';
@@ -12,58 +12,63 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const FilmDetailsEn = () => {
   const { frenchId } = useParams();
-  const [films, setFilms] = useState([]);
+  const [film, setFilm] = useState('')
+  const [sortedEnglish, setSortedEnglish] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCrew, setShowCrew] = useState(false)
   const [showDownload, setShowDownload] = useState(false)
-  const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
     scrollTo(0, 0)
-    const index = films.findIndex((film) => film._id === frenchId);
-    if (index !== -1) {
-      setCurrentIndex(index);
-    }
-  }, [films, frenchId]);
-
-  useEffect(() => {
-    const category = location.state?.category;
-    if (category) {
-      const categoryElement = document.getElementById(category);
-      if (categoryElement) {
-        const yOffset = -130;
-        const y = categoryElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    }
-  }, [location.state]);
-
-  useEffect(() => {
     myApi.get(`/films/${frenchId}/en`).then((response) => {
-      const sortedFilms = response.data ? [response.data].sort((a, b) => {
+      setFilm(response.data)
+    })
+  }, [frenchId])
+
+  useEffect(() => {
+    myApi.get('/en/films').then((response) => {
+      const sortedFilms = response.data.sort((a, b) => {
         if (a.category === b.category) {
           return b.createdYear - a.createdYear || a.title.localeCompare(b.title);
         } else {
-          const categoryOrder = ['work-in-progress', 'production', 'distribution', 'programmation'];
+          const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
           return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
         }
-      }) : [];
-      setFilms(sortedFilms);
+      });
+      setSortedEnglish(sortedFilms);
     });
-  }, [frenchId]);
+  }, []);
+
+  useEffect(() => {
+    const index = sortedEnglish.findIndex((film) => film.french._id === frenchId);
+    if (index !== -1) {
+      setCurrentIndex(index);
+    }
+  }, [sortedEnglish, frenchId]);
+  console.log('currentIndex', currentIndex)
 
   const goToPreviousFilm = () => {
     window.scrollTo(0, 0);
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? films.length - 1 : prevIndex - 1));
-    const previousFilmId = films[currentIndex === 0 ? films.length - 1 : currentIndex - 1]._id;
+    const previousIndex = currentIndex === 0 ? sortedEnglish.length - 1 : currentIndex - 1;
+    const previousFilmId = sortedEnglish[previousIndex].french._id;
+    setCurrentIndex(previousIndex);
+
+    myApi.get(`/films/${previousFilmId}/en`).then((response) => {
+      setFilm(response.data);
+    });
     navigate(`/films/${previousFilmId}/en`);
   };
 
   const goToNextFilm = () => {
     window.scrollTo(0, 0);
-    setCurrentIndex((prevIndex) => (prevIndex === films.length - 1 ? 0 : prevIndex + 1));
-    const nextFilmId = films[currentIndex === films.length - 1 ? 0 : currentIndex + 1]._id;
+    const nextIndex = currentIndex === sortedEnglish.length - 1 ? 0 : currentIndex + 1;
+    const nextFilmId = sortedEnglish[nextIndex].french._id;
+    setCurrentIndex(nextIndex);
+
+    myApi.get(`/films/${nextFilmId}/en`).then((response) => {
+      setFilm(response.data);
+    });
     navigate(`/films/${nextFilmId}/en`);
   };
 
@@ -82,7 +87,7 @@ const FilmDetailsEn = () => {
     }
   };
 
-  const images = films[currentIndex]?.images;
+  const images = film.images;
   useEffect(() => {
     Swiper.use([Autoplay, Pagination, EffectFade]);
     new Swiper('.film-swiper-container', {
@@ -108,13 +113,14 @@ const FilmDetailsEn = () => {
     setShowCrew(!showCrew)
   }
 
-  if (!films.length) {
+  if (!film) {
     return <Spinner />
   }
-  const authorArray = films[currentIndex].author.split('\n');
-  const partnerArray = films[currentIndex].partner.split('\n')
-  const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\n').map(url => url.trim())
-  const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 15;
+
+  const author = film.author.split('\n');
+  const partner = film.partner.split('\n')
+  const videoOnDemandUrl = film.videoOnDemand.split('\n').map(url => url.trim())
+  const shouldReduceTitleSize = film.originalTitle.length > 15
 
   return (
     <>
@@ -124,10 +130,10 @@ const FilmDetailsEn = () => {
             <div className='top'>
               <div className='image-content'>
                 <div className='FilmDetails-right-position'>
-                  {films[currentIndex].images && films[currentIndex].images.length > 1 ? (
+                  {film.images && film.images.length > 1 ? (
                     <div className="film-swiper-container" >
                       <div className="swiper-wrapper">
-                        {films[currentIndex].images.map((image, index) => (
+                        {film.images.map((image, index) => (
                           <div className="swiper-slide" key={index}>
                             <div className="slide-img">
                               <img src={image} alt={`img${index}`} />
@@ -141,18 +147,18 @@ const FilmDetailsEn = () => {
                     <div className='image-container'>
                       <picture>
                         <div>
-                          <img src={films[currentIndex].images[0]} alt="Film" />
+                          <img src={film.images[0]} alt="Film" />
                         </div>
                       </picture>
                     </div>
                   ) : ('')}
                   <div className='text-on-image'>
-                    <h1>{films[currentIndex].title.toUpperCase()}</h1>
-                    {films[currentIndex].directedBy && (<h4 className='directedBy'>by {films[currentIndex].directedBy}</h4>)}
-                    {films[currentIndex].createdYear && (<h4 className='createdYear'>{films[currentIndex].createdYear}</h4>)}
+                    <h1>{film.title.toUpperCase()}</h1>
+                    {film.directedBy && (<h4 className='directedBy'>by {film.directedBy}</h4>)}
+                    {film.createdYear && (<h4 className='createdYear'>{film.createdYear}</h4>)}
                   </div>
                   <div className='copyright-on-image'>
-                    {films[currentIndex].copyright && (<h6>&copy; {films[currentIndex].copyright}</h6>)}
+                    {film.copyright && (<h6>&copy; {film.copyright}</h6>)}
                   </div>
                 </div>
               </div>
@@ -160,11 +166,11 @@ const FilmDetailsEn = () => {
 
               <div className='title-content'>
                 <div className='FilmDetails-originalTitle-container'>
-                  {films[currentIndex].originalTitle && (
+                  {film.originalTitle && (
                     <div className='FilmDetails-originalTitle-content'>
-                      <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{films[currentIndex].originalTitle.toUpperCase()}</h1>
+                      <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{film.originalTitle.toUpperCase()}</h1>
                       <div className='FilmDetails-category'>
-                        {films[currentIndex].category.toUpperCase()}
+                        {film.category.toUpperCase()}
                       </div>
                     </div>
                   )}
@@ -175,88 +181,88 @@ const FilmDetailsEn = () => {
             <div className='bottom'>
               <ul className='ul-left' >
                 <div className='ul-col'>
-                  {films[currentIndex].directedBy && (
+                  {film.directedBy && (
                     <div>
                       <li><h5>DIRECTED BY</h5></li>
-                      <li>{films[currentIndex].directedBy}</li>
+                      <li>{film.directedBy}</li>
                     </div>
                   )}
-                  {films[currentIndex].producedBy && (
+                  {film.producedBy && (
                     <>
                       <div>
                         <li><h5>PRODUCED BY</h5></li>
-                        <li>{films[currentIndex].producedBy}</li>
+                        <li>{film.producedBy}</li>
                       </div>
                     </>
                   )}
                 </div>
 
-                {films[currentIndex].author && (
+                {film.author && (
                   <div>
-                    <li><h5>{authorArray.length > 1 ? 'AUTHORS' : 'AUTHOR'}</h5></li>
-                    <li>{films[currentIndex].author}</li>
+                    <li><h5>{author.length > 1 ? 'AUTHORS' : 'AUTHOR'}</h5></li>
+                    <li>{film.author}</li>
                   </div>
                 )}
 
                 <div className='ul-col'>
-                  {films[currentIndex].format && (
+                  {film.format && (
                     <div>
                       <li><h5>FORMAT</h5></li>
-                      <li>{films[currentIndex].format}</li>
+                      <li>{film.format}</li>
                     </div>
                   )}
-                  {films[currentIndex].duration && (
+                  {film.duration && (
                     <div>
                       <li><h5>DURATION</h5></li>
-                      <li>{films[currentIndex].duration}</li>
+                      <li>{film.duration}</li>
                     </div>
                   )}
                 </div>
 
 
-                {films[currentIndex].partner && (
+                {film.partner && (
                   <div>
-                    <li><h5>{partnerArray.length > 1 ? 'PARTNERS' : 'PARTNER'}</h5></li>
-                    <li>{films[currentIndex].partner}</li>
+                    <li><h5>{partner.length > 1 ? 'PARTNERS' : 'PARTNER'}</h5></li>
+                    <li>{film.partner}</li>
                   </div>
                 )}
 
 
                 <div className='ul-col'>
-                  {films[currentIndex].distribution && (
+                  {film.distribution && (
                     <div>
                       <li><h5>DISTRIBUTION</h5></li>
-                      <li>{films[currentIndex].distribution}</li>
+                      <li>{film.distribution}</li>
                     </div>
                   )}
-                  {films[currentIndex].internationalSales && (
+                  {film.internationalSales && (
                     <div>
                       <li><h5>INTERNATIONAL SALES</h5></li>
-                      <li>{films[currentIndex].internationalSales}</li>
+                      <li>{film.internationalSales}</li>
                     </div>
                   )}
                 </div>
 
 
-                {films[currentIndex].stageOfProduction && (
+                {film.stageOfProduction && (
                   <div>
                     <li><h5>STAGE OF PRODUCTION</h5></li>
-                    <li>{films[currentIndex].stageOfProduction}</li>
+                    <li>{film.stageOfProduction}</li>
                   </div>
                 )}
-                {films[currentIndex].genre && (
+                {film.genre && (
                   <div>
                     <li><h5>GENRE</h5></li>
-                    <li>{films[currentIndex].genre}</li>
+                    <li>{film.genre}</li>
                   </div>
                 )}
 
 
                 <div className='FilmDetails-li-videoOnDemand'>
-                  {films[currentIndex].videoOnDemand && (
+                  {film.videoOnDemand && (
                     <>
                       <li><h5>VIDEO ON DEMAND</h5></li>
-                      {videoOnDemandUrls.map((url, index) => (
+                      {videoOnDemandUrl.map((url, index) => (
                         <li key={index} style={{ marginBottom: 'unset', lineHeight: '1rem' }}>
                           <a href={url} target="_blank" rel="noreferrer">{url}</a>
                         </li>
@@ -265,24 +271,24 @@ const FilmDetailsEn = () => {
                   )}
                 </div>
                 <div className='button-showDownload'>
-                  {films[currentIndex].download && (
+                  {film.download && (
                     <>
                       <li>
                         <button onClick={handleClickDownload}>{showDownload ? 'DOWNLOAD' : 'DOWNLOAD +'}</button></li>
-                      {showDownload && films[currentIndex].download && <a
-                        href={films[currentIndex].download}
+                      {showDownload && film.download && <a
+                        href={film.download}
                         target="_blank" rel="noopener, noreferrer"
-                        onClick={() => handleDownload(films[currentIndex].download,)}
-                      >{films[currentIndex].title}</a>}
+                        onClick={() => handleDownload(film.download,)}
+                      >{film.title}</a>}
                     </>
                   )}
                 </div>
                 <div className='button-showClick'>
-                  {films[currentIndex].crew && (
+                  {film.crew && (
                     <>
                       <li>
                         <button onClick={handleClickCrew}>{showCrew ? 'CREW' : 'CREW +'}</button></li>
-                      {showCrew && <li>{films[currentIndex].crew}</li>}
+                      {showCrew && <li>{film.crew}</li>}
                     </>
                   )}
                 </div>
@@ -291,23 +297,23 @@ const FilmDetailsEn = () => {
 
 
               <ul className='ul-right'>
-                {films[currentIndex].synopsis && (
+                {film.synopsis && (
                   <>
                     <li>
                       <h5 className='FilmDetails-synopsis-h5'>SYNOPSIS</h5>
                     </li>
                     <li>
-                      {films[currentIndex].synopsis}
+                      {film.synopsis}
                     </li>
                   </>
                 )}
-                {films[currentIndex].festivalsAndAwards && (
+                {film.festivalsAndAwards && (
                   <>
                     <li>
                       <h5 className='FilmDetails-festivalsAndAwards-h5'>FESTIVALS & AWARDS</h5>
                     </li>
                     <li>
-                      {films[currentIndex].festivalsAndAwards}
+                      {film.festivalsAndAwards}
                     </li>
                   </>
                 )}
@@ -322,5 +328,4 @@ const FilmDetailsEn = () => {
     </>
   )
 }
-
 export default FilmDetailsEn
