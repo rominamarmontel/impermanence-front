@@ -63,18 +63,22 @@ const Navbar = () => {
     <>
       <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''} `}>
         <nav className='Navbar-container'>
-          <Link to='/'>
-            {scrollNavbar ? (
-              <h1 className='logo-style-scroll'>impermanence<br />
-                films</h1>
-            ) : (
-              <h1 className='logo-style'>impermanence<br />
-                films</h1>
-            )}
-          </Link>
+          <picture>
+            <Link to='/'>
+              {scrollNavbar ? (
+                <h1 className='logo-style-scroll'>impermanence<br />
+                  films</h1>
+              ) : (
+                <h1 className='logo-style'>impermanence<br />
+                  films</h1>
+              )}
+            </Link>
+          </picture>
           <ul className='navbar-list'>
             <li className='navbar-list-font'><Link to='/about#AboutPage' >À PROPOS</Link></li>
-            <li style={{ textAlign: 'center' }} className='navbar-list-font'><HashLink to='/films#travail-en-cours' >TRAVAIL-EN-COURS</HashLink></li>
+            <li style={{ textAlign: 'center' }} className='navbar-list-font'>
+              <HashLink to='/films#travail-en-cours' >TRAVAIL-EN-COURS</HashLink>
+            </li>
             <li className='navbar-list-font'><HashLink to='/films#production'>PRODUCTION</HashLink></li>
             <li className='navbar-list-font' ><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/films#programmation'>PROGRAMMATION</HashLink></li>
@@ -90,8 +94,8 @@ const Navbar = () => {
 
 
       {window.innerWidth <= 992 && (
-        <section className={`hamburgerMenu - section ${isMobile ? 'visible' : ''} `} >
-          <div className={`hamburgerMenu - top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''} `} >
+        <section className={`hamburgerMenu-section ${isMobile ? 'visible' : ''}`} >
+          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`} >
             <div className='overlay_logo'>
               <Link to='/'>
                 <h1 className='logo-style'>impermanence<br />
