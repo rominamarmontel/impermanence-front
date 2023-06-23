@@ -13,7 +13,7 @@ const AboutPageEn = () => {
       <section className="AboutPage" id='AboutPage'>
         <div className='AboutPage-title-container'>
           <picture>
-            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1687181826/images/ELEGIE_001_u6f2hn.png' alt='elegie' />
+            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1687550410/impermanenceDB/ELEGIE_001_jb4nym.jpg' alt='elegie' />
           </picture>
           <h2 className='AboutPage-title'>about imparmanence</h2>
         </div>
