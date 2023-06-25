@@ -61,7 +61,7 @@ const FilmPage = () => {
                         <div className='FilmPage-position'>
                           <picture>
                             {film.images.length ? (
-                              <img src={`${film.images[0]}`} alt={film.title} className='film-image' />
+                              <img src={`${film.images[0]}`} alt={film.title} className='film-image' style={{ quality: 10 }} />
                             ) : ('')}
                           </picture>
                           <div className='film-title'>

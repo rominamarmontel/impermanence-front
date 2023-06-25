@@ -263,7 +263,7 @@ const AddFilm = () => {
 
                   <label htmlFor='download'>TÉLÉCHARGEMENT</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    1 document only = 1.5MB max.
+                    1 document only = 1MB max.
                   </small>
                   {downloadUrl && (
                     <PDFViewer pdfUrl={downloadUrl} />
@@ -274,7 +274,7 @@ const AddFilm = () => {
                   <label htmlFor='images'>IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     Vous pouvez sélectionner jusqu’à trois images.<br />La première image sélectionnée sera affichée en haut de l’écran.<br />
-                    1 image = 1MB max.
+                    1 image = 100KB max.(1920x1080px)
                   </small>
                   <input
                     type='file'

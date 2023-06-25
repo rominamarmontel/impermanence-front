@@ -317,7 +317,7 @@ const EditFilm = () => {
                   <textarea type='text' name='crew' value={crew || ''} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
                   <label htmlFor='download'>TÉLÉCHARGEMENT</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    1 document ONLY = 1.5MB max.</small>
+                    1 document ONLY = 1MB max.</small>
 
                   {downloadUrl && (
                     <PDFViewer pdfUrl={downloadUrl} style={{ width: '100%', height: '500px' }} />
@@ -326,7 +326,7 @@ const EditFilm = () => {
 
                   <label htmlFor='image'>IMAGE</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    Vous ne pouvez pas modifier ou ajouter d’images aux images existantes.<br />En cas d’ajout ou de modification, les images existantes seront réinitialisées. <br />Maximum 3 images and 1 image = 1MB max. </small>
+                    Vous ne pouvez pas modifier ou ajouter d’images aux images existantes.<br />En cas d’ajout ou de modification, les images existantes seront réinitialisées. <br />Maximum 3 1 image = 100KB max.(1920x1080px) </small>
                   <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
                   {images &&
                     <img src={images} alt='' style={{ width: '200px', height: 'auto' }} />

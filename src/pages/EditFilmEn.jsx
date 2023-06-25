@@ -299,7 +299,7 @@ const EditFilm = () => {
 
                   <label htmlFor='download'>DOWNLOAD</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    1 document ONLY = 1.5MB max.</small>
+                    1 document ONLY = 1MB max.</small>
                   {downloadUrl && (
                     <PDFViewer pdfUrl={downloadUrl} style={{ width: '100%', height: '500px' }} />
                   )}
@@ -307,7 +307,7 @@ const EditFilm = () => {
 
                   <label htmlFor='image' style={{ marginBottom: 5 }}>IMAGE</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    You cannot change or add images to the existing images.<br />In case of addition or modification, the existing images will be reset. 3 images MAX and 1 image = 1MB max.</small>
+                    You cannot change or add images to the existing images.<br />In case of addition or modification, the existing images will be reset. 3 images MAX and 1 image = 100KB max.(1920x1080px)</small>
                   <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} id="image-input" />
                   {images &&
                     <img src={images} alt='' style={{ width: '200px', height: 'auto' }} />

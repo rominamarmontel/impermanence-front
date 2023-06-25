@@ -6,7 +6,6 @@ import { RxArrowLeft } from 'react-icons/rx';
 import { RxArrowRight } from 'react-icons/rx';
 import ScrollToTop from '../../components/ScrollToTop';
 import 'swiper/swiper-bundle.css';
-import Swiper, { Autoplay, Pagination, EffectFade } from 'swiper';
 import FadeIn from '../../components/FadeIn/FadeIn';
 import Spinner from '../../components/Spinner/Spinner';
 
@@ -88,21 +87,18 @@ const FilmDetailsEn = () => {
   };
 
   const images = film.images;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
-    Swiper.use([Autoplay, Pagination, EffectFade]);
-    new Swiper('.film-swiper-container', {
-      loop: true,
-      effect: 'fade',
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-      speed: 1000,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: false,
-      },
-    });
+    if (images && images.length >= 2) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
   }, [images]);
 
 
@@ -130,20 +126,18 @@ const FilmDetailsEn = () => {
             <div className='top'>
               <div className='image-content'>
                 <div className='FilmDetails-right-position'>
-                  {film.images && film.images.length > 1 ? (
-                    <div className="film-swiper-container" >
-                      <div className="swiper-wrapper">
-                        {film.images.map((image, index) => (
-                          <div className="swiper-slide" key={index}>
-                            <div className="slide-img">
-                              <img src={image} alt={`img${index}`} />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="swiper-pagination"></div>
+                  {images.length >= 2 ? (
+                    <div className='image-container'>
+                      {film.images.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt="Film"
+                          className={`fade-in ${index === currentImageIndex ? 'current-image' : 'next-image'}`}
+                        />
+                      ))}
                     </div>
-                  ) : images && images.length === 1 ? (
+                  ) : images.length === 1 ? (
                     <div className='image-container'>
                       <picture>
                         <div>
