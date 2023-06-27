@@ -3,7 +3,7 @@ import SwiperComponent from '../../components/SwiperComponent';
 import { Link } from 'react-router-dom';
 import 'swiper/swiper-bundle.css';
 import './HomePage.css';
-import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaVimeo, FaLinkedinIn } from 'react-icons/fa';
 import FadeIn from '../../components/FadeIn/FadeIn';
 
 const HomePage = () => {
@@ -35,9 +35,9 @@ const HomePage = () => {
             )}
             <div className='sns-container'>
               <ul style={{ display: "flex" }}>
-                <li className='smartphone__area'><FaTwitter /></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                <li className='smartphone__area'><FaInstagram /></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                <li className='smartphone__area'><FaFacebook /></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li className='smartphone__area'><FaVimeo /></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                <li className='smartphone__area'><FaLinkedinIn /></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li onClick={toggleLanguage} className='HomePage-lang'>{isEnglish ? 'FR' : 'EN'}</li>
               </ul>
             </div>

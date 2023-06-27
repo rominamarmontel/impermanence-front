@@ -45,7 +45,6 @@ const FilmDetailsEn = () => {
       setCurrentIndex(index);
     }
   }, [sortedEnglish, frenchId]);
-  console.log('currentIndex', currentIndex)
 
   const goToPreviousFilm = () => {
     window.scrollTo(0, 0);

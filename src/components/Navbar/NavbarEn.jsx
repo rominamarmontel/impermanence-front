@@ -2,9 +2,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import { useState, useEffect } from 'react'
 import { HashLink } from 'react-router-hash-link';
-import { FaFacebook } from 'react-icons/fa'
-import { FaInstagram } from 'react-icons/fa'
-import { FaTwitter } from 'react-icons/fa'
+import { FaVimeo } from 'react-icons/fa'
+import { FaLinkedinIn } from 'react-icons/fa'
 
 const NavbarEn = () => {
   const [scrollNavbar, setScrollNavbar] = useState(false);
@@ -62,7 +61,7 @@ const NavbarEn = () => {
           <ul className='navbar-list'>
             <li className='navbar-list-font'><Link to='/en/about'>ABOUT</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
-              <HashLink to='/en/films#work-in-progress'>IN PROGRESS</HashLink>
+              <HashLink to='/en/films#inprogress'>IN PROGRESS</HashLink>
             </li>
             <li className='navbar-list-font'><HashLink to='/en/films#production'>PRODUCTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/en/films#distribution'>DISTRIBUTION</HashLink></li>
@@ -98,16 +97,15 @@ const NavbarEn = () => {
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>
                     <Link to='/en/about'>ABOUT</Link></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#work-in-progress' onClick={handleHashLinkClick}>IN PROGRESS</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#inprogress' onClick={handleHashLinkClick}>IN PROGRESS</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#production' >PRODUCTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#distribution' >DISTRIBUTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#programmation' >PROGRAMMATION</HashLink></li>
                 </ul>
                 <ul className='overlay_sp_menu_ul_sns'>
                   <div>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaFacebook /></HashLink></li>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaInstagram /></HashLink></li>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaTwitter /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaVimeo /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaLinkedinIn /></HashLink></li>
                   </div>
                   <li className='change_langue' onClick={() => {
                     navigate(location.pathname.replace('/en', ''));
