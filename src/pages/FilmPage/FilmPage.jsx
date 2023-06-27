@@ -59,6 +59,11 @@ const FilmPage = () => {
         return '';
     }
   };
+
+  const formatDirectorName = (directorName) => {
+    return /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
+  };
+
   return (
     <FadeIn>
       <section className='FilmPage'>
@@ -81,7 +86,7 @@ const FilmPage = () => {
                           </picture>
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
-                            <h6>de {film.directedBy}</h6>
+                            <h6>{formatDirectorName(film.directedBy)}</h6>
                           </div>
                         </div>
                       </Link>

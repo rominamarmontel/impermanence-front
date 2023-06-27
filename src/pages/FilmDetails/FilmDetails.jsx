@@ -113,6 +113,9 @@ const FilmDetails = () => {
   const videoOnDemandUrls = films[currentIndex].videoOnDemand.split('\n').map(url => url.trim())
   const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 28
 
+  const directorName = films[currentIndex].directedBy;
+  const formattedDirectorName = /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
+
   return (
     <>
       <FadeIn>
@@ -145,7 +148,7 @@ const FilmDetails = () => {
 
                   <div className='text-on-image'>
                     <h1>{films[currentIndex].title.toUpperCase()}</h1>
-                    {films[currentIndex].directedBy && (<h4 className='directedBy'>de {films[currentIndex].directedBy}</h4>)}
+                    {films[currentIndex].directedBy && (<h4 className='directedBy'>{formattedDirectorName}</h4>)}
                     {films[currentIndex].createdYear && (<h4 className='createdYear'>{films[currentIndex].createdYear}</h4>)}
                   </div>
                   <div className='copyright-on-image'>
