@@ -18,7 +18,7 @@ const AboutPage = () => {
             <picture>
               <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1687550410/impermanenceDB/ELEGIE_001_jb4nym.jpg' />
             </picture>
-            <h2 className='AboutPage-title'>à props d’Impermanence</h2>
+            <h2 className='AboutPage-title'>à propos d’Impermanence</h2>
           </div>
           <div className='AboutPage-container'>
             <div className='AboutPage-container-sub'>

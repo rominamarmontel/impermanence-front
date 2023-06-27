@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import myApi from '../service/service'
+import myApi from '../../service/service'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-import PDFViewer from '../components/PDFViewer';
-import ScrollToTop from '../components/ScrollToTop';
+import PDFViewer from '../../components/PDFViewer';
+import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
 import './Admin.css'
-import ImagePreview from '../components/ImagePreview';
+import ImagePreview from '../../components/ImagePreview';
 import { AiOutlineClose } from 'react-icons/ai'
 
 const AddFilmEn = () => {
@@ -197,7 +197,7 @@ const AddFilmEn = () => {
                     <option disabled value="-1">
                       Select a category
                     </option>
-                    <option value="work-in-progress">work-in-progress</option>
+                    <option value="inprogress">in progress</option>
                     <option value="production">production</option>
                     <option value="distribution">distribution</option>
                     <option value="programmation">programmation</option>

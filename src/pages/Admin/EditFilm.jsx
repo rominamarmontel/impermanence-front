@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import myApi from '../service/service'
+import myApi from '../../service/service'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { AiOutlineLeft } from 'react-icons/ai'
-import PDFViewer from '../components/PDFViewer';
-import ScrollToTop from '../components/ScrollToTop';
+import PDFViewer from '../../components/PDFViewer';
+import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
 import './Admin.css'
@@ -246,7 +246,7 @@ const EditFilm = () => {
                     <option disabled value="-1">
                       Sélectionnez une catégorie
                     </option>
-                    <option value="travail-en-cours">travail-en-cours</option>
+                    <option value="encours">en cours</option>
                     <option value="production">production</option>
                     <option value="distribution">distribution</option>
                     <option value="programmation">programmation</option>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import myApi from '../service/service'
-import Spinner from '../components/Spinner/Spinner'
+import myApi from '../../service/service'
+import Spinner from '../../components/Spinner/Spinner'
 import { Link } from 'react-router-dom'
-import ScrollToTop from '../components/ScrollToTop'
+import ScrollToTop from '../../components/ScrollToTop'
 
 const AdminTop = () => {
   const [films, setFilms] = useState([])
@@ -30,7 +30,7 @@ const AdminTop = () => {
     return result;
   }, []);
 
-  const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
+  const categoryOrder = ['encours', 'production', 'distribution', 'programmation'];
 
   if (!films || !films.length) {
     return <Spinner />
@@ -53,7 +53,7 @@ const AdminTop = () => {
             const films = groupedFilms[category] || [];
             return (
               <div key={category} id={category} style={{ marginBottom: 50, border: '1px solid var(--color-gray8)', borderRadius: 10 }} >
-                <h3 style={{ backgroundColor: 'var(--color-gray8)', color: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 20 }}>{category.toUpperCase()}</h3>
+                <h3 style={{ backgroundColor: 'var(--color-gray8)', color: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 20 }}>{category === 'encours' ? 'EN COURS' : category.toUpperCase()}</h3>
                 {films ? (
                   <ul style={{ padding: 20, backgroundColor: 'white', borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
                     {films.map((film) => (

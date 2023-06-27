@@ -29,7 +29,7 @@ const FilmPage = () => {
     return result;
   }, {});
 
-  const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
+  const categoryOrder = ['encours', 'production', 'distribution', 'programmation'];
 
   for (const category in groupedFilms) {
     groupedFilms[category].sort((a, b) => {
@@ -44,6 +44,21 @@ const FilmPage = () => {
   if (!films || !films.length) {
     return <Spinner />;
   }
+
+  const displayCategory = (category) => {
+    switch (category) {
+      case 'encours':
+        return 'en cours';
+      case 'production':
+        return 'production';
+      case 'distribution':
+        return 'distribution';
+      case 'programmation':
+        return 'programmation';
+      default:
+        return '';
+    }
+  };
   return (
     <FadeIn>
       <section className='FilmPage'>
@@ -52,7 +67,7 @@ const FilmPage = () => {
             const films = groupedFilms[category] || [];
             return (
               <div key={category} id={category} className='category-section' >
-                <h2 className='category-title'>{category.toLowerCase()}</h2>
+                <h2 className='category-title'>{displayCategory(category)}</h2>
                 <div className='FilmPage-category'>
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>

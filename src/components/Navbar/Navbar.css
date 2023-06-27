@@ -17,6 +17,7 @@
   font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
   font-family: 'Charm', cursive;
   text-align: center;
+  font-weight: 800;
   padding-bottom: 1rem;
   color: #000000;
 }
@@ -35,7 +36,7 @@
   font-family: 'Charm', cursive;
   text-align: center;
   padding-bottom: 1rem;
-  color: var(--color-pink);
+  color: orangered;
 }
 .Navbar-container {
   width: 90%;

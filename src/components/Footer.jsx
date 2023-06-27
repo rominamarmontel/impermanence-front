@@ -20,7 +20,7 @@ const Footer = () => {
         minHeight: `1rem`, backgroundColor: "#ededed", paddingTop: '1rem'
       }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <small>&copy; impermanence</small>
+          <small>&copy; impermanence films</small>
         </div>
         <div className='footer-container' style={{ display: 'flex', justifyContent: 'flex-end' }}>
           {!user ? (

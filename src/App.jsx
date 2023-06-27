@@ -8,15 +8,15 @@ import FilmDetails from './pages/FilmDetails/FilmDetails'
 import Layout from './pages/Layout'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
-import AddFilm from './pages/AddFilm'
-import AdminTop from './pages/AdminTop'
-import EditFilm from './pages/EditFilm'
+import AddFilm from './pages/Admin/AddFilm'
+import AdminTop from './pages/Admin/AdminTop'
+import EditFilm from './pages/Admin/EditFilm'
 import AboutPage from './pages/AboutPage/AboutPage'
 import FilmPageEn from './pages/FilmPage/FilmPageEn'
 import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
-import AddFilmEn from './pages/AddFilmEn'
-import EditFilmEn from './pages/EditFilmEn'
+import AddFilmEn from './pages/Admin/AddFilmEn'
+import EditFilmEn from './pages/Admin/EditFilmEn'
 
 function App() {
   const location = useLocation();
@@ -37,7 +37,6 @@ function App() {
             <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
             <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
             <Route path="/admin/films/create" element={<AddFilm />} />
-            {/* <Route path="/admin/en/films/create" element={<AddFilmEn />} /> */}
             <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
           </Route>
           <Route element={<IsLoggedOut />}>

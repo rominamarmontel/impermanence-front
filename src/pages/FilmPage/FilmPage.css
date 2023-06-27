@@ -21,8 +21,7 @@
 }
 .category-title {
   font-family: 'Charm', cursive;
-  word-spacing: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 1.5rem;
   color: black;
   text-align: right;
@@ -110,7 +109,6 @@
   }
   .category-title {
     font-family: 'Charm', cursive;
-    word-spacing: 1rem;
     font-weight: 800;
     font-size: 20px;
     color: black;

@@ -31,7 +31,7 @@ const FilmDetailsEn = () => {
         if (a.category === b.category) {
           return b.createdYear - a.createdYear || a.title.localeCompare(b.title);
         } else {
-          const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
+          const categoryOrder = ['inprogress', 'production', 'distribution', 'programmation'];
           return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
         }
       });
@@ -164,7 +164,7 @@ const FilmDetailsEn = () => {
                     <div className='FilmDetails-originalTitle-content'>
                       <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>{film.originalTitle.toUpperCase()}</h1>
                       <div className='FilmDetails-category'>
-                        {film.category.toUpperCase()}
+                        {film?.category === 'inprogress' ? 'IN PROGRESS' : film?.category.toUpperCase()}
                       </div>
                     </div>
                   )}

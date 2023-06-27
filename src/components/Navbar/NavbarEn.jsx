@@ -62,7 +62,7 @@ const NavbarEn = () => {
           <ul className='navbar-list'>
             <li className='navbar-list-font'><Link to='/en/about'>ABOUT</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
-              <HashLink to='/en/films#work-in-progress'>WORK-IN-PROGRESS</HashLink>
+              <HashLink to='/en/films#work-in-progress'>IN PROGRESS</HashLink>
             </li>
             <li className='navbar-list-font'><HashLink to='/en/films#production'>PRODUCTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/en/films#distribution'>DISTRIBUTION</HashLink></li>
@@ -98,7 +98,7 @@ const NavbarEn = () => {
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>
                     <Link to='/en/about'>ABOUT</Link></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#work-in-progress' onClick={handleHashLinkClick}>WORK-IN-PROGRESS</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/en/films#work-in-progress' onClick={handleHashLinkClick}>IN PROGRESS</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#production' >PRODUCTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#distribution' >DISTRIBUTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/en/films#programmation' >PROGRAMMATION</HashLink></li>

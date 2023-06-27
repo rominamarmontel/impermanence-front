@@ -45,12 +45,11 @@ const FilmDetails = () => {
         if (a.category === b.category) {
           return b.createdYear - a.createdYear || a.title.localeCompare(b.title);
         } else {
-          const categoryOrder = ['travail-en-cours', 'production', 'distribution', 'programmation'];
+          const categoryOrder = ['encours', 'production', 'distribution', 'programmation'];
           return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
         }
       });
       setFilms(sortedFilms);
-      console.log(sortedFilms)
     });
   }, []);
   console.log(films)
@@ -167,7 +166,7 @@ const FilmDetails = () => {
                         </h1>
                         {films[currentIndex] && (
                           <div className='FilmDetails-category'>
-                            {films[currentIndex].category.toUpperCase()}
+                            {films[currentIndex]?.category === 'encours' ? 'EN COURS' : films[currentIndex]?.category.toUpperCase()}
                           </div>
                         )}
                       </div>

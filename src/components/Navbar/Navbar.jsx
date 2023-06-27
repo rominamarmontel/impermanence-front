@@ -77,7 +77,7 @@ const Navbar = () => {
           <ul className='navbar-list'>
             <li className='navbar-list-font'><Link to='/about#AboutPage' >À PROPOS</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
-              <HashLink to='/films#travail-en-cours' >TRAVAIL-EN-COURS</HashLink>
+              <HashLink to='/films#travail-en-cours' >EN COURS</HashLink>
             </li>
             <li className='navbar-list-font'><HashLink to='/films#production'>PRODUCTION</HashLink></li>
             <li className='navbar-list-font' ><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
@@ -113,7 +113,7 @@ const Navbar = () => {
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>
                     <Link to='/about'>À PROPOS</Link></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/films' onClick={handleHashLinkClick}>TRAVAIL-EN-COURS</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/films' onClick={handleHashLinkClick}>EN COURS</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#production' >PRODUCTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#distribution' >DISTRIBUTION</HashLink></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films#programmation' >PROGRAMMATION</HashLink></li>
