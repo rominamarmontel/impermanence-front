@@ -248,7 +248,7 @@ const FilmDetails = () => {
                 {films[currentIndex].stageOfProduction && (
                   <>
                     <div>
-                      <li><h5>ÉTAP DE PRODUCTION</h5></li>
+                      <li><h5>ÉTAPE DE PRODUCTION</h5></li>
                       <li>{films[currentIndex].stageOfProduction}</li>
                     </div>
                   </>
