@@ -18,6 +18,27 @@ const FilmPage = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('.film-image');
+        let allLoaded = true;
+        images.forEach((image) => {
+          if (!image.complete) {
+            allLoaded = false;
+          }
+        });
+        if (!allLoaded) {
+          return;
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const groupedFilms = films.reduce((result, film) => {
     const category = film.category || 'defaultCategory';
     if (result[category]) {
