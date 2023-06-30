@@ -128,9 +128,9 @@ button:hover {
   background-color: #000000;
 }
 button:focus,
-button:focus-visible {
+/* button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 input {
   height: 2rem;
   font-size: 1rem;

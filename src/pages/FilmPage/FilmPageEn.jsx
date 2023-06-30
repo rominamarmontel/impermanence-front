@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
-import './FilmPage';
+import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
 
@@ -94,7 +94,7 @@ const FilmPageEn = () => {
                               <img src={`${film.images[0]}`} alt={film.title} className='film-image' />
                             ) : ('')}
                           </picture> */}
-                          <picture>
+                          <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
                                 <source media="(max-width: 400px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w`} />
@@ -104,7 +104,8 @@ const FilmPageEn = () => {
                                   src={`${film.images[0]}`}
                                   alt={film.title}
                                   className="film-image"
-                                  style={{ quality: 10, aspectRatio: "16/9" }}
+                                  style={{ quality: 10, aspectRatio: "16/9", objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
+                                // loading="lazy"
                                 />
                               </>
                             ) : null}

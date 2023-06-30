@@ -5,6 +5,7 @@
   padding-top: 7.5rem;
   position: relative;
 }
+
 .FilmDetails .container{
   width: 100%;
 }
@@ -69,8 +70,8 @@
 /* text-on-image */
 .text-on-image {
   max-width: 30%;
-  position:absolute;
-  top:4%;
+  position: absolute;
+  top: 4%;
   left: 2.5%;
   color: white;
   line-height: 1.2rem;
@@ -130,7 +131,7 @@
   font-size: 1.9rem;
   color: rgb(0, 0, 0);
   word-wrap:break-word;
-  word-spacing: -.5;
+  word-spacing: -0.5rem;
 }
 .reduce-size {
   font-family: 'Source Sans Pro', sans-serif;
@@ -305,7 +306,7 @@
 /* text for image */
 .text-on-image {
   max-width: 60%;
-  top:5%;
+  top: 5%;
   left: 5%;
 }
 .text-on-image h1 {
