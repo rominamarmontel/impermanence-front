@@ -35,8 +35,14 @@ const HomePage = () => {
             )}
             <div className='sns-container'>
               <ul style={{ display: "flex" }}>
-                <li className='smartphone__area'><FaVimeo /></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                <li className='smartphone__area'><FaLinkedinIn /></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link to='https://vimeo.com/user9555000' target="_blank">
+                  <li className='smartphone__area' ><FaVimeo /></li>
+                </Link>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Link to='https://www.linkedin.com/company/impermanence-films/' target="_blank">
+                  <li className='smartphone__area'><FaLinkedinIn /></li>
+                </Link>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li onClick={toggleLanguage} className='HomePage-lang'>{isEnglish ? 'FR' : 'EN'}</li>
               </ul>

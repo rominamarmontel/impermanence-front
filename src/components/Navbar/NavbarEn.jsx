@@ -104,8 +104,8 @@ const NavbarEn = () => {
                 </ul>
                 <ul className='overlay_sp_menu_ul_sns'>
                   <div>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaVimeo /></HashLink></li>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='#' ><FaLinkedinIn /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='https://vimeo.com/user9555000' target="_blank"><FaVimeo /></HashLink></li>
+                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='https://www.linkedin.com/company/impermanence-films/' target="_blank"><FaLinkedinIn /></HashLink></li>
                   </div>
                   <li className='change_langue' onClick={() => {
                     navigate(location.pathname.replace('/en', ''));

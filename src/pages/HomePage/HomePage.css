@@ -72,7 +72,7 @@
   text-shadow: 1px 1px 1px rgb(139, 0, 0);
   cursor: pointer;
 }
-.sns-container {
+.sns-container .smartphone__area{
   color: white;
 }
 .HomePage-text-right {
