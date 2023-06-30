@@ -25,9 +25,7 @@ const FilmPage = () => {
         image.classList.add('loaded');
       });
     };
-
     window.addEventListener('load', handleLoad);
-
     return () => {
       window.removeEventListener('load', handleLoad);
     };
@@ -109,7 +107,7 @@ const FilmPage = () => {
                                   alt={film.title}
                                   className="film-image"
                                   style={{ quality: 10, aspectRatio: "16/9" }}
-                                  loading="lazy"
+                                // loading="lazy"
                                 />
                               </>
                             ) : null}
