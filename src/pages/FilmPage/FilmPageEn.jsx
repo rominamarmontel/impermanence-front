@@ -97,11 +97,11 @@ const FilmPageEn = () => {
                           <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
-                                <source media="(max-width: 400px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w`} />
+                                {/* <source media="(max-width: 400px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w`} /> */}
                                 <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`} />
-                                <source srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} />
+                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} />
                                 <img
-                                  src={`${film.images[0]}`}
+                                  src={`${film.images[0].replace("/upload/", "/upload/w_400/")}`}
                                   alt={film.title}
                                   className="film-image"
                                   style={{ quality: 10, aspectRatio: "16/9", objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
