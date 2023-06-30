@@ -19,23 +19,17 @@ const FilmPage = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if ('loading' in HTMLImageElement.prototype) {
-        const images = document.querySelectorAll('.film-image');
-        let allLoaded = true;
-        images.forEach((image) => {
-          if (!image.complete) {
-            allLoaded = false;
-          }
-        });
-        if (!allLoaded) {
-          return;
-        }
-      }
+    const handleLoad = () => {
+      const images = document.querySelectorAll('.film-image');
+      images.forEach((image) => {
+        image.classList.add('loaded');
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('load', handleLoad);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('load', handleLoad);
     };
   }, []);
 
