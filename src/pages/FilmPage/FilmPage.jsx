@@ -86,21 +86,19 @@ const FilmPage = () => {
                           </picture> */}
                           <picture>
                             {film.images.length ? (
-                              <img
-                                src={`${film.images[0]}`}
-                                srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w,
-                ${film.images[0].replace("/upload/", "/upload/w_578/")} 578w,
-                ${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`}
-                                sizes="
-        (max-width: 400px) 350px,
-        (max-width: 992px) 942px,
-        578px
-      "
-                                alt={film.title}
-                                className="film-image"
-                                style={{ quality: 10 }}
-                              />
-                            ) : ('')}
+                              <>
+                                <source media="(max-width: 400px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w`} />
+                                <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`} />
+                                <source srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} />
+                                <img
+                                  src={`${film.images[0]}`}
+                                  alt={film.title}
+                                  className="film-image"
+                                  style={{ quality: 10, aspectRatio: "16/9" }}
+                                  loading="lazy"
+                                />
+                              </>
+                            ) : null}
                           </picture>
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>

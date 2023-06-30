@@ -18,6 +18,7 @@ import AboutPageEn from './pages/AboutPage/AboutPageEn'
 import AddFilmEn from './pages/Admin/AddFilmEn'
 import EditFilmEn from './pages/Admin/EditFilmEn'
 
+
 function App() {
   const location = useLocation();
   const isEnglish = location.pathname.endsWith('/en') || location.pathname.startsWith('/en');
