@@ -8,14 +8,13 @@ import FadeIn from '../../components/FadeIn/FadeIn';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
     myApi.get(`/films`).then((response) => {
       setFilms(response.data);
+      setLoading(false)
     });
   }, []);
 
@@ -41,9 +40,10 @@ const FilmPage = () => {
     });
   }
 
-  if (!films || !films.length) {
+  if (loading) {
     return <Spinner />;
   }
+
 
   const displayCategory = (category) => {
     switch (category) {
@@ -76,7 +76,6 @@ const FilmPage = () => {
                 <div className='FilmPage-category'>
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
-                      {/* <Link to={`/films/${film._id}#${categorie}`}> */}
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
                           {/* <picture>

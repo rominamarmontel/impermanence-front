@@ -8,18 +8,17 @@ import FadeIn from '../../components/FadeIn/FadeIn';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
     myApi.get(`/en/films`).then((response) => {
       const englishArray = []
       response.data.map((oneData) => {
         englishArray.push(oneData)
       })
       setFilms(englishArray);
+      setLoading(false)
     }).catch((error) => {
       console.error(error)
       setFilms([]);
@@ -58,9 +57,10 @@ const FilmPageEn = () => {
     });
   }
 
-  if (!films || !films.length) {
+  if (loading) {
     return <Spinner />;
   }
+
   const displayCategory = (category) => {
     switch (category) {
       case 'inprogress':
