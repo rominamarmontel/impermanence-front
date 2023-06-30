@@ -9,12 +9,14 @@ const Contact = () => {
   const location = useLocation();
   const isEnglish = location.pathname.endsWith('/en') || location.pathname.startsWith('/en');
 
+
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm('service_p0rr531', 'template_oppm5pp', e.target, publicKey)
       .then((result) => {
         console.log(result.text);
+        alert("Message send! / Message envoyé!")
       }, (error) => {
         console.log(error.text);
       });
@@ -73,7 +75,7 @@ const Contact = () => {
                   <textarea name="message" placeholder='message' />
                 </fieldset>
               </div>
-              <div className='send-button'>
+              <div className='send-button' style={{ display: 'flex', alignItems: 'center', margin: 10 }}>
                 <input type="submit" value="Envoyer un message" />
               </div>
             </form>

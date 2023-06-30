@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage/HomePage'
 import FilmPage from './pages/FilmPage/FilmPage'
 import FilmDetails from './pages/FilmDetails/FilmDetails'
 import Layout from './pages/Layout'
-import Signup from './pages/Signup'
+// import Signup from './pages/Signup'
 import Login from './pages/Login'
 import AddFilm from './pages/Admin/AddFilm'
 import AdminTop from './pages/Admin/AdminTop'
@@ -41,9 +41,8 @@ function App() {
           </Route>
           <Route element={<IsLoggedOut />}>
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            {/* <Route path="/signup" element={<Signup />} /> */}
           </Route>
-
         </Route>
       </Routes>
     </div >
