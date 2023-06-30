@@ -79,9 +79,27 @@ const FilmPage = () => {
                       {/* <Link to={`/films/${film._id}#${categorie}`}> */}
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
-                          <picture>
+                          {/* <picture>
                             {film.images.length ? (
                               <img src={`${film.images[0]}`} alt={film.title} className='film-image' style={{ quality: 10 }} />
+                            ) : ('')}
+                          </picture> */}
+                          <picture>
+                            {film.images.length ? (
+                              <img
+                                src={`${film.images[0]}`}
+                                srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w,
+                ${film.images[0].replace("/upload/", "/upload/w_578/")} 578w,
+                ${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`}
+                                sizes="
+        (max-width: 400px) 350px,
+        (max-width: 992px) 942px,
+        578px
+      "
+                                alt={film.title}
+                                className="film-image"
+                                style={{ quality: 10 }}
+                              />
                             ) : ('')}
                           </picture>
                           <div className='film-title'>
