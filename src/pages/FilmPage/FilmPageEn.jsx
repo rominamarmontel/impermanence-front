@@ -105,7 +105,6 @@ const FilmPageEn = () => {
                                   alt={film.title}
                                   className="film-image"
                                   style={{ quality: 10, aspectRatio: "16/9" }}
-                                  loading="lazy"
                                 />
                               </>
                             ) : null}
