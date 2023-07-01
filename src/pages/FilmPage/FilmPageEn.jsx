@@ -98,8 +98,8 @@ const FilmPageEn = () => {
                             {film.images.length ? (
                               <>
                                 {/* <source media="(max-width: 400px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_350/")} 350w`} /> */}
-                                <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`} />
-                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} />
+                                {/* <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`} />
+                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} /> */}
                                 <img
                                   src={`${film.images[0].replace("/upload/", "/upload/w_400/")}`}
                                   alt={film.title}

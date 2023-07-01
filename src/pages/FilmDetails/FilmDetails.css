@@ -37,7 +37,7 @@
   opacity: 1;
 }
 .next-image {
-  animation-delay: 2.5s; /* 現在の画像がフェードアウトするまでの遅延時間 */
+  animation-delay: 5.5s; /* 現在の画像がフェードアウトするまでの遅延時間 */
 }
 
 @keyframes fade-in-image {
