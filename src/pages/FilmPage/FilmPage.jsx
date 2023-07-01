@@ -18,18 +18,18 @@ const FilmPage = () => {
     });
   }, []);
 
-  useEffect(() => {
-    const handleLoad = () => {
-      const images = document.querySelectorAll('.film-image');
-      images.forEach((image) => {
-        image.classList.add('loaded');
-      });
-    };
-    window.addEventListener('load', handleLoad);
-    return () => {
-      window.removeEventListener('load', handleLoad);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleLoad = () => {
+  //     const images = document.querySelectorAll('.film-image');
+  //     images.forEach((image) => {
+  //       image.classList.add('loaded');
+  //     });
+  //   };
+  //   window.addEventListener('load', handleLoad);
+  //   return () => {
+  //     window.removeEventListener('load', handleLoad);
+  //   };
+  // }, []);
 
   const groupedFilms = films.reduce((result, film) => {
     const category = film.category || 'defaultCategory';
@@ -53,11 +53,6 @@ const FilmPage = () => {
     });
   }
 
-  if (loading) {
-    return <Spinner />;
-  }
-
-
   const displayCategory = (category) => {
     switch (category) {
       case 'encours':
@@ -77,6 +72,10 @@ const FilmPage = () => {
     return /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <FadeIn>
       <section className='FilmPage'>
@@ -91,16 +90,21 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
+                          {/* <picture>
+                            {film.images.length ? (
+                              <img src={`${film.images[0]}`} alt={film.title} className='film-image' style={{ quality: 10 }} />
+                            ) : ('')}
+                          </picture> */}
                           <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
-                                <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_942/")} 942w`} />
-                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_578/")} 578w`} />
+                                <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_924/")}`} />
+                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_577/")}`} />
                                 <img
-                                  src={`${film.images[0].replace("/upload/", "/upload/w_400/")}`}
+                                  src={`${film.images[0]}`}
                                   alt={film.title}
                                   className="film-image"
-                                  style={{ quality: 10, aspectRatio: "16/9", objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
+                                  style={{ quality: 10, aspectRatio: "16/9", objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s', width: 400 }}
                                 />
                               </>
                             ) : null}
