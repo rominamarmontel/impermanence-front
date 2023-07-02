@@ -94,16 +94,18 @@ const FilmPageEn = () => {
                               <img src={`${film.images[0].replace('/upload/', '/upload/w_400/')}`} alt={film.title} className='film-image' />
                             ) : ('')}
                           </picture> */}
-                          <picture>
-                            {film.images.length ? (
-                              <img
-                                sizes="(max-width: 1400px) 100vw, 1400px"
-                                srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w,
+                          <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                            <picture >
+                              {film.images.length ? (
+                                <img
+                                  sizes="(max-width: 1400px) 100vw, 1400px"
+                                  srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w,
             ${film.images[0].replace('/upload/', '/upload/w_924/')} 924w,
             ${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
-                                alt={film.title} className='film-image' style={{ quality: 10 }} />
-                            ) : ('')}
-                          </picture>
+                                  alt={film.title} className='film-image' style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }} />
+                              ) : ('')}
+                            </picture>
+                          </div>
                           {/* <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
