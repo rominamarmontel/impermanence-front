@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import IsLoggedOut from '../src/components/IsLoggedOut'
 import ProtectedRoute from '../src/components/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
-import FilmPage from './pages/FilmPage/FilmPage'
+// import FilmPage from './pages/FilmPage/FilmPage'
 import FilmDetails from './pages/FilmDetails/FilmDetails'
 import Layout from './pages/Layout'
 // import Signup from './pages/Signup'
@@ -12,12 +12,15 @@ import AddFilm from './pages/Admin/AddFilm'
 import AdminTop from './pages/Admin/AdminTop'
 import EditFilm from './pages/Admin/EditFilm'
 import AboutPage from './pages/AboutPage/AboutPage'
-import FilmPageEn from './pages/FilmPage/FilmPageEn'
+// import FilmPageEn from './pages/FilmPage/FilmPageEn'
 import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
 import AddFilmEn from './pages/Admin/AddFilmEn'
 import EditFilmEn from './pages/Admin/EditFilmEn'
+import { lazy } from 'react'
 
+const FilmPage = lazy(() => import('./pages/FilmPage/FilmPage'))
+const FilmPageEn = lazy(() => import('./pages/FilmPage/FilmPageEn'))
 
 function App() {
   const location = useLocation();
