@@ -279,7 +279,7 @@ const AddFilmEn = () => {
 
                   <label htmlFor='images'>IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1920x1080px)</small>
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
                   <input
                     type='file'
                     name='images'

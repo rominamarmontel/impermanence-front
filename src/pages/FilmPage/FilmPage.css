@@ -33,15 +33,15 @@
   display: flex;
   justify-content: center;
 }
-/* .FilmPage-content picture {
+.FilmPage-content picture {
   display: inline-block;
   max-width: 100%;
   height: 100%;
   margin: 0 auto;
   overflow: hidden;
   cursor: pointer;
-} */
-/* .FilmPage-content img {
+}
+.FilmPage-content img {
   max-width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
@@ -49,7 +49,7 @@
   object-position: 100% 100%;
   transition-duration: 0.5s;
   cursor: pointer;
-} */
+}
 .film-image:hover {
   transform: scale(1.2);
   filter: brightness(110%);

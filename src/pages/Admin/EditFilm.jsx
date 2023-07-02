@@ -326,7 +326,7 @@ const EditFilm = () => {
 
                   <label htmlFor='image'>IMAGE</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    Vous ne pouvez pas modifier ou ajouter d’images aux images existantes.<br />En cas d’ajout ou de modification, les images existantes seront réinitialisées. <br />Maximum 3 1 image = 100KB max.(1920x1080px) </small>
+                    Vous ne pouvez pas modifier ou ajouter d’images aux images existantes.<br />En cas d’ajout ou de modification, les images existantes seront réinitialisées. <br />Maximum 3 1 image = 100KB max.(1536x864px) </small>
                   <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
                   {images &&
                     <img src={images} alt='' style={{ width: '200px', height: 'auto' }} />
