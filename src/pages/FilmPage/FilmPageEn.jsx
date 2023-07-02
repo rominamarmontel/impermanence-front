@@ -89,12 +89,12 @@ const FilmPageEn = () => {
                     < div className='FilmPage-content' key={film._id} >
                       <Link to={`/films/${film.french._id}/en`}>
                         <div className='FilmPage-position'>
-                          <picture>
+                          {/* <picture>
                             {film && film.images.length ? (
                               <img src={`${film.images[0].replace('/upload/', '/upload/w_400/')}`} alt={film.title} className='film-image' />
                             ) : ('')}
-                          </picture>
-                          {/* <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                          </picture> */}
+                          <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
                                 <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_924/")}`} />
@@ -107,7 +107,7 @@ const FilmPageEn = () => {
                                 />
                               </>
                             ) : null}
-                          </picture> */}
+                          </picture>
                           <div className='film-title'>
                             <h4>{film && film.title.toUpperCase()}</h4>
                             <h6>by {film && film.directedBy}</h6>
