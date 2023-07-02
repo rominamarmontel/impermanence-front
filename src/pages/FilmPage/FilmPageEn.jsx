@@ -94,7 +94,17 @@ const FilmPageEn = () => {
                               <img src={`${film.images[0].replace('/upload/', '/upload/w_400/')}`} alt={film.title} className='film-image' />
                             ) : ('')}
                           </picture> */}
-                          <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                          <picture>
+                            {film.images.length ? (
+                              <img
+                                sizes="(max-width: 1400px) 100vw, 1400px"
+                                srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w,
+            ${film.images[0].replace('/upload/', '/upload/w_924/')} 924w,
+            ${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
+                                alt={film.title} className='film-image' style={{ quality: 10 }} />
+                            ) : ('')}
+                          </picture>
+                          {/* <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
                                 <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_924/")}`} />
@@ -107,7 +117,7 @@ const FilmPageEn = () => {
                                 />
                               </>
                             ) : null}
-                          </picture>
+                          </picture> */}
                           <div className='film-title'>
                             <h4>{film && film.title.toUpperCase()}</h4>
                             <h6>by {film && film.directedBy}</h6>

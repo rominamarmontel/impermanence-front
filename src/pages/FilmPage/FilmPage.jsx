@@ -90,12 +90,17 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
-                          {/* <picture>
+                          <picture>
                             {film.images.length ? (
-                              <img src={`${film.images[0].replace('/uplad/', '/upload/w_400/')}`} alt={film.title} className='film-image' style={{ quality: 10 }} />
+                              <img
+                                sizes="(max-width: 1400px) 100vw, 1400px"
+                                srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w,
+            ${film.images[0].replace('/upload/', '/upload/w_924/')} 924w,
+            ${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
+                                alt={film.title} className='film-image' style={{ quality: 10 }} />
                             ) : ('')}
-                          </picture> */}
-                          <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                          </picture>
+                          {/* <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             {film.images.length ? (
                               <>
                                 <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_924/")}`} />
@@ -104,11 +109,11 @@ const FilmPage = () => {
                                   src={`${film.images[0].replace("/upload/", "/upload/w_400/")}`}
                                   alt={film.title}
                                   className="film-image"
-                                  style={{ quality: 10, aspectRatio: "16/9", objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
+                                  style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
                                 />
                               </>
                             ) : null}
-                          </picture>
+                          </picture> */}
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
                             <h6>{formatDirectorName(film.directedBy)}</h6>
