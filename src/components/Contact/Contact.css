@@ -53,8 +53,6 @@
     border-bottom: 1px solid gray;
   }
   .message-form textarea {
-    position: absolute;
-    top: 10px;
     height: 298px;
     width: 500px;
     border: none;
