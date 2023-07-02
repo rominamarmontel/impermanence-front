@@ -107,7 +107,7 @@ const Navbar = () => {
 
           <nav id="hamburgerMenu-nav" className={isActive ? 'panelactive' : ''} >
             <div className='overlay_sp_menu style'>
-              <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1687193137/images/lesilo_back_lcz7kg.png' alt='inaugulation' className='blur style' />
+              <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688306594/lesilo_back_o0ah1q_1_fazlqx.jpg' alt='inaugulation' className='blur style' />
               <div className='overlay_sp_menu_text style'>
                 <ul className='overlay_sp_menu_ul'>
                   <li onClick={handleHashLinkClick}>

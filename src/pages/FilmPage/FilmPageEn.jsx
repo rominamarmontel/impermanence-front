@@ -11,27 +11,22 @@ const FilmPageEn = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    scrollTo(0, 0)
-    myApi.get(`/en/films`).then((response) => {
-      const englishArray = []
-      response.data.map((oneData) => {
-        englishArray.push(oneData)
-      })
-      setFilms(englishArray);
-      setLoading(false)
-    }).catch((error) => {
-      console.error(error)
-      setFilms([]);
-    })
-  }, []);
+    scrollTo(0, 0);
 
-  // useEffect(() => {
-  //   if (films) {
-  //     films.forEach((film) => {
-  //       console.log(film)
-  //     });
-  //   }
-  // }, [films]);
+    const fetchData = async () => {
+      try {
+        const response = await myApi.get(`/en/films`);
+        const englishArray = response.data.map((oneData) => oneData);
+        setFilms(englishArray);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setFilms([]);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const groupedFilms = films ? films.reduce((result, film) => {
     const category = film.category;

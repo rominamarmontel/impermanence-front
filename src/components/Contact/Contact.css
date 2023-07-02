@@ -54,7 +54,7 @@
   }
   .message-form textarea {
     position: absolute;
-    top: 10;
+    top: 10px;
     height: 298px;
     width: 500px;
     border: none;

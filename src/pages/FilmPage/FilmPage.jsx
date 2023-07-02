@@ -11,26 +11,20 @@ const FilmPage = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    scrollTo(0, 0)
-    myApi.get(`/films`).then((response) => {
-      setFilms(response.data);
-      setLoading(false)
-    });
+    scrollTo(0, 0);
+
+    const fetchData = async () => {
+      try {
+        const response = await myApi.get(`/films`);
+        setFilms(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   const handleLoad = () => {
-  //     const images = document.querySelectorAll('.film-image');
-  //     images.forEach((image) => {
-  //       image.classList.add('loaded');
-  //     });
-  //   };
-  //   window.addEventListener('load', handleLoad);
-  //   return () => {
-  //     window.removeEventListener('load', handleLoad);
-  //   };
-  // }, []);
-
   const groupedFilms = films.reduce((result, film) => {
     const category = film.category || 'defaultCategory';
     if (result[category]) {
