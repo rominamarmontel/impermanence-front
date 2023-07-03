@@ -91,23 +91,18 @@ const FilmPageEn = () => {
                           </picture> */}
                           <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             <picture>
-                              {/* 画面幅が1350px以下の場合 */}
                               <source
                                 media="(max-width: 1350px)"
                                 srcSet={`${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
                               />
-
-                              {/* 画面幅が1350pxより大きい場合 */}
                               <source
                                 media="(min-width: 1351px)"
                                 srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w`}
                               />
-
-                              {/* 画像の表示 */}
                               <img
                                 src={film.images[0]}
                                 alt={film.title}
-                                style={{ maxWidth: '100%', width: '100%', height: 'auto' }}
+                                style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
                               />
                             </picture>
                           </div>
