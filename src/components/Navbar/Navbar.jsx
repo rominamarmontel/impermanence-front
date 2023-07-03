@@ -74,7 +74,7 @@ const Navbar = () => {
             </Link>
           </picture>
           <ul className='navbar-list'>
-            <li className='navbar-list-font'><Link to='/about#AboutPage' >À PROPOS</Link></li>
+            <li className='navbar-list-font'><Link to='/about' >À PROPOS</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
               <HashLink to='/films#encours' >EN COURS</HashLink>
             </li>
