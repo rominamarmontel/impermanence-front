@@ -53,10 +53,10 @@ const HomePage = () => {
               <>
                 <ul>
                   <li>
-                    <Link to='/films#work-in-progress'>TOUS LES FILMS</Link>
+                    <Link to='/films'>TOUS LES FILMS</Link>
                   </li>
                   <li>
-                    <Link to='/about#AboutPage'>À PROPOS D’IMPERMANENCE</Link>
+                    <Link to='/about'>À PROPOS D’IMPERMANENCE</Link>
                   </li>
                 </ul>
               </>
@@ -64,10 +64,10 @@ const HomePage = () => {
               <>
                 <ul>
                   <li>
-                    <Link to='/en/films#work-in-progress'>ALL FILMS</Link>
+                    <Link to='/en/films'>ALL FILMS</Link>
                   </li>
                   <li>
-                    <Link to='/en/about#AboutPage'>ABOUT MPERMANENCE</Link>
+                    <Link to='/en/about'>ABOUT MPERMANENCE</Link>
                   </li>
                 </ul>
               </>
