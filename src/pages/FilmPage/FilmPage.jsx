@@ -101,20 +101,6 @@ const FilmPage = () => {
                               />
                             </picture>
                           </div>
-                          {/* <picture style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                            {film.images.length ? (
-                              <>
-                                <source media="(max-width: 992px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_924/")}`} />
-                                <source media="(max-width: 1350px)" srcSet={`${film.images[0].replace("/upload/", "/upload/w_577/")}`} />
-                                <img
-                                  src={`${film.images[0].replace("/upload/", "/upload/w_400/")}`}
-                                  alt={film.title}
-                                  className="film-image"
-                                  style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
-                                />
-                              </>
-                            ) : null}
-                          </picture> */}
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
                             <h6>{formatDirectorName(film.directedBy)}</h6>
