@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import './Contact.css'
 
 const publicKey = import.meta.env.VITE_EMAILJS
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICEID
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATEID
 
 const Contact = () => {
   const location = useLocation();
@@ -13,7 +15,7 @@ const Contact = () => {
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_p0rr531', 'template_oppm5pp', e.target, publicKey)
+    emailjs.sendForm(serviceId, templateId, e.target, publicKey)
       .then((result) => {
         console.log(result.text);
         alert("Message send! / Message envoyé!")
