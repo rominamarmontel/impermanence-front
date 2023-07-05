@@ -50,7 +50,7 @@
   transition-duration: 0.5s;
   cursor: pointer;
 } */
-.film-image:hover {
+.FilmPage-position img:hover {
   transform: scale(1.2);
   filter: brightness(110%);
   opacity: 0.6;
