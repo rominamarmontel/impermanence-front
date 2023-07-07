@@ -2,7 +2,9 @@
 <img width="1257" alt="Screenshot 2023-06-22 at 11 31 31" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/5ce023db-1a16-4651-9b80-e66da1a3c169">
 
 ## ABOUT
-This website is a movie production company's site created upon request from a filmmaker friend. It involves features such as responsive design, language switching between English and French versions (a first-time challenge), an exclusive admin panel with a new movie creation screen, and more.
+This website is a movie production company's site created upon request from a filmmaker friend. It involves features such as responsive design, language switching between English and French versions (a first-time challenge), an exclusive admin panel with a new movie creation screen, and more.<br>
+Merci de visiter.....
+https://www.impermanencefilms.org/
 
 ## FRONTEND
 React<br>
