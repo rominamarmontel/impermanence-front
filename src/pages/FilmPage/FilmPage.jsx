@@ -84,7 +84,7 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
-                          <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                          <div style={{ margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             <picture>
                               <source
                                 media="(max-width: 1350px)"
