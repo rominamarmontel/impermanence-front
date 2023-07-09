@@ -83,8 +83,8 @@ const FilmPage = () => {
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
-                        <div className='FilmPage-position'>
-                          <div style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
+                        <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
+                          <div >
                             <picture >
                               <source
                                 media="(max-width: 1350px)"
@@ -97,7 +97,7 @@ const FilmPage = () => {
                               <img
                                 src={film.images[0]}
                                 alt={film.title}
-                                loading="lazy"
+                                // loading="lazy"
                                 style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
                               />
                             </picture>
