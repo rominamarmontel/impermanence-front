@@ -84,8 +84,8 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position'>
-                          <div style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                            <picture>
+                          <div style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
+                            <picture >
                               <source
                                 media="(max-width: 1350px)"
                                 srcSet={`${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}

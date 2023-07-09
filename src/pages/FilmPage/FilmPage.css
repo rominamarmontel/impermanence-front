@@ -27,8 +27,8 @@
   text-align: right;
 }
 .FilmPage-content {
-  max-width: calc((100vw - 16%) /3);
-  height:auto;
+  max-width: 32%;
+  height: auto;
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -42,6 +42,7 @@
   overflow: hidden;
   cursor: pointer;
 } */
+
 /* .FilmPage-content img {
   max-width: 100%;
   aspect-ratio: 16/9;
@@ -103,10 +104,10 @@
     padding-top: 68px;
   }
   .FilmPage-position {
-    max-width: 992px;
+    /* max-width: 992px; */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
   .category-title {
     font-family: 'Charm', cursive;
