@@ -34,17 +34,17 @@ function App() {
           <Route path='/en/films' element={<FilmPageEn />} />
           <Route path='/films/:frenchId/en' element={<FilmDetailsEn />} />
           <Route path='/en/about' element={<AboutPageEn />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/admin/top" element={<AdminTop />} />
-            <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
-            <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
-            <Route path="/admin/films/create" element={<AddFilm />} />
-            <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
-          </Route>
-          <Route element={<IsLoggedOut />}>
-            <Route path="/login" element={<Login />} />
-            {/* <Route path="/signup" element={<Signup />} /> */}
-          </Route>
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin/top" element={<AdminTop />} />
+          <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
+          <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
+          <Route path="/admin/films/create" element={<AddFilm />} />
+          <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
+        </Route>
+        <Route element={<IsLoggedOut />}>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
         </Route>
       </Routes>
     </div >

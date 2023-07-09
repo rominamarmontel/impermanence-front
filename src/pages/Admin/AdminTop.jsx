@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import myApi from '../../service/service'
 import Spinner from '../../components/Spinner/Spinner'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ScrollToTop from '../../components/ScrollToTop'
+import { AuthContext } from '../../context/auth.context'
 
 const AdminTop = () => {
+  const { authenticateUser, removeToken } = useContext(AuthContext)
   const [films, setFilms] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     scrollTo(0, 0)
@@ -36,6 +39,12 @@ const AdminTop = () => {
     return <Spinner />
   }
 
+  function handleClick() {
+    removeToken()
+    authenticateUser()
+    navigate('/')
+  }
+
   return (
     <section className='AdminTop' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 70 }}>
       <div style={{ border: '1px solid var(--color-gray7)', margin: '5rem', padding: 30, display: 'flex', justifyContent: 'center' }}>
@@ -47,6 +56,7 @@ const AdminTop = () => {
             Accueil de l’administrateur</h3>
           <div style={{ marginBottom: 30, display: 'flex', justifyContent: 'center', gap: 30 }}>
             <Link to='/admin/films/create' style={{ padding: 10, textDecoration: 'underline' }}>Créer un nouveau film</Link>
+            <button onClick={handleClick} style={{ padding: 10 }}>Logout</button>
           </div>
 
           {categoryOrder.map((category) => {

@@ -53,19 +53,19 @@ export const AuthContextWrapper = (props) => {
       const currentToken = getToken();
       if (currentToken) {
         const tokenData = JSON.parse(atob(currentToken.split('.')[1]));
-        const expirationTime = tokenData.exp * 1000; // Convert expiration time to milliseconds
+        const expirationTime = tokenData.exp * 1000;
         const currentTime = Date.now();
 
         if (currentTime > expirationTime) {
-          alert('Login session expired. Please Login again'); // トークンが切れたことを通知
-          removeToken(); // トークンを削除してログアウト
+          alert('Login session expired. Please Login again');
+          removeToken();
         }
       }
     };
 
-    const interval = setInterval(logoutOnTokenExpiration, 60000); // 1分ごとにトークンの有効期限をチェック
+    const interval = setInterval(logoutOnTokenExpiration, 60000);
     return () => {
-      clearInterval(interval); // コンポーネントがアンマウントされたときにインターバルをクリア
+      clearInterval(interval);
     };
   }, [getToken, removeToken]);
 
