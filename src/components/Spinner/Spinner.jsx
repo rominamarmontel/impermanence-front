@@ -16,8 +16,8 @@ function Spinner() {
         radius="9"
         color='gray'
         ariaLabel='three-dots-loading'
-        wrapperStyle
-        wrapperClass
+        wrapperStyle=""
+        wrapperClass=""
       />
     </div>
   )

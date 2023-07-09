@@ -97,6 +97,7 @@ const FilmPage = () => {
                               <img
                                 src={film.images[0]}
                                 alt={film.title}
+                                loading="lazy"
                                 style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
                               />
                             </picture>
