@@ -83,8 +83,8 @@ const FilmPage = () => {
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
-                        <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
-                          <div >
+                        <div >
+                          <div className='FilmPage-position' style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                             <picture >
                               <source
                                 media="(max-width: 1350px)"
