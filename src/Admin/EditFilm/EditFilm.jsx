@@ -1,4 +1,4 @@
-import Sidebar from '../../components/sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
 import EditFilmFr from './EditFilmFr'
 
