@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 // import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 // import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
