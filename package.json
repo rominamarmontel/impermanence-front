@@ -11,7 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.13.7",
+    "@mui/styled-engine": "^5.13.2",
+    "@mui/x-data-grid": "^6.9.2",
     "axios": "^1.4.0",
+    "cloudinary-core": "^2.13.0",
+    "cloudinary-react": "^1.8.1",
     "confetti": "^1.1.6",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^10.12.16",
@@ -28,6 +34,7 @@
     "react-router-hash-link": "^2.4.3",
     "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
+    "sass": "^1.63.6",
     "swiper": "^9.3.2"
   },
   "devDependencies": {

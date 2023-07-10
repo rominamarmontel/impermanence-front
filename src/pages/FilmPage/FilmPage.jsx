@@ -5,6 +5,8 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
+import { Image, Transformation } from 'cloudinary-react';
+
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
@@ -17,6 +19,7 @@ const FilmPage = () => {
       try {
         const response = await myApi.get(`/films`);
         setFilms(response.data);
+        console.log(response.data)
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -70,6 +73,8 @@ const FilmPage = () => {
     return <Spinner />;
   }
 
+  // const cloudinaryCore = new Cloudinary({ cloud_name: 'dyu65fpse' });
+
   return (
     <FadeIn>
       <section className='FilmPage'>
@@ -77,30 +82,23 @@ const FilmPage = () => {
           {categoryOrder && categoryOrder.map((category) => {
             const films = groupedFilms[category] || [];
             return (
-              <div key={category} id={category} className='category-section' >
+              <div key={category} id={category} className='category-section'>
                 <h2 className='category-title'>{displayCategory(category)}</h2>
                 <div className='FilmPage-category'>
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
-                        <div >
+                        <div>
                           <div className='FilmPage-position' style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                            <picture >
-                              <source
-                                media="(max-width: 1350px)"
-                                srcSet={`${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
-                              />
-                              <source
-                                media="(min-width: 1351px)"
-                                srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w`}
-                              />
-                              <img
-                                src={film.images[0]}
-                                alt={film.title}
-                                // loading="lazy"
-                                style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
-                              />
-                            </picture>
+                            <Image cloudName="demo" secure={true} upload_preset="my_unsigned_preset" publicId={film.images[0]} style={{
+                              maxWidth: '100%',
+                              objectFit: 'cover',
+                              transform: 'scale(1.1)',
+                              objectPosition: '100% 100%',
+                              transitionDuration: '0.5s',
+                              aspectRatio: "16:9"
+                            }} />
+                            <Transformation width="400" crop="scale" />
                           </div>
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
@@ -114,10 +112,9 @@ const FilmPage = () => {
               </div>
             );
           })}
-
         </div>
         <ScrollToTop />
-      </section >
+      </section>
     </FadeIn>
   );
 };

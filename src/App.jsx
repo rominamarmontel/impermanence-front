@@ -7,15 +7,16 @@ import FilmDetails from './pages/FilmDetails/FilmDetails'
 import Layout from './pages/Layout'
 // import Signup from './pages/Signup'
 import Login from './pages/Login'
-import AddFilm from './pages/Admin/AddFilm'
-import AdminTop from './pages/Admin/AdminTop'
-import EditFilm from './pages/Admin/EditFilm'
+import AddFilm from './Admin/AddFilm/AddFilm'
+import AdminTop from './Admin/AdminTop/AdminTop'
+import EditFilm from './Admin/EditFilm/EditFilm'
 import AboutPage from './pages/AboutPage/AboutPage'
 import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
-import AddFilmEn from './pages/Admin/AddFilmEn'
-import EditFilmEn from './pages/Admin/EditFilmEn'
+import AddFilmEn from './Admin/AddFilm/AddFilmEn'
+import EditFilmEn from './Admin/EditFilm/EditFilmEn'
 import { lazy } from 'react'
+import { filmColumns } from './datatablesource'
 
 const FilmPage = lazy(() => import('./pages/FilmPage/FilmPage'))
 const FilmPageEn = lazy(() => import('./pages/FilmPage/FilmPageEn'))
@@ -36,7 +37,7 @@ function App() {
           <Route path='/en/about' element={<AboutPageEn />} />
         </Route>
         <Route element={<ProtectedRoute />}>
-          <Route path="/admin/top" element={<AdminTop />} />
+          <Route path="/admin/top" element={<AdminTop columns={filmColumns} />} />
           <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
           <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
           <Route path="/admin/films/create" element={<AddFilm />} />

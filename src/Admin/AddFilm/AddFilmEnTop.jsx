@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import myApi from '../../service/service'
-import { Link, useNavigate } from 'react-router-dom'
-import { AiOutlineLeft } from 'react-icons/ai'
+import { useNavigate, useParams } from 'react-router-dom'
 import PDFViewer from '../../components/PDFViewer';
 import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
-import './Admin.css'
 import ImagePreview from '../../components/ImagePreview';
 import { AiOutlineClose } from 'react-icons/ai'
 
-const AddFilm = () => {
+const AddFilmEnTop = () => {
+  const { frenchId } = useParams()
+  const [film, setFilm] = useState('')
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('-1')
   const [originalTitle, setOriginalTitle] = useState('')
@@ -35,10 +35,16 @@ const AddFilm = () => {
   const [images, setImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
+
   const navigate = useNavigate()
+
   useEffect(() => {
     scrollTo(0, 0)
-  }, [])
+    myApi.get(`/films/${frenchId}`).then((res) => {
+      setFilm(res.data)
+      console.log(res.data)
+    })
+  }, [frenchId])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,6 +67,7 @@ const AddFilm = () => {
     }
     try {
       const formData = new FormData()
+      formData.append('frenchId', frenchId)
       formData.append('category', category)
       formData.append('title', title)
       formData.append('copyright', copyright)
@@ -89,24 +96,19 @@ const AddFilm = () => {
       } else {
         formData.delete('download');
       }
-      if (!category || !title || !genre || images.length === 0) {
-        alert('Please fill in all the required fields: category, title, genre, and image.');
-        return;
-      }
-      const response = await myApi.post(`/films/create`, formData)
-      const frenchId = response.data._id;
+      const response = await myApi.post(`/films/create/en`, formData)
       if (response.status === 201) {
         setShowConfettiExplosion(true)
         setTimeout(() => {
           setShowConfettiExplosion(false)
-          navigate(`/admin/films/create/${frenchId}/en`)
+          navigate(`/admin/top`)
         }, 3000)
       }
     } catch (error) {
       console.error(error);
     } finally {
       setDownload(null);
-      setDownloadUrl(null);
+      // setDownloadUrl(null);
     }
   };
 
@@ -161,63 +163,62 @@ const AddFilm = () => {
   };
 
   return (
-    <section>
-      <div className='AddFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
-        <div style={{ width: '80%' }}>
-          <Link to='/admin/top' style={{ display: "flex", alignItems: "center", color: 'black' }}><AiOutlineLeft /> Retour</Link>
+    <section >
+      <div className='AddFilm' >
+        <div >
+          <div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
+            <div>
 
-            <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
-
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
-                <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} style={{ marginTop: 30, paddingRight: 20 }} />
-                <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30 }}>CREE UN NOUVEAU FILM</h3>
+              <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', paddingTop: 30, paddingLeft: 30 }}>
+                <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} style={{ paddingRight: 20 }} />
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+                  <h4 style={{ fontFamily: 'Nunito', fontWeight: 600 }}>{film.title}</h4>
+                </div>
               </div>
-              <p style={{ textAlign: 'right', color: 'black', paddingRight: 20 }}><span style={{ color: 'red' }}>*</span>est obligatoire</p>
+              <p style={{ textAlign: 'right', fontFamily: 'Nunito', paddingRight: 30 }}><span style={{ color: 'red' }}>*</span>champ is required</p>
             </div>
 
-
             <form onSubmit={handleSubmit} style={{
-              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px'
+              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue'
+              , color: 'var(--color-gray7)', fontSize: '14px'
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
 
-                  <label htmlFor='category' style={{ paddingBottom: 10 }}>CATEGORIE<span style={{ color: 'red' }}>*</span></label>
+                  <label htmlFor='category' style={{ paddingBottom: 5 }}>CATEGORY<span style={{ color: 'red' }}>*</span></label>
                   <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
                     <option disabled value="-1">
-                      Sélectionnez une catégorie
+                      Select a category
                     </option>
-                    <option value="encours">en cours</option>
+                    <option value="inprogress">in progress</option>
                     <option value="production">production</option>
                     <option value="distribution">distribution</option>
                     <option value="programmation">programmation</option>
                   </select>
 
-                  <label htmlFor='title' style={{ paddingBottom: 5 }}>TITRE<span style={{ color: 'red' }}>*</span></label>
+                  <label htmlFor='title' style={{ paddingBottom: 5 }}>TITLE<span style={{ color: 'red' }}>*</span></label>
                   <input type='text' name='title' value={title} id='title' onChange={(e) => setTitle(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='originalTitle' style={{ paddingBottom: 5 }}>TITRE ORIGINAL</label>
+                  <label htmlFor='originalTitle' style={{ paddingBottom: 5 }}>ORIGINAL TITLE</label>
                   <input type='text' name='originalTitle' value={originalTitle} onChange={(e) => setOriginalTitle(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='copyright' style={{ paddingBottom: 5 }}>DROITS D’AUTEUR</label>
+                  <label htmlFor='copyright' style={{ paddingBottom: 5 }}>COPYRIGHT</label>
                   <input type='text' name='copyright' value={copyright} onChange={(e) => setCopyright(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='directedBy' style={{ paddingBottom: 5 }}>RÉALISÉ PAR</label>
+                  <label htmlFor='directedBy' style={{ paddingBottom: 5 }}>DIRECTED BY</label>
                   <textarea type='text' name='directedBy' value={directedBy} onChange={(e) => setDirectedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='producedBy' style={{ paddingBottom: 5 }}>PRODUIT PAR</label>
+                  <label htmlFor='producedBy' style={{ paddingBottom: 5 }}>PRODUCED BY</label>
                   <textarea type='text' name='producedBy' value={producedBy} onChange={(e) => setProducedBy(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='author' style={{ paddingBottom: 5 }}>AUTEUR(S)</label>
+                  <label htmlFor='author' style={{ paddingBottom: 5 }}>AUTHOR</label>
                   <textarea type='text' name='author' value={author} onChange={(e) => setAuthor(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='format' style={{ paddingBottom: 5 }}>FORMAT</label>
                   <input type='text' name='format' value={format} onChange={(e) => setFormat(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='duration' style={{ paddingBottom: 5 }}>DURÉE</label>
+                  <label htmlFor='duration' style={{ paddingBottom: 5 }}>DURATION</label>
                   <input type='text' name='duration' value={duration} onChange={(e) => setDuration(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='synopsis' style={{ paddingBottom: 5 }}>SYNOPSIS</label>
@@ -226,42 +227,42 @@ const AddFilm = () => {
 
 
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
-                  <label htmlFor='partner' style={{ paddingBottom: 5 }}>PARTENAIRE(S)</label>
+                  <label htmlFor='partner' style={{ paddingBottom: 5 }}>PARTNER</label>
                   <textarea type='text' name='partner' value={partner} onChange={(e) => setPartner(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='createdYear' style={{ paddingBottom: 5 }}>ANÉE DE CRÉATION</label>
+                  <label htmlFor='createdYear' style={{ paddingBottom: 5 }}>CREATED YEAR</label>
                   <input type='text' name='createdYear' value={createdYear} onChange={(e) => setCreatedYear(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 5 }}>FESTIVALS & RÉCOMPENSES</label>
+                  <label htmlFor='festivalsAndAwards' style={{ paddingBottom: 5 }}>FESTIVALS & AWARDS</label>
                   <textarea type='text' name='festivalsAndAwards' value={festivalsAndAwards} onChange={(e) => setFestivalsAndAwards(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
                   <label htmlFor='distribution' style={{ paddingBottom: 5 }}>DISTRIBUTION</label>
                   <input type='text' name='distribution' value={distribution} onChange={(e) => setDistribution(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='internationalSales' style={{ paddingBottom: 5 }}>VENTES INTERNATIONALES</label>
+                  <label htmlFor='internationalSales' style={{ paddingBottom: 5 }}>INTERNATIONAL SALES</label>
                   <input type='text' name='internationalSales' value={internationalSales} onChange={(e) => setInternationalSales(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
-                  <label htmlFor='stageOfProduction' style={{ paddingBottom: 5 }}>ÉTAPE DE PRODUCTION</label>
+                  <label htmlFor='stageOfProduction' style={{ paddingBottom: 5 }}>STAGE OF PRODUCTION</label>
                   <input type='text' name='stageOfProduction' value={stageOfProduction} onChange={(e) => setStageOfProduction(e.target.value)} style={{ marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, height: 40 }} />
 
                   <label htmlFor='genre' style={{ paddingBottom: 5 }}>GENRE<span style={{ color: 'red' }}>*</span></label>
                   <select value={genre} onChange={(e) => setGenre(e.target.value)} style={{ marginBottom: 15, height: 40, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }} >
                     <option disabled value="-1">
-                      Sélectionnez une genre
+                      Select a genre
                     </option>
                     <option value="science-fiction">science-fiction</option>
-                    <option value="drame">drame</option>
-                    <option value="documentaire">documentaire</option>
-                    <option value="comedie">comedie</option>
+                    <option value="drama">drama</option>
+                    <option value="documentary">documentary</option>
+                    <option value="comedy">comedy</option>
                   </select>
 
-                  <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDÉO À LA DEMANDE</label>
+                  <label htmlFor='videoOnDemand' style={{ paddingBottom: 5 }}>VIDEO ON DEMAND</label>
                   <textarea type='text' name='videoOnDemand' value={videoOnDemand} onChange={(e) => setVideoOnDemand(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='crew' style={{ paddingBottom: 5 }}>ÉQUIPE</label>
+                  <label htmlFor='crew' style={{ paddingBottom: 5 }}>CREW</label>
                   <textarea type='text' name='crew' value={crew} onChange={(e) => setCrew(e.target.value)} style={{ height: '10rem', marginBottom: 15, fontSize: '1rem', border: '1px solid var(--color-gray8)', borderRadius: 4 }} />
 
-                  <label htmlFor='download'>TÉLÉCHARGEMENT</label>
+                  <label htmlFor='download'>DOWNLOAD</label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     1 document only = 1MB max.
                   </small>
@@ -270,20 +271,16 @@ const AddFilm = () => {
                   )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
-
                   <label htmlFor='images'>IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    Vous pouvez sélectionner jusqu’à trois images.<br />La première image sélectionnée sera affichée en haut de l’écran.<br />
-                    1 image = 100KB max.(1536x864px)
-                  </small>
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
                   <input
                     type='file'
                     name='images'
                     onChange={handleImageChange}
                     style={{ marginBottom: 15 }}
                     id="image-input" />
-                  {images && images.map((image, index) =>
-                  (
+                  {images && images.map((image, index) => (
                     <React.Fragment key={index}>
                       <div style={{ position: 'relative' }} key={index}>
                         <ImagePreview
@@ -297,14 +294,12 @@ const AddFilm = () => {
                     </React.Fragment>
                   ))}
                 </div>
-
               </div>
-
               <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>CREER</button>
+                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>SUBMIT</button>
                 {showConfettiExplosion && <ConfettiExplosion />}
-                <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Cancel</Link>
               </div>
+
             </form>
             <ScrollToTop />
           </div>
@@ -314,8 +309,8 @@ const AddFilm = () => {
     </section >
   )
 }
-AddFilm.propTypes = {
+AddFilmEnTop.propTypes = {
   imageUrl: PropTypes.string,
   onRemove: PropTypes.func
 };
-export default AddFilm
+export default AddFilmEnTop

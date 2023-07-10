@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import myApi from '../../service/service'
-import { useNavigate, useParams, Link } from 'react-router-dom'
-import { AiOutlineLeft } from 'react-icons/ai'
+import { useNavigate, useParams } from 'react-router-dom'
 import PDFViewer from '../../components/PDFViewer';
 import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
-import './Admin.css'
+
 
 const EditFilm = () => {
   const { frenchId } = useParams()
@@ -195,23 +194,15 @@ const EditFilm = () => {
 
   return (
     <section>
-      <div className='EditFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
-        <div style={{ width: '80%' }}>
-          <Link to={`/admin/films/edit/${frenchId}`} style={{ display: "flex", alignItems: "center", color: 'black' }}>
-            <AiOutlineLeft /> Back
-          </Link>
-
-          <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
-
-            <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
-
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} />
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-                  <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingLeft: 30, paddingTop: 30 }}>EDIT THE FILM</h3>
-                  <h4 style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, paddingBottom: 30 }}>{title}</h4>
-                </div>
+      <div className='EditFilm' >
+        <div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', gap: 200, marginLeft: 30, marginTop: 30 }}>
+              <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', gap: 20 }}>
+                <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={54} height={54} />
+                <h3 style={{ color: 'lightgray', fontSize: '20px' }}>EDIT THE FILM</h3>
               </div>
+              <h4>{title}</h4>
             </div>
 
 
@@ -316,9 +307,8 @@ const EditFilm = () => {
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>EDIT</button>
+                <button type='submit' style={{ borderRadius: '5px', backgroundColor: 'var(--color-blue)', padding: '5px', fontSize: '16px', fontWeight: 400 }}>UPDATE</button>
                 {showConfettiExplosion && <ConfettiExplosion />}
-                <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Cancel</Link>
               </div>
             </form>
             <ScrollToTop />

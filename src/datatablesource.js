@@ -6,13 +6,13 @@ export const filmColumns = [
     width: 350,
   },
   {
-    field: 'directedBy',
-    headerName: 'Directer',
-    width: 200,
+    field: 'category',
+    headerName: 'Category',
+    width: 150,
   },
   {
     field: 'createdYear',
     headerName: 'Created Year',
-    width: 100,
+    width: 150,
   },
 ]

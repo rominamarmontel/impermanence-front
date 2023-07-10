@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
 import myApi from '../../service/service'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-import { AiOutlineLeft } from 'react-icons/ai'
 import PDFViewer from '../../components/PDFViewer';
 import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
-import './Admin.css'
 
-const EditFilm = () => {
+const EditFilmFr = () => {
   const { frenchId } = useParams()
-  console.log(frenchId)
   const [film, setFilm] = useState('')
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('-1')
@@ -199,36 +196,22 @@ const EditFilm = () => {
       });
   };
 
-  const hadleDelete = () => {
-    myApi.delete(`/films/edit/${frenchId}`).then(() => {
-      navigate('/admin/top')
-    })
-  }
-
-
   return (
     <section>
-      <div className='EditFilm' style={{ width: '100vw', display: 'flex', justifyContent: 'center', paddingTop: 130 }}>
-        <div style={{ width: '80%' }}>
-          <Link to='/admin/top' style={{ display: "flex", alignItems: "center", color: 'black' }}>
-            <AiOutlineLeft /> Retour
-          </Link>
-
-          <div style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--color-gray3)', borderRadius: '10px', backgroundColor: 'var(--color-gray3)' }}>
-
-            <div style={{ backgroundColor: 'var(--color-gray8)', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
-
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
-                <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} />
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-                  <h3 style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Source Sans Pro', fontWeight: 600, fontSize: 30, color: 'white', paddingTop: 30, paddingLeft: 30 }}>MODIFIER UN FILM</h3>
-                  <h4 style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, paddingBottom: 30 }}>{film.title}</h4>
+      <div className='EditFilm' >
+        <div >
+          <div>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'Nunito', paddingTop: 30, paddingLeft: 30 }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} style={{ paddingRight: 20 }} />
+                  <h3 style={{ color: 'lightgray', fontSize: '20px' }}>MODIFIER UN FILM</h3>
+                  <h4 style={{ paddingLeft: 165 }}>{film.title}</h4>
                 </div>
-                <Link to={`/admin/films/edit/${frenchId}/en`}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={42} height={24} style={{ marginLeft: 50, paddingLeft: 20 }} />
-                    <p style={{ fontFamily: 'Source Sans Pro', fontWeight: 600, marginLeft: 10 }}>MODIFIER</p>
+                <Link to={`/admin/films/edit/${frenchId}/en`} >
+                  <div style={{ display: 'flex', alignItems: 'center', padding: '5px', color: 'green', fontSize: '16px', fontWeight: 400, border: '1px solid green', borderRadius: '5px', marginRight: 30 }}>
+                    <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={24} height={24} />
+                    <p style={{ fontFamily: 'Nunito', fontWeight: 600, marginLeft: 10 }}>MODIFIER</p>
                   </div>
                 </Link>
               </div>
@@ -335,27 +318,21 @@ const EditFilm = () => {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                  <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>MODIFIER</button>
+                  <button type='submit' style={{ borderRadius: '5px', backgroundColor: 'var(--color-blue)', fontSize: '16px', fontWeight: 400, padding: '5px' }}>MODIFIER</button>
                   {showConfettiExplosion && <ConfettiExplosion />}
-                  <button onClick={hadleDelete} style={{ borderRadius: '3px', backgroundColor: 'var(--color-gray8)' }}>SUPPRIMER</button>
-                  <Link to='/admin/top' style={{ borderRadius: '3px', color: 'red', textDecoration: 'underline' }}>Annuler</Link>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', color: 'red' }}>
-                  <p>!!ATTENTION!!</p>
-                  <small>Lorsque vous appuyez sur le bouton de suppression, à la fois le film en version française et le film en version anglaise associé seront supprimés.Une fois que vous appuyez sur le bouton de suppression, il n’est pas possible de revenir en arrière.</small>
                 </div>
               </div>
             </form>
             <ScrollToTop />
           </div>
         </div>
-      </div>
+      </div >
 
-    </section>
+    </section >
   )
 }
-EditFilm.propTypes = {
+EditFilmFr.propTypes = {
   imageUrl: PropTypes.string,
   onRemove: PropTypes.func
 };
-export default EditFilm
+export default EditFilmFr

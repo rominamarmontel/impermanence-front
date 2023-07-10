@@ -40,7 +40,7 @@ const FilmDetailsEn = () => {
   }, []);
 
   useEffect(() => {
-    const index = sortedEnglish.findIndex((film) => film.french._id === frenchId);
+    const index = sortedEnglish.findIndex((film) => (film?.french?._id === frenchId))
     if (index !== -1) {
       setCurrentIndex(index);
     }
