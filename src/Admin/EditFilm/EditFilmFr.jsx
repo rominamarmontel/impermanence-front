@@ -30,7 +30,8 @@ const EditFilmFr = () => {
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
   const [downloadUrl, setDownloadUrl] = useState(null)
-  const [images, setImages] = useState([]);
+  const [thumbnailImages, setThumbnailImages] = useState([]);
+  const [detailImages, setDetailImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
 
@@ -63,7 +64,8 @@ const EditFilmFr = () => {
       setGenre(response.data.genre || '-1')
       setVideoOnDemand(response.data.videoOnDemand || '')
       setDownload(response.data.download || null)
-      setImages(response.data.images || [])
+      setThumbnailImages(response.data.thumbnailImages || [])
+      setDetailImages(response.data.detailImages || [])
     })
   }, [frenchId])
 
@@ -79,7 +81,7 @@ const EditFilmFr = () => {
     if (!genre || genre === '-1') {
       errorMessage += 'Genre is required.\n';
     }
-    if (images.length === 0) {
+    if (thumbnailImages.length === 0 || detailImages.length === 0) {
       errorMessage += 'At least one image is required.\n';
     }
     if (errorMessage !== '') {
@@ -107,13 +109,21 @@ const EditFilmFr = () => {
     formData.append('videoOnDemand', videoOnDemand)
     formData.append('videoOnDemandUrls', JSON.stringify(videoOnDemandUrls));
     formData.append('crew', crew)
-    if (images && images.length > 0) {
-      images.forEach(image => {
-        formData.append('images', image.file);
+    if (thumbnailImages && thumbnailImages.length > 0) {
+      thumbnailImages.forEach(image => {
+        formData.append('thumbnailImages', image.file);
       })
     } else {
-      formData.delete('images')
+      formData.delete('thumbnailImages')
     }
+    if (detailImages && detailImages.length > 0) {
+      detailImages.forEach(image => {
+        formData.append('detailImages', image.file);
+      })
+    } else {
+      formData.delete('detailImages')
+    }
+
 
     if (download && download.size > 0) {
       formData.append('download', download);
@@ -144,7 +154,8 @@ const EditFilmFr = () => {
         setVideoOnDemand('')
         setCrew('')
         setDownload('')
-        setImages('')
+        setThumbnailImages('')
+        setDetailImages('')
         setShowConfettiExplosion(true)
         setTimeout(() => {
           setShowConfettiExplosion(false)
@@ -170,9 +181,10 @@ const EditFilmFr = () => {
     }
   };
 
-  const handleImageChange = (e) => {
+  const handleThumbnailImageChange = (e) => {
     const files = Array.from(e.target.files);
     const newImages = [];
+
     const loadImage = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -188,8 +200,33 @@ const EditFilmFr = () => {
         images.forEach((image) => {
           newImages.push(image);
         });
-        setImages((prevImages) => [...prevImages, ...newImages]);
-        // localStorage.setItem('updatedImages', JSON.stringify(newImages));
+        setThumbnailImages((prevImages) => [...prevImages, ...newImages]);
+      })
+      .catch((error) => {
+        console.error('Error loading images:', error);
+      });
+  };
+
+  const handleDetailImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = [];
+
+    const loadImage = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve({ file, imageUrl: reader.result });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    };
+    Promise.all(files.map(loadImage))
+      .then((images) => {
+        images.forEach((image) => {
+          newImages.push(image);
+        });
+        setDetailImages((prevImages) => [...prevImages, ...newImages]);
       })
       .catch((error) => {
         console.error('Error loading images:', error);
@@ -307,12 +344,34 @@ const EditFilmFr = () => {
                   )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
-                  <label htmlFor='image'>IMAGE</label>
+                  <label htmlFor='thumbnailImages'>Image for all films<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    Vous ne pouvez pas modifier ou ajouter d’images aux images existantes.<br />En cas d’ajout ou de modification, les images existantes seront réinitialisées. <br />Maximum 3 1 image = 100KB max.(1536x864px) </small>
-                  <input type='file' name='images' onChange={handleImageChange} style={{ marginBottom: 15 }} />
-                  {images &&
-                    <img src={images} alt='' style={{ width: '200px', height: 'auto' }} />
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
+                  <input
+                    type='file'
+                    name='thumbnailImages'
+                    onChange={handleThumbnailImageChange}
+                    style={{ marginBottom: 15 }}
+                    id="thumbnail-image-input"
+                    multiple
+                  />
+                  {thumbnailImages &&
+                    <img src={thumbnailImages} alt='' style={{ width: '200px', height: 'auto' }} />
+                  }
+
+                  <label htmlFor='detailImages'>Image for Details Page<span style={{ color: 'red' }}>*</span></label>
+                  <small style={{ color: 'red', lineHeight: '1rem' }}>
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
+                  <input
+                    type='file'
+                    name='detailImages'
+                    onChange={handleDetailImageChange}
+                    style={{ marginBottom: 15 }}
+                    id="detail-image-input"
+                    multiple
+                  />
+                  {detailImages &&
+                    <img src={detailImages} alt='' style={{ width: '200px', height: 'auto' }} />
                   }
                 </div>
               </div>

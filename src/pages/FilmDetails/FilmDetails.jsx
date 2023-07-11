@@ -83,7 +83,7 @@ const FilmDetails = () => {
   };
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const imageCount = films[currentIndex]?.images.length;
+  const imageCount = films[currentIndex]?.detailImages.length;
 
   useEffect(() => {
     if (imageCount >= 2) {
@@ -126,7 +126,7 @@ const FilmDetails = () => {
                 <div className='FilmDetails-right-position'>
                   {currentImageIndex < imageCount && imageCount >= 2 ? (
                     <div className='image-container'>
-                      {films[currentIndex]?.images.map((image, index) => (
+                      {films[currentIndex]?.detailImages.map((image, index) => (
                         <img
                           key={index}
                           src={image}
@@ -139,7 +139,7 @@ const FilmDetails = () => {
                     <div className='image-container'>
                       <picture>
                         <div>
-                          <img src={films[currentIndex].images[0]} alt="Film" />
+                          <img src={films[currentIndex].detailImages[0]} alt="Film" />
                         </div>
                       </picture>
                     </div>

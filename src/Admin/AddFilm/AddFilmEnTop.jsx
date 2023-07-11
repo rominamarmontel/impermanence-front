@@ -32,7 +32,8 @@ const AddFilmEnTop = () => {
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
   const [downloadUrl, setDownloadUrl] = useState(null)
-  const [images, setImages] = useState([]);
+  const [thumbnailImages, setThumbnailImages] = useState([]);
+  const [detailImages, setDetailImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
   const [showConfettiExplosion, setShowConfettiExplosion] = useState(false)
 
@@ -58,7 +59,7 @@ const AddFilmEnTop = () => {
     if (!genre || genre === '-1') {
       errorMessage += 'Genre is required.\n';
     }
-    if (images.length === 0) {
+    if (thumbnailImages.length === 0 || detailImages.length === 0) {
       errorMessage += 'At least one image is required.\n';
     }
     if (errorMessage !== '') {
@@ -88,8 +89,12 @@ const AddFilmEnTop = () => {
       formData.append('videoOnDemand', videoOnDemand)
       formData.append('videoOnDemandUrls', JSON.stringify(videoOnDemandUrls));
       formData.append('crew', crew)
-      images.forEach(image => {
-        formData.append('images', image.file);
+      thumbnailImages.forEach((image) => {
+        formData.append('thumbnailImages', image.file);
+      });
+
+      detailImages.forEach((image) => {
+        formData.append('detailImages', image.file);
       });
       if (download && download.size > 0) {
         formData.append('download', download);
@@ -112,9 +117,37 @@ const AddFilmEnTop = () => {
     }
   };
 
-  const handleImageChange = (e) => {
+  const handleThumbnailImageChange = (e) => {
     const files = Array.from(e.target.files);
     const newImages = [];
+
+    const loadImage = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve({ file, imageUrl: reader.result });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    };
+
+    Promise.all(files.map(loadImage))
+      .then((images) => {
+        images.forEach((image) => {
+          newImages.push(image);
+        });
+        setThumbnailImages((prevImages) => [...prevImages, ...newImages]);
+      })
+      .catch((error) => {
+        console.error('Error loading images:', error);
+      });
+  };
+
+  const handleDetailImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = [];
+
     const loadImage = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -130,12 +163,13 @@ const AddFilmEnTop = () => {
         images.forEach((image) => {
           newImages.push(image);
         });
-        setImages((prevImages) => [...prevImages, ...newImages]);
+        setDetailImages((prevImages) => [...prevImages, ...newImages]);
       })
       .catch((error) => {
         console.error('Error loading images:', error);
       });
   };
+
 
   const handleDownloadChange = (e) => {
     const file = e.target.files[0];
@@ -151,16 +185,27 @@ const AddFilmEnTop = () => {
     }
   };
 
-  const handleImageRemove = (index) => {
-    setImages((prevImages) => {
+  const handleThumbnailImageRemove = (index) => {
+    setThumbnailImages((prevImages) => {
       const newImages = [...prevImages];
       const removedImage = newImages.splice(index, 1)[0];
       URL.revokeObjectURL(removedImage.imageUrl);
-      const inputElement = document.getElementById('image-input');
+      const inputElement = document.getElementById('thumbnail-image-input');
       inputElement.value = '';
       return newImages;
     });
   };
+  const handleDetailImageRemove = (index) => {
+    setDetailImages((prevImages) => {
+      const newImages = [...prevImages];
+      const removedImage = newImages.splice(index, 1)[0];
+      URL.revokeObjectURL(removedImage.imageUrl);
+      const inputElement = document.getElementById('detail-image-input');
+      inputElement.value = '';
+      return newImages;
+    });
+  };
+
 
   return (
     <section >
@@ -271,23 +316,52 @@ const AddFilmEnTop = () => {
                   )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
-                  <label htmlFor='images'>IMAGE<span style={{ color: 'red' }}>*</span></label>
+
+                  <label htmlFor='thumbnailImages'>Image for all films<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
                   <input
                     type='file'
-                    name='images'
-                    onChange={handleImageChange}
+                    name='thumbnailImages'
+                    onChange={handleThumbnailImageChange}
                     style={{ marginBottom: 15 }}
-                    id="image-input" />
-                  {images && images.map((image, index) => (
+                    id="thumbnail-image-input"
+                    multiple
+                  />
+                  {thumbnailImages && thumbnailImages.map((image, index) =>
+                  (
                     <React.Fragment key={index}>
                       <div style={{ position: 'relative' }} key={index}>
                         <ImagePreview
                           imageUrl={image.imageUrl}
                         />
                         <AiOutlineClose
-                          onClick={() => handleImageRemove(index)}
+                          onClick={() => handleThumbnailImageRemove(index)}
+                          style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'white' }}
+                        />
+                      </div>
+                    </React.Fragment>
+                  ))}
+                  <label htmlFor='detailImages'>Image for Details Page<span style={{ color: 'red' }}>*</span></label>
+                  <small style={{ color: 'red', lineHeight: '1rem' }}>
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
+                  <input
+                    type='file'
+                    name='detailImages'
+                    onChange={handleDetailImageChange}
+                    style={{ marginBottom: 15 }}
+                    id="detail-image-input"
+                    multiple
+                  />
+                  {detailImages && detailImages.map((image, index) =>
+                  (
+                    <React.Fragment key={index}>
+                      <div style={{ position: 'relative' }} key={index}>
+                        <ImagePreview
+                          imageUrl={image.imageUrl}
+                        />
+                        <AiOutlineClose
+                          onClick={() => handleDetailImageRemove(index)}
                           style={{ position: 'absolute', top: 0, left: 0, backgroundColor: 'white' }}
                         />
                       </div>

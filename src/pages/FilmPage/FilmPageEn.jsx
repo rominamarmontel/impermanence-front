@@ -102,7 +102,7 @@ const FilmPageEn = () => {
                                 cloudName={CLOUD_NAME}
                                 secure={true}
                                 upload_preset="my_unsigned_preset"
-                                publicId={film.images[0]}
+                                publicId={film.thumbnailImages[0]}
                                 style={{
                                   maxWidth: '100%',
                                   objectFit: 'cover',
