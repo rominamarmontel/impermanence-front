@@ -1,9 +1,9 @@
 .Spinner {
   margin-top: 50vh;
   margin-left: 45vw;
-  z-index: 1;
+  z-index: 0;
   background-color: white;
-  transition-duration: 0.5s;
+  transition-duration: 0.8s;
 }
 /* .loader {
   margin: 50vh auto;
