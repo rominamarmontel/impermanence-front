@@ -5,6 +5,7 @@
   background-color: white;
   transition-duration: 0.8s;
   height: 100vh;
+  padding-bottom: 50vh;
 }
 /* .loader {
   margin: 50vh auto;
