@@ -20,7 +20,7 @@
   font-weight: 800;
   padding-bottom: 1rem;
   color: #000000;
-  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
+  line-height: calc(14px + 27 * ((100vw - 320px) / 1120));
 }
 .logo-style:hover {
   color: var(--color-gray8);
@@ -31,14 +31,14 @@
   text-align: center;
   padding-bottom: 1rem;
   color: white;
-  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
+  line-height: calc(14px + 27 * ((100vw - 320px) / 1120));
 }
 .logo-style-scroll:hover {
   font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
   font-family: 'Charm', cursive;
   text-align: center;
   padding-bottom: 1rem;
-  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
+  line-height: calc(14px + 27 * ((100vw - 320px) / 1120));
   color: orangered;
 }
 .Navbar-container {
