@@ -19,7 +19,7 @@
 .FilmPage-category::after{
   content:"";
   display: inline-block;
-  width:31.5%;
+  width:30%;
 }
 .category-title {
   font-family: 'Charm', cursive;
