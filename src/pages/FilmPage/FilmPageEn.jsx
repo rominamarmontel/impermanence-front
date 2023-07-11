@@ -20,7 +20,6 @@ const FilmPageEn = () => {
         const response = await myApi.get(`/en/films`);
         const englishArray = response.data.map((oneData) => oneData);
         setFilms(englishArray);
-        console.log(englishArray)
         setLoading(false);
       } catch (error) {
         console.error(error);
