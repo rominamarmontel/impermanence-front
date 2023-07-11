@@ -88,7 +88,7 @@ const FilmPageEn = () => {
                       < div className='FilmPage-content' key={film._id} >
                         <Link to={`/films/${film._id}`}>
                           <div className='FilmPage-position'>
-                            <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                            <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', backgroundColor: 'black' }}>
                               <picture >
                                 {film.thumbnailImages.length ? (
                                   <img
