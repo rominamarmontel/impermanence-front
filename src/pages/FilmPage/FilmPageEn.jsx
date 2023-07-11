@@ -5,10 +5,12 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
+import { Image, Transformation } from 'cloudinary-react';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState(null);
   const [loading, setLoading] = useState(true)
+  const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_NAME
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -86,28 +88,32 @@ const FilmPageEn = () => {
                     return (
                       < div className='FilmPage-content' key={film._id} >
                         <Link to={`/films/${film.french._id}/en`}>
-                          <div className='FilmPage-position'>
-                            {/* <picture>
-                            {film && film.images.length ? (
-                              <img src={`${film.images[0].replace('/upload/', '/upload/w_400/')}`} alt={film.title} className='film-image' />
-                            ) : ('')}
-                          </picture> */}
-                            <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                              <picture>
-                                <source
-                                  media="(max-width: 1350px)"
-                                  srcSet={`${film.images[0].replace('/upload/', '/upload/w_577/')} 577w`}
-                                />
-                                <source
-                                  media="(min-width: 1351px)"
-                                  srcSet={`${film.images[0].replace('/upload/', '/upload/w_400/')} 400w`}
-                                />
-                                <img
-                                  src={film.images[0]}
-                                  alt={film.title}
-                                  style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }}
-                                />
-                              </picture>
+                          <div>
+                            <div
+                              className='FilmPage-position'
+                              style={{
+                                display: 'inline-block',
+                                margin: '0 auto',
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                aspectRatio: '16/9'
+                              }}
+                            >
+                              <Image
+                                cloudName={CLOUD_NAME}
+                                secure={true}
+                                upload_preset="my_unsigned_preset"
+                                publicId={film.images[0]}
+                                style={{
+                                  maxWidth: '100%',
+                                  objectFit: 'cover',
+                                  transform: 'scale(1.1)',
+                                  objectPosition: '100% 100%',
+                                  transitionDuration: '0.5s'
+                                }}
+                              >
+                                <Transformation width="400" crop="scale" />
+                              </Image>
                             </div>
                             <div className='film-title'>
                               <h4>{film && film.title.toUpperCase()}</h4>

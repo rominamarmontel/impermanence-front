@@ -9,6 +9,9 @@ const Header = () => {
     <div className="header">
       <div className="wrapper">
         <div className="items">
+          <div className="item">
+            Admin Panel
+          </div>
           {/* <div className="item">
             <LanguageOutlinedIcon className="icon" />
           </div>

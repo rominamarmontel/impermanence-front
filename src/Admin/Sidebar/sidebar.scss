@@ -6,7 +6,7 @@
   font-family: 'Nunito', sans-serif;
 
   .top {
-    height: 50px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,13 +14,16 @@
     .logo {
       font-size: 20px;
       font-weight: bold;
-      color: #6439ff;
+      color:gray;
+      text-align: center;
+      font-family: 'Charm', cursive;
     }
   }
 
   hr {
     height: 0;
-    border: 0.5px solid rgb(230, 227, 227);
+    // border: 0.5px solid rgb(230, 227, 227);
+    border: none;
   }
 
   .center {
@@ -51,7 +54,8 @@
 
         .icon {
           font-size: 18px;
-          color: #7451f8;
+          // color: #7451f8;
+          color: var(--color-blue);
         }
 
         span{

@@ -197,7 +197,7 @@ const EditFilm = () => {
       <div className='EditFilm' >
         <div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', gap: 200, marginLeft: 30, marginTop: 30 }}>
+            <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', gap: 200, paddingLeft: 30, paddingTop: 15, paddingBottom: 15 }}>
               <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', gap: 20 }}>
                 <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={54} height={54} />
                 <h3 style={{ color: 'lightgray', fontSize: '20px' }}>EDIT THE FILM</h3>
@@ -208,7 +208,7 @@ const EditFilm = () => {
 
 
             <form onSubmit={handleSubmit} style={{
-              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px'
+              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>

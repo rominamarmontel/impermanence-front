@@ -170,18 +170,18 @@ const AddFilmEnTop = () => {
 
             <div>
 
-              <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', paddingTop: 30, paddingLeft: 30 }}>
-                <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} style={{ paddingRight: 20 }} />
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: 'Nunito', paddingTop: 15, paddingLeft: 30, paddingBottom: 15 }}>
+                <div style={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                  <img src='https://cdn.icon-icons.com/icons2/3665/PNG/512/gb_flag_great_britain_england_union_jack_english_icon_228674.png' alt='England' width={72} height={54} style={{ paddingRight: 20 }} />
                   <h4 style={{ fontFamily: 'Nunito', fontWeight: 600 }}>{film.title}</h4>
                 </div>
+                <p style={{ textAlign: 'right', fontFamily: 'Nunito', paddingRight: 30 }}><span style={{ color: 'red' }}>*</span>champ is required</p>
               </div>
-              <p style={{ textAlign: 'right', fontFamily: 'Nunito', paddingRight: 30 }}><span style={{ color: 'red' }}>*</span>champ is required</p>
             </div>
 
             <form onSubmit={handleSubmit} style={{
               display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue'
-              , color: 'var(--color-gray7)', fontSize: '14px'
+              , color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>

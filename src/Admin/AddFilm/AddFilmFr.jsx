@@ -162,19 +162,20 @@ const AddFilmFr = () => {
     <section>
       <div className='AddFilm' >
         <div >
-          <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'Nunito', paddingTop: 30, paddingLeft: 30 }}>
-            <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} style={{ paddingRight: 20 }} />
-            <h3>CREE UN NOUVEAU FILM</h3>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: 'Nunito', paddingTop: 15, paddingLeft: 30, paddingBottom: 15 }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src='https://cdn.icon-icons.com/icons2/266/PNG/512/France_29740.png' alt='France' width={72} height={54} style={{ paddingRight: 20 }} />
+              <h3>CREE UN NOUVEAU FILM</h3>
+            </div>
+            <p style={{ textAlign: 'right', fontFamily: 'Nunito', paddingRight: 30, }}><span style={{ color: 'red' }}>*</span>est obligatoire</p>
           </div>
-          <p style={{ textAlign: 'right', fontFamily: 'Nunito', paddingRight: 30, }}><span style={{ color: 'red' }}>*</span>est obligatoire</p>
         </div>
-        <form onSubmit={handleSubmit} style={{
-          display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '60vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)'
 
+        <form onSubmit={handleSubmit} style={{
+          display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
         }}>
           <div style={{ display: 'flex' }} className='form-style'>
             <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
-
               <label htmlFor='category' style={{ paddingBottom: 10 }}>CATEGORIE<span style={{ color: 'red' }}>*</span></label>
               <select value={category} name='' id='' onChange={(e) => setCategory(e.target.value)} style={{ height: 40, marginBottom: 15, border: '1px solid var(--color-gray8)', borderRadius: 4, fontSize: '16px', color: 'var(--color-gray8)' }}>
                 <option disabled value="-1">
