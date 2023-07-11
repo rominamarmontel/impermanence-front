@@ -20,6 +20,7 @@
   font-weight: 800;
   padding-bottom: 1rem;
   color: #000000;
+  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
 }
 .logo-style:hover {
   color: var(--color-gray8);
@@ -30,12 +31,14 @@
   text-align: center;
   padding-bottom: 1rem;
   color: white;
+  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
 }
 .logo-style-scroll:hover {
   font-size: calc(5px + 27 * ((100vw - 320px) / 1120));
   font-family: 'Charm', cursive;
   text-align: center;
   padding-bottom: 1rem;
+  line-height: calc(16px + 27 * ((100vw - 320px) / 1120));
   color: orangered;
 }
 .Navbar-container {
@@ -81,7 +84,6 @@
 .change_langue {
   color: var(--color-red);
   font-weight: bold;
-  /* text-shadow: 1px 1px 1px rgb(172, 21, 21); */
   font-family: 'Source Sans Pro', sans-serif;;
   cursor: pointer;
 }
@@ -146,7 +148,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 76px;
+    height: 90px;
     background-color:transparent;
     z-index: 9996;
   }
@@ -158,10 +160,10 @@
     top: 13px;
     font-family: 'Charm', cursive;
     font-size: 1.5rem;
-    line-height: 1.5rem;
     text-align: center;
     margin-left: 2rem;
     color: black;
+    line-height: 2rem;
   }
   #hamburgerMenu-nav {
     position:fixed;
