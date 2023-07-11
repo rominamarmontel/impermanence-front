@@ -334,9 +334,9 @@ const EditFilm = () => {
                   )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
-                  <label htmlFor='thumbnailImages'>Image for all films<span style={{ color: 'red' }}>*</span></label>
+                  <label htmlFor='thumbnailImages'>SMALL IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
+                    You can select up to 1 image.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(942x530px)</small>
                   <input
                     type='file'
                     name='thumbnailImages'
@@ -349,9 +349,9 @@ const EditFilm = () => {
                     <img src={thumbnailImages} alt='' style={{ width: '200px', height: 'auto' }} />
                   }
 
-                  <label htmlFor='detailImages'>Image for Details Page<span style={{ color: 'red' }}>*</span></label>
+                  <label htmlFor='detailImages'>LARGE IMAGE<span style={{ color: 'red' }}>*</span></label>
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
-                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 100KB max.(1536x864px)</small>
+                    You can select up to three images.<br />The first image selected will be displayed on the top screen.<br />1 image = 1MB max.(1920x1080px)</small>
                   <input
                     type='file'
                     name='detailImages'
