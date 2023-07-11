@@ -95,13 +95,14 @@ const FilmPage = () => {
                               margin: '0 auto',
                               overflow: 'hidden',
                               cursor: 'pointer',
-                              // aspectRatio: '16/9'
+                              aspectRatio: '16/9'
                             }}
                           >
                             <Image
                               cloudName={CLOUD_NAME}
                               secure={true}
                               upload_preset="my_unsigned_preset"
+                              alt={film.title}
                               publicId={film.thumbnailImages[0]}
                               style={{
                                 maxWidth: '100%',
