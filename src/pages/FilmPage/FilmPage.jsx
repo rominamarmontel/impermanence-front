@@ -95,7 +95,7 @@ const FilmPage = () => {
                               margin: '0 auto',
                               overflow: 'hidden',
                               cursor: 'pointer',
-                              aspectRatio: '16/9'
+                              // aspectRatio: '16/9'
                             }}
                           >
                             <Image
@@ -111,7 +111,7 @@ const FilmPage = () => {
                                 transitionDuration: '0.5s'
                               }}
                             >
-                              <Transformation width="400" crop="scale" />
+                              <Transformation width="400" height="225" crop="scale" />
                             </Image>
                           </div>
                           <div className='film-title'>
