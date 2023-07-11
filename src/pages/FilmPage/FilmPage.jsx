@@ -108,7 +108,8 @@ const FilmPage = () => {
                                 objectFit: 'cover',
                                 transform: 'scale(1.1)',
                                 objectPosition: '100% 100%',
-                                transitionDuration: '0.5s'
+                                transitionDuration: '0.5s',
+                                aspectRatio: '16/9'
                               }}
                             >
                               <Transformation width="400" height="225" crop="scale" />
