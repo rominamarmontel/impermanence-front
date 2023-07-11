@@ -219,7 +219,7 @@ const EditFilmFr = () => {
 
 
             <form onSubmit={handleSubmit} style={{
-              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
+              display: 'flex', flexDirection: 'column', paddingBottom: '3rem', fontFamily: 'Helvetica Neue', color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
                 <div style={{ display: 'flex', flexDirection: 'column', padding: 30, flex: 1 }}>
@@ -316,12 +316,8 @@ const EditFilmFr = () => {
                   }
                 </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                  <button type='submit' style={{ borderRadius: '5px', backgroundColor: 'var(--color-blue)', fontSize: '16px', fontWeight: 400, padding: '5px' }}>MODIFIER</button>
-                  {showConfettiExplosion && <ConfettiExplosion />}
-                </div>
-              </div>
+              <button type='submit' >MODIFIER</button>
+              {showConfettiExplosion && <ConfettiExplosion />}
             </form>
             <ScrollToTop />
           </div>

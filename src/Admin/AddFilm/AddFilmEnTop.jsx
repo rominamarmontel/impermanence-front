@@ -180,7 +180,7 @@ const AddFilmEnTop = () => {
             </div>
 
             <form onSubmit={handleSubmit} style={{
-              display: 'flex', flexDirection: 'column', paddingBottom: '2rem', fontFamily: 'Helvetica Neue'
+              display: 'flex', flexDirection: 'column', paddingBottom: '3rem', fontFamily: 'Helvetica Neue'
               , color: 'var(--color-gray7)', fontSize: '14px', overflowY: "scroll", width: '100%', height: '70vh', borderTop: '0.5px solid rgb(231, 228, 228)', borderBottom: '0.5px solid rgb(231, 228, 228)', backgroundColor: 'rgb(231, 228, 228)'
             }}>
               <div style={{ display: 'flex' }} className='form-style'>
@@ -295,11 +295,8 @@ const AddFilmEnTop = () => {
                   ))}
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', alignItems: 'center' }}>
-                <button type='submit' style={{ borderRadius: '3px', backgroundColor: 'var(--color-blue)' }}>SUBMIT</button>
-                {showConfettiExplosion && <ConfettiExplosion />}
-              </div>
-
+              <button type='submit'>SUBMIT</button>
+              {showConfettiExplosion && <ConfettiExplosion />}
             </form>
             <ScrollToTop />
           </div>
