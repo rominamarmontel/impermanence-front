@@ -10,16 +10,14 @@
   padding-top: 8rem;
 }
 .FilmPage-category {
-  /* width: 90%; */
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.FilmPage-category::after {
+.FilmPage-category::after{
   content:"";
   display: inline-block;
-  width:31.3%;
+  width:31.5%;
 }
 .category-title {
   font-family: 'Charm', cursive;
@@ -30,12 +28,28 @@
 }
 .FilmPage-content {
   max-width: calc((100vw - 16%) /3);
-  height: auto;
+  height:auto;
   flex-grow: 1;
   display: flex;
   justify-content: center;
 }
-
+/* .FilmPage-content picture {
+  display: inline-block;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+} */
+/* .FilmPage-content img {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: 100% 100%;
+  transition-duration: 0.5s;
+  cursor: pointer;
+} */
 .FilmPage-position img:hover {
   transform: scale(1.2);
   filter: brightness(110%);
@@ -71,11 +85,7 @@
   .FilmPage-content {
     max-width: calc((100vw - 16%) /2);
   }
-  .FilmPage-position > img {
-    width: 578px;
-  }
 }
-
 @media screen and (max-width: 992px) {
   .FilmPage-container {
     width: 95%;
@@ -90,6 +100,12 @@
   .category-section {
     padding-top: 68px;
   }
+  .FilmPage-position {
+    max-width: 992px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .category-title {
     font-family: 'Charm', cursive;
     font-weight: 800;
@@ -97,10 +113,25 @@
     color: black;
     text-align: right;
   }
-  .FilmPage-position > img {
-    width: 942px;
+  /* .FilmPage-content picture {
+    display: unset;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
   }
-  .film-image:hover {
+  .film-image {
+    box-sizing: border-box;
+    max-width: 100%;
+    height: auto;
+    transform: scale(1);
+    cursor: pointer;
+    transition-duration: unset;
+    object-fit: cover;
+    overflow: hidden;
+  } */
+  .FilmPage-position img:hover {
     transform: scale(1);
   }
   .film-title {

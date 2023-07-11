@@ -5,13 +5,13 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
-import { Image, Transformation } from 'cloudinary-react';
+// import { Image, Transformation } from 'cloudinary-react';
 
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true)
-  const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_NAME
+  // const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_NAME
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -87,34 +87,18 @@ const FilmPage = () => {
                   {films.map((film) => (
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
-                        <div>
-                          <div
-                            className='FilmPage-position'
-                            style={{
-                              display: 'inline-block',
-                              margin: '0 auto',
-                              overflow: 'hidden',
-                              cursor: 'pointer',
-                              aspectRatio: '16/9'
-                            }}
-                          >
-                            <Image
-                              cloudName={CLOUD_NAME}
-                              secure={true}
-                              upload_preset="my_unsigned_preset"
-                              alt={film.title}
-                              publicId={film.thumbnailImages[0]}
-                              style={{
-                                maxWidth: '100%',
-                                objectFit: 'cover',
-                                transform: 'scale(1.1)',
-                                objectPosition: '100% 100%',
-                                transitionDuration: '0.5s',
-                                aspectRatio: '16/9'
-                              }}
-                            >
-                              <Transformation width="400" height="225" crop="scale" />
-                            </Image>
+                        <div className='FilmPage-position'>
+                          <div style={{ display: 'inline-block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                            <picture >
+                              {film.thumbnailImages.length ? (
+                                <img
+                                  sizes="(max-width: 1400px) 100vw, 1400px"
+                                  srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')} 400w,
+            ${film.thumbnailImages[0].replace('/upload/', '/upload/w_924/')} 924w,
+            ${film.thumbnailImages[0].replace('/upload/', '/upload/w_577/')} 577w`}
+                                  alt={film.title} className='film-image' style={{ quality: 10, aspectRatio: '16/9', objectFit: 'cover', transform: 'scale(1.1)', objectPosition: '100% 100%', transitionDuration: '0.5s' }} />
+                              ) : ('')}
+                            </picture>
                           </div>
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
