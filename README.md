@@ -23,4 +23,7 @@ MongoDB<br>
 <img width="499" alt="Screenshot 2023-06-22 at 11 31 10" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/b903d78e-0491-4c96-b3c8-4beea0170492">
 <img width="497" alt="Screenshot 2023-06-22 at 11 33 19" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/423ce3fe-4612-4b2a-ae22-310889663db8">
 <img width="1381" alt="Screenshot 2023-06-22 at 11 32 27" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/f3b613f8-95d2-4534-9d90-6ea2d7eaeadf">
-<img width="1383" alt="Screenshot 2023-06-22 at 10 55 00" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/cc5d3243-ac33-4dd2-9c8a-865aace04c29">
+
+## Admin Panel
+<img width="1383" alt="Screenshot 2023-07-11 at 11 09 54" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/a0f5ff26-89b8-48bf-bfb7-dda1db863984">
+<img width="1388" alt="Screenshot 2023-07-11 at 11 10 17" src="https://github.com/rominamarmontel/impermanence-front/assets/69083631/bc7ab2f0-38fd-431a-a9eb-6894d3e5fa83">
