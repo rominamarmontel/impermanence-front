@@ -1,5 +1,18 @@
 {
-  "rewrites":  [
-    {"source": "/(.*)", "destination": "/"}
+  "rewrites": [
+    {"source": "/(.*)", "destination": "/$1"}
+  ],
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/.*",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "src": "/(.*)",
+      "headers": {
+        "Cache-Control": "public, max-age=86400"
+      }
+    }
   ]
 }
