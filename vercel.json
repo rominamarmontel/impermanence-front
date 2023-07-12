@@ -3,13 +3,13 @@
     {"source": "/(.*)", "destination": "/$1"}
   ],
   "version": 2,
-  "routes": [
+  "headers": [
     {
-      "src": "/api/.*",
+      "source": "/api/.*",
       "headers": { "Cache-Control": "no-store" }
     },
     {
-      "src": "/(.*)",
+      "source": "/(.*)",
       "headers": {
         "Cache-Control": "public, max-age=86400"
       }
