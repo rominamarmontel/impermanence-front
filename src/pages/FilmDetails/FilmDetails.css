@@ -262,7 +262,7 @@
 /* SMARTPHONE & TABLETTE ==================================================*/
 @media screen and (max-width: 992px) {
   .FilmDetails {
-    padding-top: 78px;
+    padding-top: 98px;
   } 
   .FilmDetails .container {
     max-width: 100%;
