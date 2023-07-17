@@ -20,7 +20,6 @@ const FilmPage = () => {
       try {
         const response = await myApi.get(`/films`);
         setFilms(response.data);
-        console.log(response.data)
         setLoading(false);
       } catch (error) {
         console.error(error);
