@@ -168,7 +168,6 @@
   flex:1;
 }
 
-
 .ul-right {
   flex:1;
   width: 100%;
@@ -222,6 +221,7 @@
   outline: none;
   font-weight: 800;
   font-size: .9rem;
+  text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: .05rem;
 }
@@ -229,7 +229,8 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   line-height: 2rem;
-  color: var(--color-red);
+  color: var(--color-pink);
+  text-decoration: underline;
 }
 .button-showDownload button:hover, .button-showClick button:hover,
 .button-showDownload a:hover, .button-showClick a:hover {

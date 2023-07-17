@@ -278,7 +278,7 @@ const FilmDetails = () => {
                   {films[currentIndex].download && (
                     <div>
                       <li>
-                        <button onClick={handleClickDownload}>{showDownload ? 'TÉLÉCHARGEMENT' : 'TÉLÉCHARGEMENT +'}</button></li>
+                        <button onClick={handleClickDownload} >{showDownload ? 'TÉLÉCHARGEMENT' : 'TÉLÉCHARGEMENT +'}</button></li>
                       {showDownload && films[currentIndex].download && <a
                         href={films[currentIndex].download}
                         target="_blank" rel="noopener, noreferrer"
