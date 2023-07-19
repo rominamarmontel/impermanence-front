@@ -118,10 +118,16 @@ const Navbar = () => {
                   <li onClick={handleHashLinkClick}><HashLink to='/films#programmation' >PROGRAMMATION</HashLink></li>
                 </ul>
                 <ul className='overlay_sp_menu_ul_sns'>
-                  <div>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='https://vimeo.com/user9555000' target="_blank"><FaVimeo /></HashLink></li>
-                    <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}><HashLink to='https://www.linkedin.com/company/impermanence-films/' target="_blank"><FaLinkedinIn /></HashLink></li>
-                  </div>
+                  <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}>
+                    <Link to='https://vimeo.com/user9555000' target='_blank' rel='noopener noreferrer'>
+                      <FaVimeo />
+                    </Link>
+                  </li>
+                  <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}>
+                    <Link to='https://www.linkedin.com/company/impermanence-films/' target='_blank' rel='noopener noreferrer'>
+                      <FaLinkedinIn />
+                    </Link>
+                  </li>
                   <li className='change_langue' onClick={() => {
                     const languageURL = generateLanguageURL('en');
                     navigate(languageURL);
