@@ -20,7 +20,6 @@ const FilmContent = ({ film }) => {
             height: 'auto',
             marginBottom: 12
           }}
-          loading="lazy"
         />
       </picture>
     </div>
