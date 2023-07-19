@@ -5,12 +5,10 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
-// import { Image, Transformation } from 'cloudinary-react';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState(null);
   const [loading, setLoading] = useState(true)
-  // const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_NAME
 
   useEffect(() => {
     scrollTo(0, 0);

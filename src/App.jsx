@@ -5,7 +5,6 @@ import ProtectedRoute from './components/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
 import FilmDetails from './pages/FilmDetails/FilmDetails'
 import Layout from './pages/Layout'
-// import Signup from './pages/Signup'
 import Login from './pages/Login'
 import AddFilm from './Admin/AddFilm/AddFilm'
 import AdminTop from './Admin/AdminTop/AdminTop'
@@ -15,11 +14,10 @@ import FilmDetailsEn from './pages/FilmDetails/FilmDetailsEn'
 import AboutPageEn from './pages/AboutPage/AboutPageEn'
 import AddFilmEn from './Admin/AddFilm/AddFilmEn'
 import EditFilmEn from './Admin/EditFilm/EditFilmEn'
-import { lazy } from 'react'
+import FilmPage from './pages/FilmPage/FilmPage'
+import FilmPageEn from './pages/FilmPage/FilmPageEn'
 import { filmColumns } from './datatablesource'
 
-const FilmPage = lazy(() => import('./pages/FilmPage/FilmPage'))
-const FilmPageEn = lazy(() => import('./pages/FilmPage/FilmPageEn'))
 
 function App() {
   const location = useLocation();

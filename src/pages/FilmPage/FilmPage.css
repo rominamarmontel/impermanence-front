@@ -33,23 +33,6 @@
   display: flex;
   justify-content: center;
 }
-/* .FilmPage-content picture {
-  display: inline-block;
-  max-width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  cursor: pointer;
-} */
-/* .FilmPage-content img {
-  max-width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  transform: scale(1.1);
-  object-position: 100% 100%;
-  transition-duration: 0.5s;
-  cursor: pointer;
-} */
 .FilmPage-position img:hover {
   transform: scale(1.2);
   filter: brightness(110%);
@@ -116,24 +99,6 @@
     color: black;
     text-align: right;
   }
-  /* .FilmPage-content picture {
-    display: unset;
-    max-width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .film-image {
-    box-sizing: border-box;
-    max-width: 100%;
-    height: auto;
-    transform: scale(1);
-    cursor: pointer;
-    transition-duration: unset;
-    object-fit: cover;
-    overflow: hidden;
-  } */
   .FilmPage-position img:hover {
     transform: scale(1);
   }
