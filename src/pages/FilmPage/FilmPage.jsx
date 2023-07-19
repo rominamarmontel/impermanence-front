@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
@@ -6,10 +6,10 @@ import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
 
-
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true)
+  const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -26,6 +26,8 @@ const FilmPage = () => {
 
     fetchData();
   }, []);
+
+
   const groupedFilms = films.reduce((result, film) => {
     const category = film.category || 'defaultCategory';
     if (result[category]) {
@@ -85,28 +87,9 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                          <div>
-                            <picture>
-                              <source media="(max-width: 1350px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_577/')} 577w`} />
-                              <source media="(min-width: 1351px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')} 400w`} />
-                              <img
-                                src={film.thumbnailImages[0]}
-                                alt={film.title}
-                                style={{
-                                  quality: 10,
-                                  aspectRatio: '16/9',
-                                  objectFit: 'cover',
-                                  transform: 'scale(1.1)',
-                                  objectPosition: '100% 100%',
-                                  transitionDuration: '0.5s',
-                                  width: '100%',
-                                  height: 'auto',
-                                  marginBottom: 12
-                                }}
-                                loading="lazy"
-                              />
-                            </picture>
-                          </div>
+                          <Suspense fallback={<Spinner />}>
+                            <LazyFilmContent film={film} />
+                          </Suspense>
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
                             <h6>{formatDirectorName(film.directedBy)}</h6>
