@@ -15,7 +15,7 @@ const AboutPageEn = () => {
           <picture>
             <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688059960/impermanenceDB/Elegy_blur_qvnyky.jpg' alt='elegie' />
           </picture>
-          <h2 className='AboutPage-title'>about impermanence</h2>
+          <h2 className='AboutPage-title'>about impermanence films</h2>
         </div>
         <div className='AboutPage-container'>
           <div className='AboutPage-container-sub'>
