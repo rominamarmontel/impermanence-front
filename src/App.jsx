@@ -20,6 +20,7 @@ import { filmColumns } from './datatablesource'
 
 
 function App() {
+  const isAdmin = true;
   const location = useLocation();
   const isEnglish = location.pathname.endsWith('/en') || location.pathname.startsWith('/en');
   return (
@@ -34,17 +35,21 @@ function App() {
           <Route path='/films/:frenchId/en' element={<FilmDetailsEn />} />
           <Route path='/en/about' element={<AboutPageEn />} />
         </Route>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/admin/top" element={<AdminTop columns={filmColumns} />} />
-          <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
-          <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
-          <Route path="/admin/films/create" element={<AddFilm />} />
-          <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
-        </Route>
-        <Route element={<IsLoggedOut />}>
-          <Route path="/login" element={<Login />} />
-          {/* <Route path="/signup" element={<Signup />} /> */}
-        </Route>
+        {isAdmin && (
+          <>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/admin/top" element={<AdminTop columns={filmColumns} />} />
+              <Route path='/admin/films/edit/:frenchId' element={<EditFilm />} />
+              <Route path='/admin/films/edit/:frenchId/en' element={<EditFilmEn />} />
+              <Route path="/admin/films/create" element={<AddFilm />} />
+              <Route path="/admin/films/create/:frenchId/en" element={<AddFilmEn />} />
+            </Route>
+            <Route element={<IsLoggedOut />}>
+              <Route path="/login" element={<Login />} />
+              {/* <Route path="/signup" element={<Signup />} /> */}
+            </Route>
+          </>
+        )}
       </Routes>
     </div >
   )
