@@ -12,8 +12,8 @@ function Spinner() {
     <div className='Spinner'>
       <ColorRing
         visible={true}
-        height="180"
-        width="180"
+        height="100"
+        width="100"
         ariaLabel="blocks-loading"
         wrapperStyle={{}}
         wrapperClass="blocks-wrapper"
