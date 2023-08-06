@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types'
 
 const FilmContent = ({ film }) => {
+  if (!film || !film.thumbnailImages || !film.thumbnailImages[0]) {
+    return <div>No Thumbnail Available</div>;
+  }
   return (
     <div>
       <picture>

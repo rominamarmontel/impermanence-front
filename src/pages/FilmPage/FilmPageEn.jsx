@@ -25,7 +25,6 @@ const FilmPageEn = () => {
         setFilms([]);
       }
     };
-
     fetchData();
   }, []);
 
@@ -85,10 +84,10 @@ const FilmPageEn = () => {
                     if (!film || !film._id || !film.french) return null;
                     return (
                       < div className='FilmPage-content' key={film._id} >
-                        <Link to={`/films/${film._id}`}>
+                        <Link to={`/films/${film._id}/en`}>
                           <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
                             <Suspense fallback={<Spinner />}>
-                              <LazyFilmContent film={film} />
+                              {film && (<LazyFilmContent film={film} />)}
                             </Suspense>
                             <div className='film-title'>
                               <h4>{film && film.title.toUpperCase()}</h4>
