@@ -1,15 +1,16 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
+import FilmContent from '../../components/FilmContent';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true)
-  const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
+  // const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -23,12 +24,11 @@ const FilmPage = () => {
         console.error(error);
       }
     };
-
     fetchData();
-  }, []);
+  }, {});
 
 
-  const groupedFilms = films.reduce((result, film) => {
+  const groupedFilms = films && films.length && films.reduce((result, film) => {
     const category = film.category || 'defaultCategory';
     if (result[category]) {
       result[category].push(film);
@@ -87,9 +87,7 @@ const FilmPage = () => {
                     <div className='FilmPage-content' key={film._id}>
                       <Link to={`/films/${film._id}`}>
                         <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                          <Suspense fallback={<Spinner />}>
-                            <LazyFilmContent film={film} />
-                          </Suspense>
+                          <FilmContent film={film} />
                           <div className='film-title'>
                             <h4>{film.title.toUpperCase()}</h4>
                             <h6>{formatDirectorName(film.directedBy)}</h6>

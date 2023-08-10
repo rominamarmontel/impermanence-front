@@ -18,6 +18,7 @@ const FilmPageEn = () => {
       try {
         const response = await myApi.get(`/en/films`);
         const englishArray = response.data.map((oneData) => oneData);
+        console.log('response', response)
         setFilms(englishArray);
         setLoading(false);
       } catch (error) {
@@ -84,7 +85,7 @@ const FilmPageEn = () => {
                     if (!film || !film._id || !film.french) return null;
                     return (
                       < div className='FilmPage-content' key={film._id} >
-                        <Link to={`/films/${film._id}/en`}>
+                        <Link to={`/films/${film.french}/en`}>
                           <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
                             <Suspense fallback={<Spinner />}>
                               {film && (<LazyFilmContent film={film} />)}

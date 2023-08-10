@@ -40,16 +40,17 @@ const FilmDetailsEn = () => {
   }, []);
 
   useEffect(() => {
-    const index = sortedEnglish.findIndex((film) => (film?.french?._id === frenchId))
+    const index = sortedEnglish.findIndex((film) => (film?.french === frenchId))
     if (index !== -1) {
       setCurrentIndex(index);
+      console.log(frenchId)
     }
   }, [sortedEnglish, frenchId]);
 
   const goToPreviousFilm = () => {
     window.scrollTo(0, 0);
     const previousIndex = currentIndex === 0 ? sortedEnglish.length - 1 : currentIndex - 1;
-    const previousFilmId = sortedEnglish[previousIndex].french._id;
+    const previousFilmId = sortedEnglish[previousIndex].frenchId;
     setCurrentIndex(previousIndex);
 
     myApi.get(`/films/${previousFilmId}/en`).then((response) => {
@@ -61,7 +62,7 @@ const FilmDetailsEn = () => {
   const goToNextFilm = () => {
     window.scrollTo(0, 0);
     const nextIndex = currentIndex === sortedEnglish.length - 1 ? 0 : currentIndex + 1;
-    const nextFilmId = sortedEnglish[nextIndex].french._id;
+    const nextFilmId = sortedEnglish[nextIndex].frenchId;
     setCurrentIndex(nextIndex);
 
     myApi.get(`/films/${nextFilmId}/en`).then((response) => {
