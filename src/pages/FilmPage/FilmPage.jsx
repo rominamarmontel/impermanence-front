@@ -14,7 +14,6 @@ const FilmPage = () => {
 
   useEffect(() => {
     scrollTo(0, 0);
-
     const fetchData = async () => {
       try {
         const response = await myApi.get(`/films`);
@@ -25,7 +24,7 @@ const FilmPage = () => {
       }
     };
     fetchData();
-  }, {});
+  }, []);
 
 
   const groupedFilms = films && films.length && films.reduce((result, film) => {
