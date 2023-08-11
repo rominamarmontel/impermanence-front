@@ -27,15 +27,24 @@ const FilmPage = () => {
   }, []);
 
 
-  const groupedFilms = films && films.length && films.reduce((result, film) => {
+  // const groupedFilms = films && films.length && films.reduce((result, film) => {
+  //   const category = film.category || 'defaultCategory';
+  //   if (result[category]) {
+  //     result[category].push(film);
+  //   } else {
+  //     result[category] = [film];
+  //   }
+  //   return result;
+  // }, {});
+
+  const groupedFilms = {};
+  films.forEach((film) => {
     const category = film.category || 'defaultCategory';
-    if (result[category]) {
-      result[category].push(film);
-    } else {
-      result[category] = [film];
+    if (!groupedFilms[category]) {
+      groupedFilms[category] = [];
     }
-    return result;
-  }, {});
+    groupedFilms[category].push(film);
+  });
 
   const categoryOrder = ['encours', 'production', 'distribution', 'programmation'];
 
@@ -76,29 +85,26 @@ const FilmPage = () => {
     <FadeIn>
       <section className='FilmPage'>
         <div className='FilmPage-container'>
-          {categoryOrder && categoryOrder.map((category) => {
-            const films = groupedFilms[category] || [];
-            return (
-              <div key={category} id={category} className='category-section'>
-                <h2 className='category-title'>{displayCategory(category)}</h2>
-                <div className='FilmPage-category'>
-                  {films.map((film) => (
-                    <div className='FilmPage-content' key={film._id}>
-                      <Link to={`/films/${film._id}`}>
-                        <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
-                          <FilmContent film={film} />
-                          <div className='film-title'>
-                            <h4>{film.title.toUpperCase()}</h4>
-                            <h6>{formatDirectorName(film.directedBy)}</h6>
-                          </div>
+          {categoryOrder.map((category) => (
+            <div key={category} id={category} className='category-section'>
+              <h2 className='category-title'>{displayCategory(category)}</h2>
+              <div className='FilmPage-category'>
+                {groupedFilms[category]?.map((film) => (
+                  <div className='FilmPage-content' key={film._id}>
+                    <Link to={`/films/${film._id}`}>
+                      <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
+                        <FilmContent film={film} />
+                        <div className='film-title'>
+                          <h4>{film.title.toUpperCase()}</h4>
+                          <h6>{formatDirectorName(film.directedBy)}</h6>
                         </div>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
         <ScrollToTop />
       </section>
