@@ -33,12 +33,27 @@
   display: flex;
   justify-content: center;
 }
-.FilmPage-position img:hover {
+.FilmPage-position {
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.film-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s, filter 0.5s, opacity 0.5s;
+}
+.film-image:hover {
   transform: scale(1.2);
   filter: brightness(110%);
   opacity: 0.6;
   transition-duration: 0.5s;
 }
+
 .film-title {
   width: 400px;
   height: auto;

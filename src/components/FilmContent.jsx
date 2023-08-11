@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import '../pages/FilmPage/FilmPage.css'
 
 const FilmContent = ({ film }) => {
   if (!film || !film.thumbnailImages || !film.thumbnailImages[0]) {
@@ -19,17 +20,18 @@ const FilmContent = ({ film }) => {
           alt={film.title}
           srcSet={`${mobileImage} 320w, ${pcImage} 400w, ${tabletteImage} 942w`}
           sizes="(max-width: 414px) 320px, (min-width: 1351px) 400px, (max-width: 992px) 942px"
-          style={{
-            quality: 10,
-            aspectRatio: '16/9',
-            objectFit: 'cover',
-            transform: 'scale(1.1)',
-            objectPosition: '100% 100%',
-            transitionDuration: '0.5s',
-            width: '100%',
-            height: 'auto',
-            marginBottom: 12
-          }}
+          className='film-image'
+        // style={{
+        //   quality: 10,
+        //   aspectRatio: '16/9',
+        //   objectFit: 'cover',
+        //   transform: 'scale(1.1)',
+        //   objectPosition: '100% 100%',
+        //   transitionDuration: '0.5s',
+        //   width: '100%',
+        //   height: 'auto',
+        //   marginBottom: 12
+        // }}
         />
       </picture>
     </div>
