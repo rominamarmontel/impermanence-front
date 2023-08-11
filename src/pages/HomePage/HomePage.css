@@ -111,9 +111,6 @@
   width: 100%;
 }
 
-
-
-
 @media screen and (max-width: 510px) {
   .smartphone__area {
     display: none;

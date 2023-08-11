@@ -9,6 +9,7 @@ const FilmContent = ({ film }) => {
       <picture>
         <source media="(min-width: 1351px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')} 400w`} />
         <source media="(max-width: 992px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_942/')} 942w`} />
+        <source media="(max-width: 414px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_320/')} 320w`} />
         <img
           src={film.thumbnailImages[0]}
           alt={film.title}
