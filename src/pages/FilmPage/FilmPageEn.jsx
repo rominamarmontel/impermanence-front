@@ -1,15 +1,16 @@
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
+import FilmContent from '../../components/FilmContent';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState(null);
   const [loading, setLoading] = useState(true)
-  const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
+  // const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -18,7 +19,6 @@ const FilmPageEn = () => {
       try {
         const response = await myApi.get(`/en/films`);
         const englishArray = response.data.map((oneData) => oneData);
-        console.log('response', response)
         setFilms(englishArray);
         setLoading(false);
       } catch (error) {
@@ -87,9 +87,7 @@ const FilmPageEn = () => {
                       < div className='FilmPage-content' key={film._id} >
                         <Link to={`/films/${film.french}/en`}>
                           <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
-                            <Suspense fallback={<Spinner />}>
-                              {film && (<LazyFilmContent film={film} />)}
-                            </Suspense>
+                            <FilmContent film={film} />
                             <div className='film-title'>
                               <h4>{film && film.title.toUpperCase()}</h4>
                               <h6>by {film && film.directedBy}</h6>

@@ -7,8 +7,8 @@ const FilmContent = ({ film }) => {
   return (
     <div>
       <picture>
-        {/* <source media="(min-width: 1351px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')} 400w`} />
-        <source media="(max-width: 992px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_942/')} 942w`} /> */}
+        <source media="(min-width: 1351px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')} 400w`} />
+        <source media="(max-width: 992px)" srcSet={`${film.thumbnailImages[0].replace('/upload/', '/upload/w_942/')} 942w`} />
         <img
           src={film.thumbnailImages[0]}
           alt={film.title}
