@@ -26,16 +26,9 @@ const FilmPage = () => {
     fetchData();
   }, []);
 
-
-  // const groupedFilms = films && films.length && films.reduce((result, film) => {
-  //   const category = film.category || 'defaultCategory';
-  //   if (result[category]) {
-  //     result[category].push(film);
-  //   } else {
-  //     result[category] = [film];
-  //   }
-  //   return result;
-  // }, {});
+  if (loading) {
+    return <Spinner />;
+  }
 
   const groupedFilms = {};
   films.forEach((film) => {
@@ -76,10 +69,6 @@ const FilmPage = () => {
   const formatDirectorName = (directorName) => {
     return /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
   };
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   return (
     <FadeIn>
