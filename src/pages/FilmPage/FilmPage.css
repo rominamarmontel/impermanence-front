@@ -115,7 +115,8 @@
   }
   .film-title {
     box-sizing: border-box;
-    width: 320px;
+    width: 100%;
+    text-align: left;
   }
   .film-title h4 {
     margin: 0;
@@ -126,5 +127,10 @@
     margin: 0;
     text-align: left;
     padding-bottom: 50px;
+  }
+}
+@media screen and (max-width: 414px) {
+  .film-title {
+    width: 320px;
   }
 }
