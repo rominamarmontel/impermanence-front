@@ -19,7 +19,6 @@ const FilmContent = ({ film }) => {
           alt={film.title}
           srcSet={`${mobileImage} 320w, ${pcImage} 400w, ${tabletteImage} 942w`}
           sizes="(max-width: 414px) 320px, (min-width: 1351px) 400px, (max-width: 992px) 942px"
-          className='film-image'
           style={{
             quality: 10,
             aspectRatio: '16/9',

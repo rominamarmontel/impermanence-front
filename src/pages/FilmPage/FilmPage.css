@@ -33,13 +33,7 @@
   display: flex;
   justify-content: center;
 }
-.FilmPage-position {
-  display: block;
-  margin: 0 auto;
-  overflow: hidden;
-  cursor: pointer;
-}
-.film-image:hover {
+.FilmPage-position img:hover {
   transform: scale(1.2);
   filter: brightness(110%);
   opacity: 0.6;

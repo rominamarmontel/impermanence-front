@@ -81,7 +81,7 @@ const FilmPage = () => {
                 {groupedFilms[category]?.map((film) => (
                   <div className='FilmPage-content' key={film._id}>
                     <Link to={`/films/${film._id}`}>
-                      <div className='FilmPage-position'>
+                      <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer' }}>
                         <FilmContent film={film} />
                         <div className='film-title'>
                           <h4>{film.title.toUpperCase()}</h4>
