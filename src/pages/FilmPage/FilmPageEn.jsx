@@ -80,7 +80,7 @@ const FilmPageEn = () => {
                 {groupedFilms[category]?.map((film) => (
                   < div className='FilmPage-content' key={film._id} >
                     <Link to={`/films/${film.french}/en`}>
-                      <div className='FilmPage-position' style={{ display: 'block', margin: '0 auto', overflow: 'hidden', cursor: 'pointer', }}>
+                      <div className='FilmPage-position'>
                         <FilmContent film={film} />
                         <div className='film-title'>
                           <h4>{film && film.title.toUpperCase()}</h4>
