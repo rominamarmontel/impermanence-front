@@ -70,9 +70,6 @@
   .film-title {
     padding-top: 2.3%;
   }
-  .FilmPage-position picture {
-    width: 942px;
-  }
 }
 @media screen and (max-width: 992px) {
   .FilmPage-container {
@@ -100,9 +97,6 @@
     font-size: 20px;
     color: black;
     text-align: right;
-  }
-  .FilmPage-position picture {
-    width: 392px;
   }
   .FilmPage-position img:hover {
     transform: scale(1);
