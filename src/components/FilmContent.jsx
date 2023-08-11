@@ -7,7 +7,7 @@ const FilmContent = ({ film }) => {
   }
   const pcImage = film.thumbnailImages[0].replace('/upload/', '/upload/w_400/')
   const tabletteImage = film.thumbnailImages[0].replace('/upload/', '/upload/w_942/')
-  const mobileImage = film.thumbnailImages[0].replace('/upload/', '/upload/w_320/')
+  // const mobileImage = film.thumbnailImages[0].replace('/upload/', '/upload/w_320/')
 
   return (
     <div>
@@ -15,8 +15,9 @@ const FilmContent = ({ film }) => {
         <img
           src={film.thumbnailImages[0]}
           alt={film.title}
-          srcSet={`${mobileImage} 320w, ${pcImage} 400w, ${tabletteImage} 942w`}
-          sizes="(max-width: 414px) 320px, (min-width: 1351px) 400px, (max-width: 992px) 942px, 400px"
+          // srcSet={`${mobileImage} 320w, ${pcImage} 400w, ${tabletteImage} 942w`}
+          srcSet={`${pcImage} 400w, ${tabletteImage} 942w`}
+          sizes="(min-width: 1351px) 400px, (min-width: 992px) 600px, (max-width: 992px) 942px, 400px"
           className='film-image'
         />
       </picture>
