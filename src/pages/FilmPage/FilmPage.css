@@ -48,7 +48,6 @@
   font-family: "adobe-garamond-pro", Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
   font-weight: 400;
-  /* color: rgb(114, 113, 113); */
   margin: 0;
   padding: 0;
 }
@@ -70,6 +69,9 @@
   }
   .film-title {
     padding-top: 2.3%;
+  }
+  .FilmPage-position picture {
+    width: 942px;
   }
 }
 @media screen and (max-width: 992px) {
@@ -98,6 +100,9 @@
     font-size: 20px;
     color: black;
     text-align: right;
+  }
+  .FilmPage-position picture {
+    width: 392px;
   }
   .FilmPage-position img:hover {
     transform: scale(1);
