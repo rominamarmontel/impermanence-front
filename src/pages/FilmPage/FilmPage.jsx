@@ -13,7 +13,6 @@ const FilmPage = () => {
   // const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
 
   useEffect(() => {
-    scrollTo(0, 0);
     const fetchData = async () => {
       try {
         const response = await myApi.get(`/films`);
