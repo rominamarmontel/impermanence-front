@@ -15,9 +15,9 @@ const FilmContent = ({ film }) => {
         <img
           src={thumbnailImage}
           alt={film.title}
-          // srcSet={`${pcImage} 400w, ${tabletteImage} 942w`}
-          sizes="(min-width: 1351px) 400px, (min-width: 992px) 600px, (max-width: 992px) 942px, 400px"
           className='film-image'
+        // srcSet={`${pcImage} 400w, ${tabletteImage} 942w`}
+        // sizes="(min-width: 1351px) 400px, (min-width: 992px) 600px, (max-width: 992px) 942px, 400px"
         />
       </picture>
     </div>
