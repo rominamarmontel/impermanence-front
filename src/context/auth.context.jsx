@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect, useCallback } from 'react'
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useState, useEffect } from 'react'
 import myApi from '../service/service'
 
 export const AuthContext = createContext()
@@ -8,20 +10,20 @@ export const AuthContextWrapper = (props) => {
   const [token, setToken] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const storeToken = useCallback((receivedToken) => {
+  function storeToken(receivedToken) {
     localStorage.setItem('token', receivedToken)
     setToken(receivedToken)
-  }, [])
+  }
 
-  const getToken = useCallback(() => {
+  function getToken() {
     return localStorage.getItem('token')
-  }, [])
+  }
 
-  const removeToken = useCallback(() => {
+  function removeToken() {
     localStorage.removeItem('token')
-  }, [])
+  }
 
-  const authenticateUser = useCallback(async () => {
+  async function authenticateUser() {
     try {
       const currentToken = getToken()
       setToken(currentToken)
@@ -42,32 +44,11 @@ export const AuthContextWrapper = (props) => {
       setUser(null)
       setIsLoading(false)
     }
-  }, [getToken])
+  }
 
   useEffect(() => {
     authenticateUser()
-  }, [authenticateUser])
-
-  useEffect(() => {
-    const logoutOnTokenExpiration = () => {
-      const currentToken = getToken();
-      if (currentToken) {
-        const tokenData = JSON.parse(atob(currentToken.split('.')[1]));
-        const expirationTime = tokenData.exp * 1000;
-        const currentTime = Date.now();
-
-        if (currentTime > expirationTime) {
-          alert('Login session expired. Please Login again');
-          removeToken();
-        }
-      }
-    };
-
-    const interval = setInterval(logoutOnTokenExpiration, 60000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [getToken, removeToken]);
+  }, [])
 
   return (
     <AuthContext.Provider

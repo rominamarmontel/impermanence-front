@@ -17,7 +17,6 @@ const Datatable = () => {
   useEffect(() => {
     myApi.get('/films').then((response) => {
       setFilms(response.data)
-      console.log(response.data)
     }).catch((err) => {
       console.error(err)
     })

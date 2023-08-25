@@ -8,11 +8,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 root.render(
-  <React.Fragment>
+  <React.StrictMode>
     <BrowserRouter>
       <AuthContextWrapper>
         <App />
       </AuthContextWrapper>
     </BrowserRouter>
-  </React.Fragment>
+  </React.StrictMode>
 );
