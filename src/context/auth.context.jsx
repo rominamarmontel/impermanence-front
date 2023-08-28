@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useCallback } from 'react'
 import myApi from '../service/service'
 
 export const AuthContext = createContext()
@@ -10,45 +8,44 @@ export const AuthContextWrapper = (props) => {
   const [token, setToken] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  function storeToken(receivedToken) {
-    localStorage.setItem('token', receivedToken)
-    setToken(receivedToken)
-  }
+  const storeToken = useCallback((receivedToken) => {
+    localStorage.setItem('token', receivedToken);
+    setToken(receivedToken);
+  }, []);
 
-  function getToken() {
-    return localStorage.getItem('token')
-  }
+  const getToken = useCallback(() => {
+    return localStorage.getItem('token');
+  }, []);
 
-  function removeToken() {
-    localStorage.removeItem('token')
-  }
+  const removeToken = useCallback(() => {
+    localStorage.removeItem('token');
+  }, []);
 
-  async function authenticateUser() {
+  const authenticateUser = useCallback(async () => {
     try {
-      const currentToken = getToken()
-      setToken(currentToken)
-
+      const currentToken = getToken();
       const response = await myApi.get('/auth/verify', {
         headers: {
           Authorization: `Bearer ${currentToken}`,
         },
-      })
+      });
       if (response.status === 200) {
-        setUser(response.data)
-        setIsLoading(false)
+        setUser(response.data);
+        setIsLoading(false);
       } else {
-        setUser(null)
-        setIsLoading(false)
+        setUser(null);
+        setIsLoading(false);
       }
     } catch (error) {
-      setUser(null)
-      setIsLoading(false)
+      console.error('Authentication error:', error);
+      setUser(null);
+      setIsLoading(false);
     }
-  }
+  }, [getToken]);
 
   useEffect(() => {
-    authenticateUser()
-  }, [])
+    authenticateUser();
+  }, [authenticateUser]);
 
   return (
     <AuthContext.Provider

@@ -53,10 +53,10 @@ const HomePage = () => {
               <>
                 <ul>
                   <li>
-                    <Link to='/films'>TOUS LES FILMS</Link>
+                    <Link rel="dns-prefetch" to='/films'>TOUS LES FILMS</Link>
                   </li>
                   <li>
-                    <Link to='/about'>À PROPOS D’IMPERMANENCE</Link>
+                    <Link rel="preconnect" to='/about'>À PROPOS D’IMPERMANENCE</Link>
                   </li>
                 </ul>
               </>
