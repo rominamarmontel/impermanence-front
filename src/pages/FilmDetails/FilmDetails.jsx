@@ -114,7 +114,7 @@ const FilmDetails = () => {
   const shouldReduceTitleSize = films[currentIndex].originalTitle.length > 28
 
   const directorName = films[currentIndex].directedBy;
-  const formattedDirectorName = /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
+  const formattedDirectorName = /^[aeiou\u0153]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
 
   return (
     <>

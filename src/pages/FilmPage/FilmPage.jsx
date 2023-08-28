@@ -66,7 +66,7 @@ const FilmPage = () => {
   };
 
   const formatDirectorName = (directorName) => {
-    return /^[aeiouœ]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
+    return /^[aeiou\u0153]/i.test(directorName) ? `d'${directorName}` : `de ${directorName}`;
   };
 
   return (
