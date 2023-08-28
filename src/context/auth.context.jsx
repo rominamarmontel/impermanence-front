@@ -1,10 +1,11 @@
 import { createContext, useState, useEffect, useCallback } from 'react'
 import myApi from '../service/service'
+import PropTypes from 'prop-types';
+
 
 export const AuthContext = createContext()
 
 export const AuthContextWrapper = (props) => {
-  console.log(props)
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -56,5 +57,7 @@ export const AuthContextWrapper = (props) => {
     </AuthContext.Provider>
   )
 }
-
+AuthContextWrapper.prototype = {
+  children: PropTypes.node
+}
 export default AuthContextWrapper
