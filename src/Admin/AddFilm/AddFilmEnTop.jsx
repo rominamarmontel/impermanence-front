@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import myApi from '../../service/service'
 import { useNavigate, useParams } from 'react-router-dom'
-// import PDFViewer from '../../components/PDFViewer';
+import PDFViewer from '../../components/PDFViewer';
 import ScrollToTop from '../../components/ScrollToTop';
 import PropTypes from 'prop-types';
 import ConfettiExplosion from 'react-confetti-explosion';
@@ -31,7 +31,7 @@ const AddFilmEnTop = () => {
   const [videoOnDemand, setVideoOnDemand] = useState('')
   const [crew, setCrew] = useState('')
   const [download, setDownload] = useState(null)
-  // const [downloadUrl, setDownloadUrl] = useState(null)
+  const [downloadUrl, setDownloadUrl] = useState(null)
   const [thumbnailImages, setThumbnailImages] = useState([]);
   const [detailImages, setDetailImages] = useState([]);
   const videoOnDemandUrls = videoOnDemand.split('\n');
@@ -112,7 +112,7 @@ const AddFilmEnTop = () => {
       console.error(error);
     } finally {
       setDownload(null);
-      // setDownloadUrl(null);
+      setDownloadUrl(null);
     }
   };
 
@@ -176,11 +176,11 @@ const AddFilmEnTop = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        // setDownloadUrl(reader.result)
+        setDownloadUrl(reader.result)
       };
       reader.readAsDataURL(file);
     } else {
-      // setDownloadUrl(null)
+      setDownloadUrl(null)
     }
   };
 
@@ -309,9 +309,9 @@ const AddFilmEnTop = () => {
                   <small style={{ color: 'red', lineHeight: '1rem' }}>
                     1 document only = 1MB max.
                   </small>
-                  {/* {downloadUrl && (
+                  {downloadUrl && (
                     <PDFViewer pdfUrl={downloadUrl} />
-                  )} */}
+                  )}
                   <input type="file" onChange={handleDownloadChange} style={{ marginBottom: 40 }} />
 
 
