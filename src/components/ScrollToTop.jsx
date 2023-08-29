@@ -7,7 +7,7 @@ const ScrollToTop = () => {
   const [show, setShow] = useState(false)
 
   const changeShow = () => {
-    if (window.pageYOffset > PAGE_Y_OFFSET) {
+    if (window.scrollY > PAGE_Y_OFFSET) {
       setShow(true)
     } else {
       setShow(false)
@@ -26,8 +26,8 @@ const ScrollToTop = () => {
   if (show)
     return (
       <div className="fixed bottom-10 right-10 z-10" style={{ position: 'fixed', bottom: -10, right: 15, zIndex: 10 }}>
-        <CgChevronUp onClick={onScrollTop} style={{ backgroundColor: 'black', color: 'white', fontSize: 44, }} />
-      </div >
+        <CgChevronUp onClick={onScrollTop} style={{ backgroundColor: 'black', color: 'white', fontSize: 44 }} />
+      </div>
     )
   else return null
 }

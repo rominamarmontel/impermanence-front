@@ -28,7 +28,7 @@ export const AuthContextWrapper = (props) => {
       const currentToken = getToken();
       const response = await myApi.get('/auth/verify', {
         headers: {
-          Authorization: `Bearer ${currentToken}`,
+          Authorization: `Bearer ${currentToken}`
         },
       });
       if (response.status === 200) {
@@ -57,7 +57,8 @@ export const AuthContextWrapper = (props) => {
     </AuthContext.Provider>
   )
 }
-AuthContextWrapper.prototype = {
-  children: PropTypes.node
+AuthContextWrapper.propTypes = {
+  children: PropTypes.node.isRequired
 }
+
 export default AuthContextWrapper

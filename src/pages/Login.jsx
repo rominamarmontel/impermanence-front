@@ -51,7 +51,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </section >
+    </section>
   )
 }
 

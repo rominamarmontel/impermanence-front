@@ -25,7 +25,7 @@ const Contact = () => {
     e.target.reset()
   };
   return (
-    <div className='ContactPage' >
+    <div className='ContactPage'>
       {
         isEnglish ? (
           <>
@@ -35,7 +35,7 @@ const Contact = () => {
             <form ref={form} onSubmit={sendEmail}>
               <div className='contact-form'>
                 <div className='contact-form-top'>
-                  <fieldset className='name-form' >
+                  <fieldset className='name-form'>
                     <label></label>
                     <input type="text" name="user_name" placeholder='name' />
                   </fieldset>
@@ -63,7 +63,7 @@ const Contact = () => {
             <form ref={form} onSubmit={sendEmail}>
               <div className='contact-form'>
                 <div className='contact-form-top'>
-                  <fieldset className='name-form' >
+                  <fieldset className='name-form'>
                     <label></label>
                     <input type="text" name="user_name" placeholder='nom' />
                   </fieldset>

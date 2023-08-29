@@ -120,7 +120,7 @@ const FilmDetails = () => {
     <>
       <FadeIn>
         <section className='FilmDetails'>
-          <div className='container' >
+          <div className='container'>
             <div className='top'>
               <div className='image-content'>
                 <div className='FilmDetails-right-position'>
@@ -282,7 +282,7 @@ const FilmDetails = () => {
                       {showDownload && films[currentIndex].download && <a
                         href={films[currentIndex].download}
                         target="_blank" rel="noopener, noreferrer"
-                        onClick={() => handleDownload(films[currentIndex].download,)}
+                        onClick={() => handleDownload(films[currentIndex].download)}
                       >{films[currentIndex].title}</a>}
                     </div>
                   )}

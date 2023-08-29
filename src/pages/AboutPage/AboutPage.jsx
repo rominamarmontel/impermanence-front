@@ -16,13 +16,13 @@ const AboutPage = () => {
         <section className="AboutPage" id='AboutPage'>
           <div className='AboutPage-title-container'>
             <picture>
-              <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688059960/impermanenceDB/Elegy_blur_qvnyky.jpg' />
+              <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688059960/impermanenceDB/Elegy_blur_qvnyky.jpg' alt='about-image' />
             </picture>
             <h2 className='AboutPage-title'>à propos d’impermanence films</h2>
           </div>
           <div className='AboutPage-container'>
             <div className='AboutPage-container-sub'>
-              <div className='AboutPage-content' >
+              <div className='AboutPage-content'>
 
                 <p>Basée à Paris depuis 2011, Impermanence Films est une structure œuvrant pour la production, la diffusion et la programmation du cinéma documentaire, privilégiant les regards à hauteur humaine et les films produits dans un contexte de liberté formelle. En soutien aux oeuvres indépendantes, Impermanence Films mutualise et met à disposition des outils de production et de diffusion.</p>
 

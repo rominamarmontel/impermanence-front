@@ -372,7 +372,6 @@ const EditFilm = () => {
           </div>
         </div>
       </div>
-
     </section>
   )
 }

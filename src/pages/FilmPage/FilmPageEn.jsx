@@ -5,7 +5,6 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
-import FilmContent from '../../components/FilmContent';
 
 const FilmPageEn = () => {
   const [films, setFilms] = useState(null);
@@ -74,14 +73,20 @@ const FilmPageEn = () => {
       <section className='FilmPage'>
         <div className='FilmPage-container'>
           {categoryOrder.map((category) => (
-            <div key={category} id={category} className='category-section' >
+            <div key={category} id={category} className='category-section'>
               <h2 className='category-title'>{displayCategory(category)}</h2>
               <div className='FilmPage-category'>
                 {groupedFilms[category]?.map((film) => (
                   < div className='FilmPage-content' key={film._id} >
                     <Link to={`/films/${film.french}/en`}>
                       <div className='FilmPage-position'>
-                        <FilmContent film={film} />
+                        <picture>
+                          <img
+                            src={film.thumbnailImages[0]}
+                            alt={film.title}
+                            className='film-image'
+                          />
+                        </picture>
                         <div className='film-title'>
                           <h4>{film && film.title.toUpperCase()}</h4>
                           <h6>by {film && film.directedBy}</h6>

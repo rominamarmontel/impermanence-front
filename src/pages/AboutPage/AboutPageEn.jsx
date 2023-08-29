@@ -13,13 +13,13 @@ const AboutPageEn = () => {
       <section className="AboutPage" id='AboutPage'>
         <div className='AboutPage-title-container'>
           <picture>
-            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688059960/impermanenceDB/Elegy_blur_qvnyky.jpg' alt='elegie' />
+            <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688059960/impermanenceDB/Elegy_blur_qvnyky.jpg' alt='about-image' />
           </picture>
           <h2 className='AboutPage-title'>about impermanence films</h2>
         </div>
         <div className='AboutPage-container'>
           <div className='AboutPage-container-sub'>
-            <div className='AboutPage-content' >
+            <div className='AboutPage-content'>
               <p>Based in Paris since 2011, Impermanence Films works for the production and distribution and programming of documentary cinema, favoring human perspective and films produced in a context of formal freedom.Essential support for independent works, Impermanence Films pools and provides production and distribution tools.</p>
               <br />
             </div>
@@ -27,7 +27,7 @@ const AboutPageEn = () => {
           <Contact className='ContactPage-form' />
         </div>
         <ScrollToTop />
-      </section >
+      </section>
     </>
   )
 }

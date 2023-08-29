@@ -15,12 +15,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
+      const scrollTop = window.scrollY;
       setScrollNavbar(scrollTop > 0);
       setScrollHamburgerMenu(scrollTop > 0)
     };
     const handleResize = () => {
-      setScrollNavbar(window.innerWidth > 992 && window.pageYOffset > 0);
+      setScrollNavbar(window.innerWidth > 992 && window.scrollY > 0);
       setIsMobile(window.innerWidth <= 992);
     };
     window.addEventListener('scroll', handleScroll);
@@ -60,7 +60,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''} `}>
+      <section className={`Navbar ${scrollNavbar ? 'Navbar--scroll' : ''}`}>
         <nav className='Navbar-container'>
           <picture>
             <Link to='/'>
@@ -74,38 +74,35 @@ const Navbar = () => {
             </Link>
           </picture>
           <ul className='navbar-list'>
-            <li className='navbar-list-font'><Link to='/about' >À PROPOS</Link></li>
+            <li className='navbar-list-font'><Link to='/about'>À PROPOS</Link></li>
             <li style={{ textAlign: 'center' }} className='navbar-list-font'>
-              <HashLink to='/films#encours' >EN COURS</HashLink>
+              <HashLink to='/films#encours'>EN COURS</HashLink>
             </li>
             <li className='navbar-list-font'><HashLink to='/films#production'>PRODUCTION</HashLink></li>
-            <li className='navbar-list-font' ><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
+            <li className='navbar-list-font'><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
             <li className='navbar-list-font'><HashLink to='/films#programmation'>PROGRAMMATION</HashLink></li>
             <li className='change_langue' onClick={() => {
               const languageURL = generateLanguageURL('en');
               navigate(languageURL);
               scrollToTop();
             }}>EN</li>
-
           </ul>
         </nav>
       </section >
 
-
       {window.innerWidth <= 992 && (
-        <section className={`hamburgerMenu-section ${isMobile ? 'visible' : ''}`} >
-          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`} >
+        <section className={`hamburgerMenu-section ${isMobile ? 'visible' : ''}`}>
+          <div className={`hamburgerMenu-top ${scrollHamburgerMenu ? 'hamburgerMenu-top--scroll' : ''}`}>
             <div className='overlay_logo'>
               <Link to='/'>
                 <h1 className='logo-style'>impermanence<br />
                   films</h1>
               </Link>
             </div>
-            <div className={`openbtn1 ${isActive ? 'active' : ''} `} onClick={toggleNavigation}><span></span><span></span></div>
+            <div className={`openbtn1 ${isActive ? 'active' : ''}`} onClick={toggleNavigation}><span></span><span></span></div>
           </div>
 
-
-          <nav id="hamburgerMenu-nav" className={isActive ? 'panelactive' : ''} >
+          <nav id="hamburgerMenu-nav" className={isActive ? 'panelactive' : ''}>
             <div className='overlay_sp_menu style'>
               <img src='https://res.cloudinary.com/dyu65fpse/image/upload/v1688306594/lesilo_back_o0ah1q_1_fazlqx.jpg' alt='inaugulation' className='blur style' />
               <div className='overlay_sp_menu_text style'>
@@ -113,9 +110,9 @@ const Navbar = () => {
                   <li onClick={handleHashLinkClick}>
                     <Link to='/about'>À PROPOS</Link></li>
                   <li onClick={handleHashLinkClick}><HashLink to='/films/#encours' onClick={handleHashLinkClick}>EN COURS</HashLink></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/films#production' >PRODUCTION</HashLink></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/films#distribution' >DISTRIBUTION</HashLink></li>
-                  <li onClick={handleHashLinkClick}><HashLink to='/films#programmation' >PROGRAMMATION</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/films#production'>PRODUCTION</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/films#distribution'>DISTRIBUTION</HashLink></li>
+                  <li onClick={handleHashLinkClick}><HashLink to='/films#programmation'>PROGRAMMATION</HashLink></li>
                 </ul>
                 <ul className='overlay_sp_menu_ul_sns'>
                   <li className='overlay_sp_menu_sns' onClick={handleHashLinkClick}>

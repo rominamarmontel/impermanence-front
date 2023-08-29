@@ -29,7 +29,7 @@ const Footer = () => {
           ) : (<button onClick={handleClick} style={{ backgroundColor: 'inherit', padding: 'inherit', color: 'black' }}><MdPowerOff /></button>)}
         </div> */}
       </div>
-    </section >
+    </section>
   )
 }
 

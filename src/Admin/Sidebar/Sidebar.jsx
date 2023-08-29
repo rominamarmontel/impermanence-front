@@ -11,7 +11,7 @@ const Sidebar = () => {
   const { authenticateUser, removeToken } = useContext(AuthContext)
   const navigate = useNavigate()
   const handleClick = () => {
-    removeToken(); // 
+    removeToken();
     authenticateUser();
     navigate('/');
   };
@@ -48,7 +48,6 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="bottom">
-
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
 import FadeIn from '../../components/FadeIn/FadeIn';
-import FilmContent from '../../components/FilmContent';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
@@ -81,7 +80,13 @@ const FilmPage = () => {
                   <div className='FilmPage-content' key={film._id}>
                     <Link to={`/films/${film._id}`}>
                       <div className='FilmPage-position'>
-                        <FilmContent film={film} />
+                        <picture>
+                          <img
+                            src={film.thumbnailImages[0]}
+                            alt={film.title}
+                            className='film-image'
+                          />
+                        </picture>
                         <div className='film-title'>
                           <h4>{film.title.toUpperCase()}</h4>
                           <h6>{formatDirectorName(film.directedBy)}</h6>
