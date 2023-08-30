@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 export const AuthContext = createContext()
 
 export const AuthContextWrapper = (props) => {
+  console.log(props.children)
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -40,6 +41,7 @@ export const AuthContextWrapper = (props) => {
       }
     } catch (error) {
       console.error('Authentication error:', error);
+      console.error('Error details:', error.response);
       setUser(null);
       setIsLoading(false);
     }
