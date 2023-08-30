@@ -4,7 +4,6 @@ import { splitVendorChunkPlugin } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: import.meta.env === 'development' ? { global: 'window' } : {},
   plugins: [react(), splitVendorChunkPlugin()],
   build: {
     chunkSizeWarningLimit: 1600,
