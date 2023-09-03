@@ -4,7 +4,7 @@ import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
-import FadeIn from '../../components/FadeIn/FadeIn';
+// import FadeIn from '../../components/FadeIn/FadeIn';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
@@ -69,39 +69,39 @@ const FilmPage = () => {
   };
 
   return (
-    <FadeIn>
-      <section className='FilmPage'>
-        <div className='FilmPage-container'>
-          {categoryOrder.map((category) => (
-            <div key={category} id={category} className='category-section'>
-              <h2 className='category-title'>{displayCategory(category)}</h2>
-              <div className='FilmPage-category'>
-                {groupedFilms[category]?.map((film) => (
-                  <div className='FilmPage-content' key={film._id}>
-                    <Link to={`/films/${film._id}`}>
-                      <div className='FilmPage-position'>
-                        <picture>
-                          <img
-                            src={film.thumbnailImages[0]}
-                            alt={film.title}
-                            className='film-image'
-                          />
-                        </picture>
-                        <div className='film-title'>
-                          <h4>{film.title.toUpperCase()}</h4>
-                          <h6>{formatDirectorName(film.directedBy)}</h6>
-                        </div>
+    // <FadeIn>
+    <section className='FilmPage'>
+      <div className='FilmPage-container'>
+        {categoryOrder.map((category) => (
+          <div key={category} id={category} className='category-section'>
+            <h2 className='category-title'>{displayCategory(category)}</h2>
+            <div className='FilmPage-category'>
+              {groupedFilms[category]?.map((film) => (
+                <div className='FilmPage-content' key={film._id}>
+                  <Link to={`/films/${film._id}`}>
+                    <div className='FilmPage-position'>
+                      <picture>
+                        <img
+                          src={film.thumbnailImages[0]}
+                          alt={film.title}
+                          className='film-image'
+                        />
+                      </picture>
+                      <div className='film-title'>
+                        <h4>{film.title.toUpperCase()}</h4>
+                        <h6>{formatDirectorName(film.directedBy)}</h6>
                       </div>
-                    </Link>
-                  </div>
-                ))}
-              </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <ScrollToTop />
-      </section>
-    </FadeIn>
+          </div>
+        ))}
+      </div>
+      <ScrollToTop />
+    </section>
+    // </FadeIn>
   );
 };
 

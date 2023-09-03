@@ -14,7 +14,6 @@ export const AuthContextWrapper = (props) => {
     localStorage.setItem('token', receivedToken);
     setToken(receivedToken);
   }, []);
-
   const getToken = useCallback(() => {
     return localStorage.getItem('token');
   }, []);
