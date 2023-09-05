@@ -55,6 +55,11 @@ body {
 }
 .wrapper {
   flex: 1;
+  animation: fadein 3s forwards;
+}
+@keyframes fadein {
+	0% {opacity: 0}
+	100% {opacity: 1}
 }
 main{
   flex: 1;

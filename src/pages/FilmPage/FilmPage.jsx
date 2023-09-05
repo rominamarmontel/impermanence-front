@@ -4,12 +4,10 @@ import myApi from '../../service/service';
 import Spinner from '../../components/Spinner/Spinner';
 import './FilmPage.css';
 import ScrollToTop from '../../components/ScrollToTop';
-// import FadeIn from '../../components/FadeIn/FadeIn';
 
 const FilmPage = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true)
-  // const LazyFilmContent = lazy(() => import('../../components/FilmContent'));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +67,6 @@ const FilmPage = () => {
   };
 
   return (
-    // <FadeIn>
     <section className='FilmPage'>
       <div className='FilmPage-container'>
         {categoryOrder.map((category) => (
@@ -81,11 +78,13 @@ const FilmPage = () => {
                   <Link to={`/films/${film._id}`}>
                     <div className='FilmPage-position'>
                       <picture>
-                        <img
-                          src={film.thumbnailImages[0]}
-                          alt={film.title}
-                          className='film-image'
-                        />
+                        <div className='film-imagebg'>
+                          <img
+                            src={film.thumbnailImages[0]}
+                            alt={film.title}
+                            className='film-image'
+                          />
+                        </div>
                       </picture>
                       <div className='film-title'>
                         <h4>{film.title.toUpperCase()}</h4>
@@ -101,7 +100,6 @@ const FilmPage = () => {
       </div>
       <ScrollToTop />
     </section>
-    // </FadeIn>
   );
 };
 

@@ -28,7 +28,7 @@
 }
 .FilmPage-content {
   max-width: calc((100vw - 16%) /3);
-  height:auto;
+  height: auto;
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -39,16 +39,20 @@
   overflow: hidden;
   cursor: pointer;
 }
+.film-imagebg {
+  background-color: black;
+  width: 100%;
+  height: auto;
+  text-align:center;
+}
 .film-image {
-  aspect-ratio: 16 / 9;
+  vertical-align:top;
   object-fit: cover;
   width: 100%;
   height: auto;
   transition: transform 0.5s, filter 0.5s, opacity 0.5s;
 }
 .film-image:hover {
-  /* transform: scale(1.1); */
-  filter: brightness(110%);
   opacity: 0.6;
 }
 .film-title {
