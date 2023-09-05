@@ -3,8 +3,12 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+  animation: fadein 3s forwards;
 }
-
+@keyframes fadein {
+	0% {opacity: 0}
+	100% {opacity: 1}
+}
 .swiper-container {
   overflow: hidden;
 }

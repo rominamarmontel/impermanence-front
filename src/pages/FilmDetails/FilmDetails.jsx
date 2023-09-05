@@ -7,7 +7,6 @@ import { RxArrowRight } from 'react-icons/rx';
 import ScrollToTop from '../../components/ScrollToTop';
 import 'swiper/swiper-bundle.css';
 import Spinner from '../../components/Spinner/Spinner'
-import FadeIn from '../../components/FadeIn/FadeIn';
 
 
 const FilmDetails = () => {
@@ -118,218 +117,216 @@ const FilmDetails = () => {
 
   return (
     <>
-      <FadeIn>
-        <section className='FilmDetails'>
-          <div className='container'>
-            <div className='top'>
-              <div className='image-content'>
-                <div className='FilmDetails-right-position'>
-                  {currentImageIndex < imageCount && imageCount >= 2 ? (
-                    <div className='image-container'>
-                      {films[currentIndex]?.detailImages.map((image, index) => (
-                        <img
-                          key={index}
-                          src={image}
-                          alt="Film"
-                          className={`fade-in ${index === currentImageIndex ? 'current-image' : 'next-image'}`}
-                        />
-                      ))}
-                    </div>
-                  ) : imageCount === 1 ? (
-                    <div className='image-container'>
-                      <picture>
-                        <div>
-                          <img src={films[currentIndex].detailImages[0]} alt="Film" />
-                        </div>
-                      </picture>
-                    </div>
-                  ) : ('')}
-
-
-                  <div className='text-on-image'>
-                    <h1>{films[currentIndex].title.toUpperCase()}</h1>
-                    {films[currentIndex].directedBy && (<h4 className='directedBy'>{formattedDirectorName}</h4>)}
-                    {films[currentIndex].createdYear && (<h4 className='createdYear'>{films[currentIndex].createdYear}</h4>)}
+      <section className='FilmDetails'>
+        <div className='container'>
+          <div className='top'>
+            <div className='image-content'>
+              <div className='FilmDetails-right-position'>
+                {currentImageIndex < imageCount && imageCount >= 2 ? (
+                  <div className='image-container'>
+                    {films[currentIndex]?.detailImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt="Film"
+                        className={`fade-in ${index === currentImageIndex ? 'current-image' : 'next-image'}`}
+                      />
+                    ))}
                   </div>
-                  <div className='copyright-on-image'>
-                    {films[currentIndex].copyright && (<h6>&copy; {films[currentIndex].copyright}</h6>)}
-                  </div>
-                </div>
-              </div>
-
-
-              <div className='title-content'>
-                <div className='FilmDetails-originalTitle-container'>
-                  {films[currentIndex].originalTitle && (
-                    <>
-                      <div className='FilmDetails-originalTitle-content'>
-                        <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>
-                          {films[currentIndex].originalTitle.toUpperCase()}
-                        </h1>
-                        {films[currentIndex] && (
-                          <div className='FilmDetails-category'>
-                            {films[currentIndex]?.category === 'encours' ? 'EN COURS' : films[currentIndex]?.category.toUpperCase()}
-                          </div>
-                        )}
+                ) : imageCount === 1 ? (
+                  <div className='image-container'>
+                    <picture>
+                      <div>
+                        <img src={films[currentIndex].detailImages[0]} alt="Film" />
                       </div>
-                    </>
-                  )}
+                    </picture>
+                  </div>
+                ) : ('')}
+
+
+                <div className='text-on-image'>
+                  <h1>{films[currentIndex].title.toUpperCase()}</h1>
+                  {films[currentIndex].directedBy && (<h4 className='directedBy'>{formattedDirectorName}</h4>)}
+                  {films[currentIndex].createdYear && (<h4 className='createdYear'>{films[currentIndex].createdYear}</h4>)}
+                </div>
+                <div className='copyright-on-image'>
+                  {films[currentIndex].copyright && (<h6>&copy; {films[currentIndex].copyright}</h6>)}
                 </div>
               </div>
             </div>
 
 
-            <div className='bottom'>
-              <ul className='ul-left' >
-                <div className='ul-col'>
-                  {films[currentIndex].directedBy && (
-                    <div>
-                      <li><h5>RÉALISATION</h5></li>
-                      <li>{films[currentIndex].directedBy}</li>
-                    </div>
-                  )}
-                  {films[currentIndex].producedBy && (
-                    <div>
-                      <li><h5>PRODUCTION</h5></li>
-                      <li>{films[currentIndex].producedBy}</li>
-                    </div>
-                  )}
-                </div>
-
-                {films[currentIndex].author && (
-                  <div>
-                    <li><h5>{authorArray.length > 1 ? 'AUTEUR(E)S' : 'AUTEUR(E)'}</h5></li>
-                    <li>{films[currentIndex].author}</li>
-                  </div>
-                )}
-
-                <div className='ul-col'>
-                  {films[currentIndex].format && (
-                    <div>
-                      <li><h5>FORMAT</h5></li>
-                      <li>{films[currentIndex].format}</li>
-                    </div>
-                  )}
-                  {films[currentIndex].duration && (
-                    <div>
-                      <li><h5>DUREE</h5></li>
-                      <li>{films[currentIndex].duration}</li>
-                    </div>
-                  )}
-                </div>
-
-
-                {films[currentIndex].partner && (
-                  <div>
-                    <li><h5>{partnerArray.length > 1 ? 'PARTENAIRES' : 'PARTENAIRE'}</h5></li>
-                    <li>{films[currentIndex].partner}</li>
-                  </div>
-                )}
-
-
-                <div className='ul-col'>
-                  {films[currentIndex].distribution && (
-                    <>
-                      <div>
-                        <li><h5>DISTRIBUTION</h5></li>
-                        <li>{films[currentIndex].distribution}</li>
-                      </div>
-                    </>
-                  )}
-                  {films[currentIndex].internationalSales && (
-                    <div>
-                      <li><h5>VENTES INTERNATIONALES</h5></li>
-                      <li>{films[currentIndex].internationalSales}</li>
-                    </div>
-                  )}
-                </div>
-
-
-                {films[currentIndex].stageOfProduction && (
+            <div className='title-content'>
+              <div className='FilmDetails-originalTitle-container'>
+                {films[currentIndex].originalTitle && (
                   <>
-                    <div>
-                      <li><h5>ÉTAPE DE PRODUCTION</h5></li>
-                      <li>{films[currentIndex].stageOfProduction}</li>
+                    <div className='FilmDetails-originalTitle-content'>
+                      <h1 className={`FilmDetails-originalTitle ${shouldReduceTitleSize ? 'reduce-size' : ''}`}>
+                        {films[currentIndex].originalTitle.toUpperCase()}
+                      </h1>
+                      {films[currentIndex] && (
+                        <div className='FilmDetails-category'>
+                          {films[currentIndex]?.category === 'encours' ? 'EN COURS' : films[currentIndex]?.category.toUpperCase()}
+                        </div>
+                      )}
                     </div>
                   </>
                 )}
-                {films[currentIndex].genre && (
-                  <div>
-                    <li><h5>GENRE</h5></li>
-                    <li>{films[currentIndex].genre}</li>
-                  </div>
-                )}
-
-
-
-                <div className='FilmDetails-li-videoOnDemand'>
-                  {films[currentIndex].videoOnDemand && (
-                    <div>
-                      <li><h5>VIDEO À LA DEMANDE</h5></li>
-                      {videoOnDemandUrls.map((url, index) => (
-                        <li key={index} style={{ marginBottom: 'unset', lineHeight: '1rem' }}>
-                          <a href={url} target="_blank" rel="noreferrer">{url}</a>
-                        </li>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className='button-showDownload'>
-                  {films[currentIndex].download && (
-                    <div>
-                      <li>
-                        <button onClick={handleClickDownload} >{showDownload ? 'TÉLÉCHARGEMENT' : 'TÉLÉCHARGEMENT +'}</button></li>
-                      {showDownload && films[currentIndex].download && <a
-                        href={films[currentIndex].download}
-                        target="_blank" rel="noopener, noreferrer"
-                        onClick={() => handleDownload(films[currentIndex].download)}
-                      >{films[currentIndex].title}</a>}
-                    </div>
-                  )}
-                </div>
-                <div className='button-showClick'>
-                  {films[currentIndex].crew && (
-                    <div>
-                      <li>
-                        <button onClick={handleClickCrew}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
-                      </li>
-                      {showCrew && <li style={{ paddingTop: '2px' }}>{films[currentIndex].crew}</li>}
-                    </div>
-                  )}
-                </div>
-              </ul>
-
-
-
-              <ul className='ul-right'>
-                {films[currentIndex].synopsis && (
-                  <div>
-                    <li>
-                      <h5 className='FilmDetails-synopsis-h5'>SYNOPSIS</h5>
-                    </li>
-                    <li>
-                      {films[currentIndex].synopsis}
-                    </li>
-                  </div>
-                )}
-                {films[currentIndex].festivalsAndAwards && (
-                  <div>
-                    <li>
-                      <h5 className='FilmDetails-festivalsAndAwards-h5'>FESTIVALS & RÉCOMPENSES</h5>
-                    </li>
-                    <li>
-                      {films[currentIndex].festivalsAndAwards}
-                    </li>
-                  </div>
-                )}
-              </ul>
+              </div>
             </div>
           </div>
-          <ScrollToTop />
-          <div className='flesh-left' onClick={goToPreviousFilm}><RxArrowLeft /></div>
-          <div className='flesh-right' onClick={goToNextFilm}><RxArrowRight /></div>
-        </section >
-      </FadeIn >
+
+
+          <div className='bottom'>
+            <ul className='ul-left' >
+              <div className='ul-col'>
+                {films[currentIndex].directedBy && (
+                  <div>
+                    <li><h5>RÉALISATION</h5></li>
+                    <li>{films[currentIndex].directedBy}</li>
+                  </div>
+                )}
+                {films[currentIndex].producedBy && (
+                  <div>
+                    <li><h5>PRODUCTION</h5></li>
+                    <li>{films[currentIndex].producedBy}</li>
+                  </div>
+                )}
+              </div>
+
+              {films[currentIndex].author && (
+                <div>
+                  <li><h5>{authorArray.length > 1 ? 'AUTEUR(E)S' : 'AUTEUR(E)'}</h5></li>
+                  <li>{films[currentIndex].author}</li>
+                </div>
+              )}
+
+              <div className='ul-col'>
+                {films[currentIndex].format && (
+                  <div>
+                    <li><h5>FORMAT</h5></li>
+                    <li>{films[currentIndex].format}</li>
+                  </div>
+                )}
+                {films[currentIndex].duration && (
+                  <div>
+                    <li><h5>DUREE</h5></li>
+                    <li>{films[currentIndex].duration}</li>
+                  </div>
+                )}
+              </div>
+
+
+              {films[currentIndex].partner && (
+                <div>
+                  <li><h5>{partnerArray.length > 1 ? 'PARTENAIRES' : 'PARTENAIRE'}</h5></li>
+                  <li>{films[currentIndex].partner}</li>
+                </div>
+              )}
+
+
+              <div className='ul-col'>
+                {films[currentIndex].distribution && (
+                  <>
+                    <div>
+                      <li><h5>DISTRIBUTION</h5></li>
+                      <li>{films[currentIndex].distribution}</li>
+                    </div>
+                  </>
+                )}
+                {films[currentIndex].internationalSales && (
+                  <div>
+                    <li><h5>VENTES INTERNATIONALES</h5></li>
+                    <li>{films[currentIndex].internationalSales}</li>
+                  </div>
+                )}
+              </div>
+
+
+              {films[currentIndex].stageOfProduction && (
+                <>
+                  <div>
+                    <li><h5>ÉTAPE DE PRODUCTION</h5></li>
+                    <li>{films[currentIndex].stageOfProduction}</li>
+                  </div>
+                </>
+              )}
+              {films[currentIndex].genre && (
+                <div>
+                  <li><h5>GENRE</h5></li>
+                  <li>{films[currentIndex].genre}</li>
+                </div>
+              )}
+
+
+
+              <div className='FilmDetails-li-videoOnDemand'>
+                {films[currentIndex].videoOnDemand && (
+                  <div>
+                    <li><h5>VIDEO À LA DEMANDE</h5></li>
+                    {videoOnDemandUrls.map((url, index) => (
+                      <li key={index} style={{ marginBottom: 'unset', lineHeight: '1rem' }}>
+                        <a href={url} target="_blank" rel="noreferrer">{url}</a>
+                      </li>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className='button-showDownload'>
+                {films[currentIndex].download && (
+                  <div>
+                    <li>
+                      <button onClick={handleClickDownload} >{showDownload ? 'TÉLÉCHARGEMENT' : 'TÉLÉCHARGEMENT +'}</button></li>
+                    {showDownload && films[currentIndex].download && <a
+                      href={films[currentIndex].download}
+                      target="_blank" rel="noopener, noreferrer"
+                      onClick={() => handleDownload(films[currentIndex].download)}
+                    >{films[currentIndex].title}</a>}
+                  </div>
+                )}
+              </div>
+              <div className='button-showClick'>
+                {films[currentIndex].crew && (
+                  <div>
+                    <li>
+                      <button onClick={handleClickCrew}>{showCrew ? 'ÉQUIPE' : 'ÉQUIPE +'}</button>
+                    </li>
+                    {showCrew && <li style={{ paddingTop: '2px' }}>{films[currentIndex].crew}</li>}
+                  </div>
+                )}
+              </div>
+            </ul>
+
+
+
+            <ul className='ul-right'>
+              {films[currentIndex].synopsis && (
+                <div>
+                  <li>
+                    <h5 className='FilmDetails-synopsis-h5'>SYNOPSIS</h5>
+                  </li>
+                  <li>
+                    {films[currentIndex].synopsis}
+                  </li>
+                </div>
+              )}
+              {films[currentIndex].festivalsAndAwards && (
+                <div>
+                  <li>
+                    <h5 className='FilmDetails-festivalsAndAwards-h5'>FESTIVALS & RÉCOMPENSES</h5>
+                  </li>
+                  <li>
+                    {films[currentIndex].festivalsAndAwards}
+                  </li>
+                </div>
+              )}
+            </ul>
+          </div>
+        </div>
+        <ScrollToTop />
+        <div className='flesh-left' onClick={goToPreviousFilm}><RxArrowLeft /></div>
+        <div className='flesh-right' onClick={goToNextFilm}><RxArrowRight /></div>
+      </section >
     </>
   )
 }
